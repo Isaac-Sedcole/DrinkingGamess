@@ -1,10 +1,10 @@
 export default {
     games: [
-
         {
+            id: 1,
             name: "Kings Cup",
             suggestedPlayers: "4+",
-            drunkMeter: "6",
+            drunkMeter: 6,
             explanationBlurb: "its the kings cup",
             rules: {
                 ace: "snake eyes",
@@ -23,9 +23,10 @@ export default {
             }
         },
         {
+            id: 2,
             name: "Smash Cup",
             suggestedPlayers: "4+",
-            drunkMeter: "4",
+            drunkMeter: 4,
             explanationBlurb: "get yo balls in the cup boi",
             rules: {
                 inTheCup: "if you bounce the ball into the cup you make hand the ball and cup to the next person",
@@ -35,9 +36,10 @@ export default {
             }
         },
         {
+            id: 3,
             name: "Taxi Driver",
             suggestedPlayers: "2+",
-            drunkMeter: "7",
+            drunkMeter: 7,
             explanationBlurb: "Its taxi driver",
             rules: {
                 higher: "choose if the next card flipped will be higher than the current card - if correct you move forward",

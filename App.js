@@ -3,13 +3,16 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Menu from './Menu'
 import Games from './Games'
+import { NavigationContainer } from '@react-navigation/native'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Games />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <View style={styles.container}>
+        <Games />
+        <StatusBar style="auto" />
+      </View>
+    </NavigationContainer>
   );
 }
 
