@@ -2,10 +2,12 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 
-function Game({navigation}, props) {
+function Game({route, navigation}) {
   return (
-    <Text>Hi! I'm a singular game, {props.game.id}</Text>
-    
+    <>
+    <Text>Hi! welcome to {route.params.game.name}</Text>
+    {console.log(route.params.game)}
+    </>
   )
 }
 
