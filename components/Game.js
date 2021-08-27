@@ -6,7 +6,7 @@ function Game({route, navigation}) {
   return (
     <>
     <Text>Hi! welcome to {route.params.game.name}</Text>
-    {console.log(route.params.game)}
+    {/* <button>Customize rules</button> */}
     </>
   )
 }

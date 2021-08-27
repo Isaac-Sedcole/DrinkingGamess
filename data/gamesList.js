@@ -4,7 +4,7 @@ export default {
             id: 1,
             name: "Kings Cup",
             suggestedPlayers: "4+",
-            drunkMeter: 6,
+            drunkOMeter: 6,
             itemsRequired: ["Pack of cards", "Large bowl or cup"],
             explanationBlurb: "its the kings cup",
             rules: {
@@ -34,7 +34,7 @@ export default {
             id: 2,
             name: "Smash Cup",
             suggestedPlayers: "4+",
-            drunkMeter: 4,
+            drunkOMeter: 4,
             itemsRequired: ["Pack of cards", "Large bowl or cup"],
             explanationBlurb: "get yo balls in the cup boi",
             rules: {
@@ -52,7 +52,7 @@ export default {
             id: 3,
             name: "Taxi Driver",
             suggestedPlayers: "2+",
-            drunkMeter: 7,
+            drunkOMeter: 7,
             itemsRequired: ["Pack of cards", "Large bowl or cup"],
             explanationBlurb: "Its taxi driver",
             rules: {
@@ -63,7 +63,7 @@ export default {
             },
             customRules: [],
             ruleDescription: {
-                
+
             }
         }
     ]

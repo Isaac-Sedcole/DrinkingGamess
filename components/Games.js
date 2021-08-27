@@ -17,7 +17,7 @@ function Games ({ navigation }) {
     // }
 
     const changeView = (game) => {
-        console.log(game.id, game.name)
+        // console.log(game.id, game.name)
         navigation.navigate("Selected game", {game})
     }
 

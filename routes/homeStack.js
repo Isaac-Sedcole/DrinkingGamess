@@ -3,6 +3,8 @@ import { createAppContainer } from "react-navigation"
 import Games from "../components/Games"
 import Game from "../components/Game"
 
+//IRRELEVANT
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const screens = {
     Games: {
         screen: Games
