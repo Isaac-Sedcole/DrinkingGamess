@@ -56,6 +56,7 @@ export default {
             name: "Smash Cup",
             suggestedPlayers: "4+",
             drunkOMeter: 4,
+            gameDuration: "40-60 mins",
             itemsRequired: ["Pack of cards", "Large bowl or cup"],
             explanationBlurb: "get yo balls in the cup boi",
             rules: {
@@ -74,6 +75,7 @@ export default {
             name: "Taxi Driver",
             suggestedPlayers: "2+",
             drunkOMeter: 7,
+            gameDuration: "40-60 mins",
             itemsRequired: ["Pack of cards", "Large bowl or cup"],
             explanationBlurb: "Its taxi driver",
             rules: {

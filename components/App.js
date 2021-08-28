@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Games from './Games'
 import Game from './Game';
+import ShowRuleModal from './ShowRuleModal';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 // import Navigator from '../routes/homeStack'
@@ -16,6 +17,7 @@ export default function App() {
           <Stack.Navigator>
             <Stack.Screen name="Games" component={Games}/>
             <Stack.Screen name="Selected game" component={Game}/>
+            <Stack.Screen name="Showing a rule" component={ShowRuleModal}/>
           </Stack.Navigator>
         </NavigationContainer>
   );
