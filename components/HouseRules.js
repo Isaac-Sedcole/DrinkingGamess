@@ -1,12 +1,9 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
-import gamesList from '../data/gamesList'
-
-import Game from './Game'
-import HouseRules from './HouseRules'
+import houseRules from '../data/houseRules'
 
 
-function Games ({ navigation }) {
+function HouseRules ({ navigation }) {
 
     // const renderGames = () => {
     //     for(let i in gamesList) {
@@ -25,19 +22,18 @@ function Games ({ navigation }) {
     return (
         <>
         <Text>Hi this is the Games</Text>
-        {gamesList.games.map(game => {
+        {houseRules.houseRules.map(rule => {
             return (
                 
-                <div key={game.id}>
+                <div key={rule.id}>
                 <br></br>
-                <TouchableHighlight onPress={() => changeView(game)}><Text>{game.name}</Text></TouchableHighlight>
+                <TouchableHighlight onPress={() => changeView(game)}><Text>{rule.name}</Text></TouchableHighlight>
                 </div>
                 
             )
         })}
-        <HouseRules/>
         </>
     )
 }
 
-export default Games
+export default HouseRules
