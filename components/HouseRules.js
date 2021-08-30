@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import houseRulesList from '../data/houseRules'
-import { Checkbox } from 'react-native-paper'
+import CheckBox from './CheckBox'
 
 
 function HouseRules ({ navigation }) {
@@ -37,7 +37,7 @@ function HouseRules ({ navigation }) {
                 
                 <div key={rule.id}>
                 <br></br>
-                <Checkbox title={fullHouseRules[rule.id-1].name} status={fullHouseRules[rule.id-1].checked ? "checked" : "unchecked"} onPress={() => test(rule.id-1)}></Checkbox>
+                <CheckBox label={rule.name} status={fullHouseRules[rule.id-1].checked ? "checked" : "unchecked"} onPress={() => test(rule.id-1)}></CheckBox>
                 </div>
                 
             )
