@@ -5,11 +5,11 @@ import { StyleSheet, Text, View } from 'react-native'
 
 function ShowRuleModal({route, navigation }, props) {
 
-  const [isActive, setActive] = useState(true)
+  // const [isActive, setActive] = useState(true)
 
-    useEffect(()=> {
-        setActive(true)
-    },[])
+  //   useEffect(()=> {
+  //       setActive(true)
+  //   },[])
 
   let rule = route.params.rule
   console.log(rule)

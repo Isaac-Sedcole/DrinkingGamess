@@ -3,10 +3,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Games from './Games'
 import Game from './Game';
+import HouseRules from './HouseRules';
 import ShowRuleModal from './ShowRuleModal';
+import ShowHouseRuleModal from './ShowHouseRuleModal';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HouseRules from './HouseRules';
 // import Navigator from '../routes/homeStack'
 
 const Stack = createStackNavigator()
@@ -20,6 +21,7 @@ export default function App() {
             <Stack.Screen name="House rules" component={HouseRules}/>
             <Stack.Screen name="Selected game" component={Game}/>
             <Stack.Screen name="Showing a rule" component={ShowRuleModal}/>
+            <Stack.Screen name="Showing a house rule" component={ShowHouseRuleModal}/>
           </Stack.Navigator>
         </NavigationContainer>
   );
