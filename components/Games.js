@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import gamesList from '../data/gamesList'
 
@@ -17,9 +17,15 @@ function Games ({ navigation }) {
     //     }
     // }
 
+    const [letsGoNavigator, setLetsGoNavigator] = useState(false)
+
     const changeView = (game) => {
         // console.log(game.id, game.name)
         navigation.navigate("Selected game", {game})
+    }
+
+    const navigatorPlz = () => {
+        setLetsGoNavigator(!letsGoNavigator)
     }
 
     return (
@@ -33,9 +39,11 @@ function Games ({ navigation }) {
                 <TouchableHighlight onPress={() => changeView(game)}><Text>{game.name}</Text></TouchableHighlight>
                 </div>
                 
-            )
-        })}
-        <HouseRules/>
+                )
+            })}
+            <button onClick={() => navigatorPlz()}>navigate</button>
+        
+        {letsGoNavigator && navigation.navigate("House rules")}
         </>
     )
 }

@@ -24,7 +24,7 @@ function ShowHouseRuleModal({route, navigation }, props) {
     <>
       <div >
         {/* className={['modal', isActive ? "is-active" : ""].join(' ')} */}
-            {rule}
+            {rule.name}
         {/* <button className="button is-medium is-info is-outlined" onClick={() => setActive(false)} onClick={resetModal}>OK!</button> */}
         <button  onClick={() => redirect()}>OK!</button>
       </div>

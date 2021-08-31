@@ -1,23 +1,22 @@
 import React, {useState, useEffect} from 'react'
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { StyleSheet, Text, TouchableHighlight, View, Modal } from 'react-native'
 import houseRulesList from '../data/houseRules'
 import CheckBox from './CheckBox'
 
 
 function HouseRules ({ navigation }) {
 
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
+    // const [toggleCheckBox, setToggleCheckBox] = useState(false)
     const [compareList, setCompareList] = useState([])
     const [fullHouseRules, setFullHouseRules]  = useState([])
     const [showHouseRuleModal, setShowHouseRuleModal] = useState(false)
     const [currentHouseRule, setCurrentHouseRule] = useState({})
 
     useEffect(() => {
-      
       setFullHouseRules(houseRulesList.houseRules.map(rule => {
         return rule
       }))
-
+      setShowHouseRuleModal(false)
     },[])
 
     const handleCheckBox = (index) => {
@@ -26,19 +25,14 @@ function HouseRules ({ navigation }) {
       setFullHouseRules(rules)
     }
 
-    const navigateToModal = () => {
-      if (showHouseRuleModal) {
-        navigation.navigate("Showing a rule", {rule: currentHouseRule})
-      }
-    }
+    // const modalDone = () => {
+    //   setShowHouseRuleModal(!showHouseRuleModal)
+    // }
 
     const activateShowHouseRuleModal = (houseRule) => {
-      console.log(houseRule)
       let ruleDescription = fullHouseRules.filter(rule => {return houseRule.id == rule.id})
-      console.log(ruleDescription[0])
       setCurrentHouseRule(ruleDescription[0])
       setShowHouseRuleModal(!showHouseRuleModal)
-      navigateToModal()
     }
 
     return (
@@ -55,8 +49,12 @@ function HouseRules ({ navigation }) {
                 
             )
         })}
+        {/* <Modal visible={showHouseRuleModal} animationType="slide">
+            <Text>{currentHouseRule.name}</Text>
+          <button onClick={() => modalDone()}>OK!</button>
+        </Modal> */}
 
-        {/* {showHouseRuleModal && navigation.navigate("Showing a rule", {rule: currentHouseRule})} */}
+        {showHouseRuleModal && navigation.navigator("Showing the house rule", {currentHouseRule})}
         </>
     )
 }

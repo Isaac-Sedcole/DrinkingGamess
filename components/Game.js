@@ -15,6 +15,7 @@ function Game({route, navigation}) {
   const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
 
   const activateShowRules = () => {
+    console.log(navigation)
     setShowRules(!showRules)
   }
 
