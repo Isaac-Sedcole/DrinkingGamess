@@ -54,7 +54,7 @@ function HouseRules ({ navigation }) {
           <button onClick={() => modalDone()}>OK!</button>
         </Modal> */}
 
-        {showHouseRuleModal && navigation.navigator("Showing the house rule", {currentHouseRule})}
+        {showHouseRuleModal && navigation.navigate("Showing a house rule", {rule: currentHouseRule})}
         </>
     )
 }
