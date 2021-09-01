@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { StyleSheet, Text, TouchableHighlight, View, Modal } from 'react-native'
+import { StyleSheet, Text, TouchableHighlight, View, Modal, Button } from 'react-native'
 import houseRulesList from '../data/houseRules'
 import CheckBox from './CheckBox'
 
@@ -44,7 +44,7 @@ function HouseRules ({ navigation }) {
                 <div key={rule.id}>
                 <br></br>
                 <CheckBox label={rule.name} status={fullHouseRules[rule.id-1].checked ? "checked" : "unchecked"} onPress={() => handleCheckBox(rule.id-1)}></CheckBox>
-                <button onClick={() => activateShowHouseRuleModal(rule)}>Rule Description</button>
+                <Button onClick={() => activateShowHouseRuleModal(rule)} title="Rule Description"/>
                 </div>
                 
             )
