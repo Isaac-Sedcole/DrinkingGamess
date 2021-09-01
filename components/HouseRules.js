@@ -40,7 +40,9 @@ function HouseRules ({ navigation }) {
                 <div key={rule.id}>
                 <br></br>
                 <CheckBox label={rule.name} status={fullHouseRules[rule.id-1].checked ? "checked" : "unchecked"} onPress={() => handleCheckBox(rule.id-1)}></CheckBox>
+
                 <Button onPress={() => activateShowHouseRuleModal(rule)} title="Rule Description"/>
+                
                 </div>
                 
             )

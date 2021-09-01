@@ -8,6 +8,7 @@ import ShowRuleModal from './ShowRuleModal';
 import ShowHouseRuleModal from './ShowHouseRuleModal';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Icon from 'react-native-vector-icons/FontAwesome5'
 // import Navigator from '../routes/homeStack'
 
 
@@ -22,18 +23,17 @@ function NavHouseRules ({navigation}) {
   // }
 
   return (
-    <>
-    <Button onPress={() => navigation.goBack()} title="back"/>
+    <View>
+    <Icon.Button onPress={() => navigation.goBack()} name="arrow-left"/>
     <Button onPress={() => navigation.navigate("House rules")} title="Click here to add some house rules!"/>
-    {/* {navigateToHouseRules && navigation.navigate("House rules")} */}
-    </>
+    </View>
   )
 }
 
 function JustShowBack ({navigation}) {
   return (
     <>
-    <Button onPress={() => navigation.goBack()} title="back"/>
+    <Icon.Button onPress={() => navigation.goBack()} name="arrow-left"/>
     </>
   )
 } 
