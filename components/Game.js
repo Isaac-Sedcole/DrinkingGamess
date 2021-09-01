@@ -64,7 +64,6 @@ function Game({ route, navigation }) {
               </View>
             </Card>
             </div>
-            
           )
         })}
       </View>
