@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Button } from 'react-native'
 
 function Game({route, navigation}) {
 
@@ -31,7 +31,6 @@ function Game({route, navigation}) {
     setShowRuleModal(!showRuleModal)
   }
 
-  // console.log(rules)
   
   return (
     <>
@@ -43,11 +42,11 @@ function Game({route, navigation}) {
     <Text>DrunkOMeter reaches a solid {route.params.game.drunkOMeter}/10</Text>
     <Text>You will need: {route.params.game.itemsRequired.map(item => {return item+ ", "})}to play.</Text>
     <Text>{route.params.game.explanationBlurb}</Text>
-    <button onClick={() => activateShowRules()}>Show Rules!</button>
+    <Button onPress={() => activateShowRules()} title="Show Rules!"/>
     {showRules && rules.map(rule => {
       return (
         <div key={rule.props.value}>
-        {rule.props.value} : <button onClick={() => activateShowRuleModal(rule.props.children)}>{rule.props.children} </button>
+        {rule.props.value} : <Button onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children}/>
         </div>
       )
     })}

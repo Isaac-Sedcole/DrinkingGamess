@@ -25,10 +25,6 @@ function HouseRules ({ navigation }) {
       setFullHouseRules(rules)
     }
 
-    // const modalDone = () => {
-    //   setShowHouseRuleModal(!showHouseRuleModal)
-    // }
-
     const activateShowHouseRuleModal = (houseRule) => {
       let ruleDescription = fullHouseRules.filter(rule => {return houseRule.id == rule.id})
       setCurrentHouseRule(ruleDescription[0])
@@ -44,15 +40,11 @@ function HouseRules ({ navigation }) {
                 <div key={rule.id}>
                 <br></br>
                 <CheckBox label={rule.name} status={fullHouseRules[rule.id-1].checked ? "checked" : "unchecked"} onPress={() => handleCheckBox(rule.id-1)}></CheckBox>
-                <Button onClick={() => activateShowHouseRuleModal(rule)} title="Rule Description"/>
+                <Button onPress={() => activateShowHouseRuleModal(rule)} title="Rule Description"/>
                 </div>
                 
             )
         })}
-        {/* <Modal visible={showHouseRuleModal} animationType="slide">
-            <Text>{currentHouseRule.name}</Text>
-          <button onClick={() => modalDone()}>OK!</button>
-        </Modal> */}
 
         {showHouseRuleModal && navigation.navigate("Showing a house rule", {rule: currentHouseRule})}
         </>

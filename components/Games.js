@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { StyleSheet, Text, TouchableHighlight, View, Button } from 'react-native'
 import gamesList from '../data/gamesList'
 
 import Game from './Game'
@@ -17,16 +17,16 @@ function Games ({ navigation }) {
     //     }
     // }
 
-    const [letsGoNavigator, setLetsGoNavigator] = useState(false)
+    // const [letsGoNavigator, setLetsGoNavigator] = useState(false)
 
     const changeView = (game) => {
         // console.log(game.id, game.name)
         navigation.navigate("Selected game", {game})
     }
 
-    const navigatorPlz = () => {
-        setLetsGoNavigator(!letsGoNavigator)
-    }
+    // const navigatorPlz = () => {
+    //     setLetsGoNavigator(!letsGoNavigator)
+    // }
 
     return (
         <>
@@ -36,14 +36,14 @@ function Games ({ navigation }) {
                 
                 <div key={game.id}>
                 <br></br>
-                <TouchableHighlight onPress={() => changeView(game)}><Text>{game.name}</Text></TouchableHighlight>
+                <Button onPress={() => navigation.navigate("Selected game", {game})} title={game.name}/>
                 </div>
                 
                 )
             })}
-            <button onClick={() => navigatorPlz()}>navigate</button>
+            {/* <button onClick={() => navigatorPlz()}>navigate</button> */}
         
-        {letsGoNavigator && navigation.navigate("House rules")}
+        {/* {letsGoNavigator && navigation.navigate("House rules")} */}
         </>
     )
 }
