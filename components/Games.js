@@ -29,8 +29,10 @@ function Games ({ navigation }) {
     // }
 
     return (
-        <>
-        <Text>Hi this is the Games</Text>
+        <View style={[styles.container, {
+            flexDirection: "column",
+            alignItems: 'center'
+          }]}>
         {gamesList.games.map(game => {
             return (
                 
@@ -44,8 +46,15 @@ function Games ({ navigation }) {
             {/* <button onClick={() => navigatorPlz()}>navigate</button> */}
         
         {/* {letsGoNavigator && navigation.navigate("House rules")} */}
-        </>
+        </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      padding: 20,
+    },
+  });
 
 export default Games

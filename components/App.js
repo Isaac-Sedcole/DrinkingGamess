@@ -33,27 +33,39 @@ function NavHouseRules ({navigation}) {
       <View style={{ flex : 1}}>
         <Icon.Button onPress={() => navigation.goBack()} name="arrow-left"/>
       </View>
-      <View style={{ flex : 6}}>
+      <View style={{ flex : 8}}>
         <Icon.Button onPress={() => navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
       </View>
-      <View style={{ flex : 20}}></View>
+      <View style={{ flex : 27}}></View>
     </View>
   )
 }
 
 function JustShowBack ({navigation}) {
   return (
-    <>
-    <Icon.Button onPress={() => navigation.goBack()} name="arrow-left"/>
-    </>
+    <View style={[styles.container, {
+      flexDirection: "row",
+      alignItems: "center"
+    }]}>
+      <View style={{ flex : 1}}>
+        <Icon.Button onPress={() => navigation.goBack()} name="arrow-left"/>
+      </View>
+      <View style={{ flex : 35}}></View>
+    </View>
   )
 } 
 
 function JustShowHouseRules({navigation}) {
   return (
-    <>
-    <Button onPress={() => navigation.navigate("House rules")} title="Click here to add some house rules!"/>
-    </>
+    <View style={[styles.container, {
+      flexDirection: "row",
+      alignItems: "center"
+    }]}>
+      <View style={{ flex : 8}}>
+      <Icon.Button onPress={() => navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
+      </View>
+      <View style={{ flex : 28}}></View>
+    </View>    
   )
 }
 
@@ -64,7 +76,8 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator screenOptions={{
             header: props => <NavHouseRules {...props} />
-          }}
+          }
+        }
           >
             <Stack.Screen options={{header: props => <JustShowHouseRules {...props}/>}} name="Games" component={Games}/>
             <Stack.Screen options={{header: props => <JustShowBack {...props}/>}} name="House rules" component={HouseRules}/>
