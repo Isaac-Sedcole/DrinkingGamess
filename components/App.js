@@ -10,7 +10,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 // import Navigator from '../routes/homeStack'
+// const AnimatedIcon = Animated.createAnimatedComponent(Icon)
 
+
+// You will normally use a combination of flexDirection, alignItems, and justifyContent to achieve the right layout.
 
 const Stack = createStackNavigator()
 
@@ -23,9 +26,17 @@ function NavHouseRules ({navigation}) {
   // }
 
   return (
-    <View>
-    <Icon.Button onPress={() => navigation.goBack()} name="arrow-left"/>
-    <Button onPress={() => navigation.navigate("House rules")} title="Click here to add some house rules!"/>
+    <View style={[styles.container, {
+      flexDirection: "row",
+      alignItems: 'center'
+    }]}>
+      <View style={{ flex : 1}}>
+        <Icon.Button onPress={() => navigation.goBack()} name="arrow-left"/>
+      </View>
+      <View style={{ flex : 6}}>
+        <Icon.Button onPress={() => navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
+      </View>
+      <View style={{ flex : 20}}></View>
     </View>
   )
 }
@@ -68,6 +79,13 @@ export default function App() {
 
   <StatusBar style="auto" />
 </View> */}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+});
 
 // const styles = StyleSheet.create({
 //   container: {
