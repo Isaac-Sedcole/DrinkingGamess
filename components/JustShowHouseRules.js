@@ -17,13 +17,14 @@ function JustShowHouseRules(props) {
                 <View style={{ flex: 8 }}>
                     <Icon.Button onPress={() => props.navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
                 </View>
-                    {props.houseRules.map(rule => {
-                        return (
-                            <View key={rule.id} style={{ flex: 28 }}>
-                                <Icon.Button backgroundColor="green" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>
-                            </View>
-                        )
-                    })}
+                {props.houseRules.map(rule => {
+                    let flexNum = 28
+                    return (
+                        <View key={rule.id} style={{ flex: flexNum/props.houseRules.length }}>
+                            {rule.checked && <Icon.Button backgroundColor="green" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
+                        </View>
+                    )
+                })}
             </View>
         )
     } else {

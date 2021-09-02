@@ -9,7 +9,6 @@ function NavHouseRules(props) {
   
   
     if (props.houseRules.length > 0) {
-
       return (
         <View style={[styles.container, {
           flexDirection: "row",
@@ -21,10 +20,12 @@ function NavHouseRules(props) {
           <View style={{ flex: 8 }}>
             <Icon.Button onPress={() => props.navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
           </View>
+          
             {props.houseRules.map(rule => {
+              let flexNum = 27
                 return (
-                <View key={rule.id} style={{ flex: 27 }}>
-                    <Icon.Button backgroundColor="green" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>
+                <View key={rule.id} style={{ flex: flexNum/props.houseRules.length }}>
+                  {rule.checked && <Icon.Button backgroundColor="green" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
                 </View>
               )
             })}

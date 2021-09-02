@@ -22,13 +22,20 @@ function HouseRules (props) {
       setShowHouseRuleModal(false)
     },[])
 
+    // useEffect(() => {
+    //   console.log("useEffect has run")
+    //   setCurrentRules(fullHouseRules.filter(rule => {return rule.checked}))
+    //   props.dispatch(setHouseRules(currentRules))
+    // },[fullHouseRules])
+
     const handleCheckBox = (index) => {
       const rules = [...fullHouseRules]
       rules[index].checked = !rules[index].checked
       setFullHouseRules(rules)
+      props.dispatch(setHouseRules(rules))
       // console.log(setHouseRules(fullHouseRules))
-      setCurrentRules(fullHouseRules.filter(rule => {return rule.checked}))
-      props.dispatch(setHouseRules(currentRules))
+      // setCurrentRules(fullHouseRules.filter(rule => {return rule.checked}))
+      // props.dispatch(setHouseRules(currentRules))
     }
 
     const activateShowHouseRuleModal = (houseRule) => {

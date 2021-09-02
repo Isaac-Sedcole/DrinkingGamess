@@ -19,9 +19,10 @@ function JustShowBack(props) {
                     <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
                 </View>
                 {props.houseRules.map(rule => {
+                    let flexNum = 35
                     return (
-                        <View key={rule.id} style={{ flex: 35 }}>
-                            <Icon.Button backgroundColor="green" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>
+                        <View key={rule.id} style={{ flex: flexNum/props.houseRules.length }}>
+                            {rule.checked && <Icon.Button backgroundColor="green" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
                         </View>
                     )
                 })}
