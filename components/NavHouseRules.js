@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   cardHousing: {
     marginLeft: 5,
-    width: wp("45%"),
+    width: wp("51%"),
     height: hp("10%")
   },
   houseRulesMain: {
