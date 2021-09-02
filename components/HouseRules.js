@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 
-function HouseRules ({ navigation }, props) {
+function HouseRules (props) {
 
     // const [toggleCheckBox, setToggleCheckBox] = useState(false)
     const [compareList, setCompareList] = useState([])
@@ -20,15 +20,13 @@ function HouseRules ({ navigation }, props) {
         return rule
       }))
       setShowHouseRuleModal(false)
-      // props.dispatch(setHouseRules(null))
-      console.log(props)
-      console.log("YEEEET")
     },[])
 
     const handleCheckBox = (index) => {
       const rules = [...fullHouseRules]
       rules[index].checked = !rules[index].checked
       setFullHouseRules(rules)
+      // console.log(setHouseRules(fullHouseRules))
       props.dispatch(setHouseRules(fullHouseRules))
     }
 
@@ -55,15 +53,15 @@ function HouseRules ({ navigation }, props) {
             )
         })}
 
-        {showHouseRuleModal && navigation.navigate("Showing a house rule", {rule: currentHouseRule})}
+        {showHouseRuleModal && props.navigation.navigate("Showing a house rule", {rule: currentHouseRule})}
         </>
     )
 }
 
-const mapDispatchToProps = dispatch => (
-  bindActionCreators({
-    setHouseRules,
-  }, dispatch)
-)
+// const mapDispatchToProps = dispatch => {
+//   let actions = bindActionCreators({setHouseRules})
+//   return {...actions, dispatch}
+// }
 
-export default connect(mapDispatchToProps)(HouseRules)
+// export default connect(null,mapDispatchToProps)(HouseRules)
+export default connect()(HouseRules)
