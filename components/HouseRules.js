@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { StyleSheet, Text, TouchableHighlight, View, Modal, Button } from 'react-native'
+import { setHouseRules } from '../actions'
 import houseRulesList from '../data/houseRules'
 import CheckBox from './CheckBox'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 
-function HouseRules ({ navigation }) {
+function HouseRules ({ navigation }, props) {
 
     // const [toggleCheckBox, setToggleCheckBox] = useState(false)
     const [compareList, setCompareList] = useState([])
@@ -17,12 +20,16 @@ function HouseRules ({ navigation }) {
         return rule
       }))
       setShowHouseRuleModal(false)
+      // props.dispatch(setHouseRules(null))
+      console.log(props)
+      console.log("YEEEET")
     },[])
 
     const handleCheckBox = (index) => {
       const rules = [...fullHouseRules]
       rules[index].checked = !rules[index].checked
       setFullHouseRules(rules)
+      props.dispatch(setHouseRules(fullHouseRules))
     }
 
     const activateShowHouseRuleModal = (houseRule) => {
@@ -53,4 +60,10 @@ function HouseRules ({ navigation }) {
     )
 }
 
-export default HouseRules
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    setHouseRules,
+  }, dispatch)
+)
+
+export default connect(mapDispatchToProps)(HouseRules)
