@@ -7,6 +7,9 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 function NavHouseRules(props) {
   
+    let backWidth = 35
+    let houseRulesWidth = 125
+    let contWidth = 175
   
     if (props.houseRules.length > 0) {
       return (
@@ -14,21 +17,21 @@ function NavHouseRules(props) {
           flexDirection: "row",
           alignItems: 'center'
         }]}>
-          <View style={{ flex: 1 }}>
+          <View style={{ width: backWidth }}>
             <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
           </View>
-          <View style={{ flex: 8 }}>
+          <View style={{ width: contWidth }}>
             <Icon.Button onPress={() => props.navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
           </View>
-          
+          <View style={{flexWrap: "wrap"}}>
             {props.houseRules.map(rule => {
-              let flexNum = 27
-                return (
-                <View key={rule.id} style={{ flex: flexNum/props.houseRules.length }}>
+              return (
+                <View key={rule.id} style={{ width: houseRulesWidth }}>
                   {rule.checked && <Icon.Button backgroundColor="green" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
                 </View>
               )
             })}
+            </View>
         </View>
       )
     } else {
@@ -39,13 +42,13 @@ function NavHouseRules(props) {
           flexDirection: "row",
           alignItems: 'center'
         }]}>
-          <View style={{ flex: 1 }}>
+          <View style={{ width: backWidth }}>
             <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
           </View>
-          <View style={{ flex: 8 }}>
+          <View style={{ width: contWidth }}>
             <Icon.Button onPress={() => props.navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
           </View>
-          <View style={{ flex: 27 }}></View>
+          {/* <View style={{ flex: 27 }}></View> */}
         </View>
       )
     }

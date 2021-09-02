@@ -7,21 +7,24 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 function JustShowBack(props) {
 
+    let backWidth = 35
+    let houseRulesWidth = 125
 
     if (props.houseRules.length > 0) {
 
         return (
             <View style={[styles.container, {
                 flexDirection: "row",
-                alignItems: "center"
+                alignItems: "center",
+                flexWrap: "wrap"
             }]}>
-                <View style={{ flex: 1 }}>
+                <View style={{ width: backWidth }}>
                     <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
                 </View>
                 {props.houseRules.map(rule => {
-                    let flexNum = 35
+                
                     return (
-                        <View key={rule.id} style={{ flex: flexNum/props.houseRules.length }}>
+                        <View key={rule.id} style={{width: houseRulesWidth}}>
                             {rule.checked && <Icon.Button backgroundColor="green" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
                         </View>
                     )
