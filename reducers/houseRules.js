@@ -1,6 +1,6 @@
 import { SET_HOUSE_RULES } from "../actions";
 
-const initalState = {}
+const initalState = []
 
 const reducer = (state = initalState, action) => {
     switch (action.type) {

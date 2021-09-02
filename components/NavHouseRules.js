@@ -13,12 +13,9 @@ function NavHouseRules(props) {
     //   setNavigateToHouseRules(!navigateToHouseRules)
     // }
 
-    console.log(props.houseRules)
   
   
-    if (props.houseRules != null) {
-
-      const rules = Object.keys(props.houseRules).map(key => <option value={key}>{props.houseRules[key]}</option>)
+    if (props.houseRules.length > 0) {
 
       return (
         <View style={[styles.container, {
@@ -31,11 +28,10 @@ function NavHouseRules(props) {
           <View style={{ flex: 8 }}>
             <Icon.Button onPress={() => props.navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
           </View>
-          {/* <View style={{ flex: 27 }}></View> */}
-            {rules.map(rule => {
+            {props.houseRules.map(rule => {
                 return (
-                <View style={{ flex: 27 }}>
-                    <Icon.Button onPress={() => props.navigation.navigate("House rules")}>{rule.props.value} : {rule.props.children}</Icon.Button>
+                <View key={rule.id} style={{ flex: 27 }}>
+                    <Icon.Button backgroundColor="green" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>
                 </View>
               )
             })}
