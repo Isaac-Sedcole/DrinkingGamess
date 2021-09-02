@@ -32,4 +32,10 @@ function JustShowHouseRules(props) {
     },
   });
 
-  export default connect()(JustShowHouseRules)
+  const mapStateToProps = (globalState) => {
+    return {
+      userList: globalState.houseRules
+    }
+  }
+
+  export default connect(mapStateToProps)(JustShowHouseRules)

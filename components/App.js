@@ -146,11 +146,11 @@ function App() {
 //   },
 // });
 
-const mapStateToProps = (globalState) => {
-  return {
-    userList: globalState.houseRules
-  }
-}
+// const mapStateToProps = (globalState) => {
+//   return {
+//     userList: globalState.houseRules
+//   }
+// }
 
 export default App
 

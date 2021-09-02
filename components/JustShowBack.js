@@ -34,6 +34,11 @@ function JustShowBack(props) {
       padding: 20,
     },
   });
- 
 
-  export default connect()(JustShowBack)
+  const mapStateToProps = (globalState) => {
+    return {
+      userList: globalState.houseRules
+    }
+  }
+
+  export default connect(mapStateToProps)(JustShowBack)

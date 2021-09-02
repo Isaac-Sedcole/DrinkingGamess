@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux'
 function HouseRules (props) {
 
     // const [toggleCheckBox, setToggleCheckBox] = useState(false)
-    const [compareList, setCompareList] = useState([])
+    const [currentRules, setCurrentRules] = useState([])
     const [fullHouseRules, setFullHouseRules]  = useState([])
     const [showHouseRuleModal, setShowHouseRuleModal] = useState(false)
     const [currentHouseRule, setCurrentHouseRule] = useState({})
@@ -27,7 +27,8 @@ function HouseRules (props) {
       rules[index].checked = !rules[index].checked
       setFullHouseRules(rules)
       // console.log(setHouseRules(fullHouseRules))
-      props.dispatch(setHouseRules(fullHouseRules))
+      setCurrentRules(fullHouseRules.filter(rule => {return rule.checked}))
+      props.dispatch(setHouseRules(currentRules))
     }
 
     const activateShowHouseRuleModal = (houseRule) => {
