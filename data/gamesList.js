@@ -60,15 +60,14 @@ export default {
             itemsRequired: ["Pack of cards", "Large bowl or cup"],
             explanationBlurb: "get yo balls in the cup boi",
             rules: {
+                rules: "PLACEHOLDER",
                 inTheCup: "if you bounce the ball into the cup you make hand the ball and cup to the next person",
                 inTheCupFirstGo: "if you bounce the ball into the cup on the first go you make hand the ball and cup to any other person",
                 getDunked: "if your cup gets dunked, then you must consume before continuing to play",
                 spill: "if someone spills they must consume the drink before continuing to play"
             },
             customRules: [],
-            ruleDescription: {
-
-            }
+            ruleDescription: null
         },
         {
             id: 3,

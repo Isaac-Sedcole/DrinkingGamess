@@ -38,8 +38,7 @@ function App() {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           header: props => <NavHouseRules {...props} />
-        }
-        }
+        }}
         >
           <Stack.Screen options={{ header: props => <JustShowHouseRules {...props} /> }} name="Games" component={Games} />
           <Stack.Screen options={{ header: props => <JustShowBack {...props} /> }} name="House rules" component={HouseRules} />
