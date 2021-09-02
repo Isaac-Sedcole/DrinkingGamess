@@ -6,13 +6,6 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 
 function JustShowHouseRules(props) {
-    // console.log(navigation)
-    // const [navigateToHouseRules, setNavigateToHouseRules] = useState(false)
-
-    // const handleNavigation = () => {
-    //   setNavigateToHouseRules(!navigateToHouseRules)
-    // }
-    // console.log(props.houseRules)
 
     if (props.houseRules.length > 0) {
 

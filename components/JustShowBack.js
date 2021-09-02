@@ -6,12 +6,6 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 
 
 function JustShowBack(props) {
-    // console.log(navigation)
-    // const [navigateToHouseRules, setNavigateToHouseRules] = useState(false)
-
-    // const handleNavigation = () => {
-    //   setNavigateToHouseRules(!navigateToHouseRules)
-    // }
 
 
     if (props.houseRules.length > 0) {
