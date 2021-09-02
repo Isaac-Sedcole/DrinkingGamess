@@ -90,10 +90,10 @@ export default {
             suggestedPlayers: "4+",
             drunkOMeter: 2,
             gameDuration: "2-10 mins",
-            itemsRequired: "Bowl or Glass",
+            itemsRequired: ["Bowl or Glass"],
             explainationBlurb: "A quick guessing game usually used and an icebreaker using nothing but a glass and your fingers.",
             rules: {
-                rule: "The game progresses in a series of turns clockwise.Each turn starts with all players putting one finger on the rim of the cup.When all fingers are on the rim, the player whose turn it is announces, 'three - two - one' followed by a number.The number is the player's guess at how many fingers will remain on the cup. All participating players, including the player whose turn it is, have the option to keep their finger on the cup or to remove it from the cup after the 'three - two - one' count. If a players guesses correctly they must say 'Thanks you ladies and gentlemen for playing fingers with me.' If they do so without smiling they are removed from the game (a win), an incorrect guess keeps the player active in the game."
+                rules: "The game progresses in a series of turns clockwise.Each turn starts with all players putting one finger on the rim of the cup.When all fingers are on the rim, the player whose turn it is announces, 'three - two - one' followed by a number.The number is the player's guess at how many fingers will remain on the cup. All participating players, including the player whose turn it is, have the option to keep their finger on the cup or to remove it from the cup after the 'three - two - one' count. If a players guesses correctly they must say 'Thanks you ladies and gentlemen for playing fingers with me.' If they do so without smiling they are removed from the game (a win), an incorrect guess keeps the player active in the game."
             },
             customRules: [],
             ruleDescription: null
