@@ -9,9 +9,12 @@ import ShowHouseRuleModal from './ShowHouseRuleModal';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import { connect, Provider } from 'react-redux'
+import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
+import NavHouseRules from './NavHouseRules';
+import JustShowBack from './JustShowBack';
+import JustShowHouseRules from './JustShowHouseRules';
 
 import reducers from '../reducers'
 // import Navigator from '../routes/homeStack'
@@ -27,85 +30,85 @@ const store = createStore(reducers, composeEnhancers(
   applyMiddleware(thunk)
 ))
 
-function NavHouseRules(props) {
-  // console.log(navigation)
-  // const [navigateToHouseRules, setNavigateToHouseRules] = useState(false)
+// function NavHouseRules(props) {
+//   // console.log(navigation)
+//   // const [navigateToHouseRules, setNavigateToHouseRules] = useState(false)
 
-  // const handleNavigation = () => {
-  //   setNavigateToHouseRules(!navigateToHouseRules)
-  // }
-
-
-  if (props.houseRules != null) {
-    // const rules = Object.keys(props.houseRules).map(key => <option value={key}>{props.houseRules[key]}</option>)
-    return (
-      <View style={[styles.container, {
-        flexDirection: "row",
-        alignItems: 'center'
-      }]}>
-        <View style={{ flex: 1 }}>
-          <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
-        </View>
-        <View style={{ flex: 8 }}>
-          <Icon.Button onPress={() => props.navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
-        </View>
-        {/* <View style={{ flex: 27 }}></View> */}
-        <View style={{ flex: 27 }}>
-          {/* {rules.map(rule => {
-            return (
-            <Text>{rule.props.value} : {rule.props.children}</Text>
-            )
-          })} */}
-        </View>
-      </View>
-    )
-  } else {
+//   // const handleNavigation = () => {
+//   //   setNavigateToHouseRules(!navigateToHouseRules)
+//   // }
 
 
-    return (
-      <View style={[styles.container, {
-        flexDirection: "row",
-        alignItems: 'center'
-      }]}>
-        <View style={{ flex: 1 }}>
-          <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
-        </View>
-        <View style={{ flex: 8 }}>
-          <Icon.Button onPress={() => props.navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
-        </View>
-        <View style={{ flex: 27 }}></View>
-      </View>
-    )
-  }
-}
+//   if (props.houseRules != null) {
+//     // const rules = Object.keys(props.houseRules).map(key => <option value={key}>{props.houseRules[key]}</option>)
+//     return (
+//       <View style={[styles.container, {
+//         flexDirection: "row",
+//         alignItems: 'center'
+//       }]}>
+//         <View style={{ flex: 1 }}>
+//           <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
+//         </View>
+//         <View style={{ flex: 8 }}>
+//           <Icon.Button onPress={() => props.navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
+//         </View>
+//         {/* <View style={{ flex: 27 }}></View> */}
+//         <View style={{ flex: 27 }}>
+//           {/* {rules.map(rule => {
+//             return (
+//             <Text>{rule.props.value} : {rule.props.children}</Text>
+//             )
+//           })} */}
+//         </View>
+//       </View>
+//     )
+//   } else {
 
-function JustShowBack({ navigation }) {
-  return (
-    <View style={[styles.container, {
-      flexDirection: "row",
-      alignItems: "center"
-    }]}>
-      <View style={{ flex: 1 }}>
-        <Icon.Button onPress={() => navigation.goBack()} name="arrow-left" />
-      </View>
-      <View style={{ flex: 35 }}></View>
-    </View>
-  )
-}
 
-function JustShowHouseRules({ navigation }) {
-  return (
-    <View style={[styles.container, {
-      flexDirection: "row",
-      alignItems: "center"
-    }]}>
-      <View style={{ flex: 8 }}>
-        <Icon.Button onPress={() => navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
-      </View>
-      <View style={{ flex: 28 }}></View>
-    </View>
-  )
-}
+//     return (
+//       <View style={[styles.container, {
+//         flexDirection: "row",
+//         alignItems: 'center'
+//       }]}>
+//         <View style={{ flex: 1 }}>
+//           <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
+//         </View>
+//         <View style={{ flex: 8 }}>
+//           <Icon.Button onPress={() => props.navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
+//         </View>
+//         <View style={{ flex: 27 }}></View>
+//       </View>
+//     )
+//   }
+// }
+
+// function JustShowBack({ navigation }) {
+//   return (
+//     <View style={[styles.container, {
+//       flexDirection: "row",
+//       alignItems: "center"
+//     }]}>
+//       <View style={{ flex: 1 }}>
+//         <Icon.Button onPress={() => navigation.goBack()} name="arrow-left" />
+//       </View>
+//       <View style={{ flex: 35 }}></View>
+//     </View>
+//   )
+// }
+
+// function JustShowHouseRules({ navigation }) {
+//   return (
+//     <View style={[styles.container, {
+//       flexDirection: "row",
+//       alignItems: "center"
+//     }]}>
+//       <View style={{ flex: 8 }}>
+//         <Icon.Button onPress={() => navigation.navigate("House rules")} size={20} >Click here to add some house rules!</Icon.Button>
+//       </View>
+//       <View style={{ flex: 28 }}></View>
+//     </View>
+//   )
+// }
 
 
 // export default 
@@ -136,12 +139,12 @@ function App() {
   <StatusBar style="auto" />
 </View> */}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     padding: 20,
+//   },
+// });
 
 const mapStateToProps = (globalState) => {
   return {
