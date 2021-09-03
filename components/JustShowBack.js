@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     houseRulesNav: {
         justifyContent: "center",
         padding: 3,
-        width: wp("25%")
+        width: wp("24%")
     },
     cardHousing:{
       marginLeft: 5,
