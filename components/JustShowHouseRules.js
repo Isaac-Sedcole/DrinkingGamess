@@ -5,10 +5,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 
-
-
 function JustShowHouseRules(props) {
-
 
   if (props.houseRules.length > 0) {
 
@@ -42,7 +39,6 @@ function JustShowHouseRules(props) {
         <View style={[styles.houseRulesMain]}>
           <Icon.Button onPress={() => props.navigation.navigate("House rules")} >Click here to add some house rules!</Icon.Button>
         </View>
-        {/* <View style={{ flex: 28 }}></View> */}
       </View>
     )
   }
@@ -54,7 +50,6 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   houseRulesNav: {
-    justifyContent: "center",
     padding: 3,
     width: wp("20%")
   },

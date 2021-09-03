@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import { Card } from 'react-native-paper'
 
 
 
@@ -56,7 +55,6 @@ const styles = StyleSheet.create({
         width: wp("10%")
     },
     houseRulesNav: {
-        justifyContent: "center",
         padding: 3,
         width: wp("24%")
     },
