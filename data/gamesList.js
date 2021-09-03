@@ -21,11 +21,11 @@ export default {
                 ten: "waterfall",
                 jack: "make a rule",
                 queen: "question master",
-                king: "empty your vessel into the kings cup",
+                king: "fill vessel",
                 joker: "the fool"
             },
             customRules: [
-                "snakeEyes", "you", "me", "whores", "gecko", "dicks", "heaven", "mate", "waterfall", "social", "rhyme", "neverHaveIEver", "questionMaster", "categories", "helmet", "makeARule", "queasyCreation"
+                "snakeEyes", "you", "me", "whores", "gecko", "dicks", "heaven", "mate", "waterfall", "social", "rhyme", "neverHaveIEver", "questionMaster", "categories", "helmet", "makeARule", "queasyCreation", "king"
             ],
             ruleDescription: {
                 snakeEyes: "Any player who looks you in the eyes must drink",
@@ -48,7 +48,8 @@ export default {
                 queasyCreation: "Combine any three drinks from the table into a shot glass and give it to someone",
                 bigBooty: "WRITE DESCRIPTION LATER",
                 theFool: "(typically the joker card): Take a shot",
-                HiLo: "(Typically Joker): Card drawer fills a shot glass with liquor, then players High or low, if successful, passes shot to the left and play continues"
+                hiLo: "(Typically Joker): Card drawer fills a shot glass with liquor, then players High or low, if successful, passes shot to the left and play continues",
+                king: "Empty your vessel into the kings cup"
             }
         },
         {

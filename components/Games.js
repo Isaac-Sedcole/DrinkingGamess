@@ -10,26 +10,6 @@ import HouseRules from './HouseRules'
 
 function Games({ navigation }) {
 
-  // const renderGames = () => {
-  //     for(let i in gamesList) {
-  //         console.log(i)
-  //         if(i.name == undefined) {
-  //             console.log(i.name)
-  //         }
-  //     }
-  // }
-
-  // const [letsGoNavigator, setLetsGoNavigator] = useState(false)
-
-  // const changeView = (game) => {
-  //     // console.log(game.id, game.name)
-  //     navigation.navigate("Selected game", {game})
-  // }
-
-  // const navigatorPlz = () => {
-  //     setLetsGoNavigator(!letsGoNavigator)
-  // }
-
   return (
     <View style={[styles.container, {
       flexDirection: "column",
@@ -38,11 +18,9 @@ function Games({ navigation }) {
       <Card style={[styles.fixedGamesDisplay]}>
         {gamesList.games.map(game => {
           return (
-
             <View style={[styles.fixedSingularGame]} key={game.id}>
               <Button onPress={() => navigation.navigate("Selected game", { game })} title={game.name} />
             </View>
-
           )
         })}
       </Card>
