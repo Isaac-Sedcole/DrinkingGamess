@@ -57,15 +57,11 @@ export default {
             name: "Smash Cup",
             suggestedPlayers: "4+",
             drunkOMeter: 4,
-            gameDuration: "10-20 mins",
-            itemsRequired: ["Pack of cards", "Large bowl or cup"],
+            gameDuration: "10-15 mins",
+            itemsRequired: ["2 Ping pong balls", "many cups"],
             explanationBlurb: "get yo balls in the cup boi",
             rules: {
-                rules: "PLACEHOLDER",
-                inTheCup: "if you bounce the ball into the cup you make hand the ball and cup to the next person",
-                inTheCupFirstGo: "if you bounce the ball into the cup on the first go you make hand the ball and cup to any other person",
-                getDunked: "if your cup gets dunked, then you must consume before continuing to play",
-                spill: "if someone spills they must consume the drink before continuing to play"
+                rules: "Setting up the game requires a flat surface that players can stand around (a table works best). Grab 20 or so cups and fill them about 1/3 with your drink of choice, then place them all together in the middle of the table. 2 players opposite each other start with an empty cup and a ball, these players must bounce the ball on the table and into the empty cup. If the player is successful on the first attempt, they may pass their cup and ball to any player on the table, if successful after the first attempt, the player may pass their cup and ball to the left. If a player moves their cup to a player still completing the bounce, they may stack their cup in that player’s cup (forming a tower), this player must now choose a cup from the center to drink from and play with that cup (passing their original tower to the left)",
             },
             customRules: [],
             ruleDescription: null

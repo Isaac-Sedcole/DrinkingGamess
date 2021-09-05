@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     margin: 2.5,
-    width: wp("40%"),
+    width: wp("42%"),
     height: hp("13%"),
     alignItems: "center"
   },
