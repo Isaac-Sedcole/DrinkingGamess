@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   },
   houseRulesMain: {
     justifyContent: "center",
-    width: wp("33%"),
+    width: wp("90%"),
     height: hp("20%")
   }
 });

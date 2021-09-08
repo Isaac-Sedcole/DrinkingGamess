@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   houseRulesMain: {
     marginLeft: 5,
     justifyContent: "center",
-    width: wp("28%"),
+    width: wp("80%"),
     height: hp("15%")
   }
 });
