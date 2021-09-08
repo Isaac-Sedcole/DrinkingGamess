@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View , Button} from 'react-native'
 
 
 
@@ -24,9 +24,9 @@ function ShowRuleModal({route, navigation }, props) {
     <>
       
         {/* className={['modal', isActive ? "is-active" : ""].join(' ')} */}
-            {rule}
+        <Text> {rule}</Text>
         {/* <button className="button is-medium is-info is-outlined" onClick={() => setActive(false)} onClick={resetModal}>OK!</button> */}
-        <button  onClick={() => redirect()}>OK!</button>
+        <Button  onPress={() => redirect()} title="OK!"/>
       
     </>
   )

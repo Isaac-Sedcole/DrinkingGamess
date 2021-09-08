@@ -8,7 +8,7 @@ function CheckBox({ label, status, onPress }) {
     <TouchableOpacity onPress={onPress}>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Checkbox status={status} />
-        <Text style={{ fontSize: wp("3.5%"),fontWeight: 'bold' }}>{label}</Text>
+        <Text style={{ fontSize: wp("3%"),fontWeight: 'bold' }}>{label}</Text>
       </View>
     </TouchableOpacity>
   );
