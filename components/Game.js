@@ -39,7 +39,7 @@ function Game({ route, navigation }) {
 
 
     return (
-      <ScrollView style={[styles.container, {
+      <ScrollView style={[styles.scrollViewCont, {
         flexDirection: "column"
       }]}>
         <View style={[styles.container, {
@@ -82,6 +82,8 @@ function Game({ route, navigation }) {
   } else {
     // console.log(rulesObj)
     return (
+      <ScrollView style={[styles.scrollViewCont]}>
+
       <View style={[styles.container, {
         flexDirection: "column",
         alignItems: 'center'
@@ -97,6 +99,7 @@ function Game({ route, navigation }) {
         {showRules && <Text>{rulesObj.rules}</Text>}
 
       </View>
+        </ScrollView>
     )
   }
 }
@@ -105,6 +108,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+  },
+  scrollViewCont:{
+    flex: 1
   },
   cardContainer: {
     margin: 2.5,
