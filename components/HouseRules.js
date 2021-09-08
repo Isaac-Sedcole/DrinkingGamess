@@ -6,6 +6,7 @@ import CheckBox from './CheckBox'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Card } from 'react-native-paper'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 
 function HouseRules(props) {
@@ -41,27 +42,63 @@ function HouseRules(props) {
 
   return (
     <>
-      <ScrollView style={{ flex: 1 }}>
-        <Text>Hi please select some House Rules</Text>
-        {fullHouseRules.map(rule => {
-          return (
-            <View key={rule.id}>
-              <Card style={{ margin: 20, width: 250, height: 125 }}>
-                <Card.Title title={<CheckBox label={rule.name} status={fullHouseRules[rule.id - 1].checked ? "checked" : "unchecked"} onPress={() => handleCheckBox(rule.id - 1)}></CheckBox>} />
-                {/* <CheckBox label={rule.name} status={fullHouseRules[rule.id-1].checked ? "checked" : "unchecked"} onPress={() => handleCheckBox(rule.id-1)}></CheckBox> */}
-                <Card.Content>
-                  <Button onPress={() => activateShowHouseRuleModal(rule)} title="Rule Description" />
-                </Card.Content>
-              </Card>
-            </View>
-          )
-        })}
+      <ScrollView style={[styles.scrollViewCont]}>
+        <View style={[styles.container, {
+          alignItems: 'center'
+        }]}>
+          <Text>Hi please select some House Rules</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+
+            {fullHouseRules.map(rule => {
+              return (
+                <View key={rule.id} style={[{ justifyContent: "center" }]}>
+                  <Card style={[styles.cardContainer]}>
+                    <View style={[styles.cardTitle, {flexWrap: "wrap", flexDirection: "column"}]}>
+                      <Card.Title title={<CheckBox label={rule.name} status={fullHouseRules[rule.id - 1].checked ? "checked" : "unchecked"} onPress={() => handleCheckBox(rule.id - 1)}></CheckBox>} />
+                    </View>
+                    <View style={[styles.cardContent]}>
+                      <Card.Content>
+                        <Button onPress={() => activateShowHouseRuleModal(rule)} title="Rule Description" />
+                      </Card.Content>
+                    </View>
+                  </Card>
+                </View>
+              )
+            })}
+          </View>
+        </View>
       </ScrollView>
 
       {showHouseRuleModal && props.navigation.navigate("Showing a house rule", { rule: currentHouseRule })}
     </>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: wp("5%"),
+  },
+  scrollViewCont: {
+    flex: 1
+  },
+  cardContainer: {
+    margin: wp("1%"),
+    width: wp("42.5%"),
+    height: hp("20%"),
+    alignItems: "center"
+  },
+  cardTitle: {
+    fontSize: wp("1%")
+  },
+  cardContent: {
+    width: wp("40%"),
+    height: hp("6%")
+  },
+  wholeCardContainer: {
+    width: wp("90%"),
+  }
+});
 
 // const mapDispatchToProps = dispatch => {
 //   let actions = bindActionCreators({setHouseRules})
