@@ -58,7 +58,7 @@ function Game({ route, navigation }) {
           }}>
             {showRules && rules.map(rule => {
               return (
-                <View key={rule.id}>
+                <View key={rule.id} stlye={{justifyContent: "center"}}>
                 <Card style={[styles.cardContainer]}>
                   <View style={{ flexDirection: "column"}}>
                     <View style={[styles.cardTitle]}>
@@ -105,14 +105,14 @@ function Game({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: wp("5%"),
   },
   scrollViewCont:{
     flex: 1
   },
   cardContainer: {
-    margin: 2.5,
-    width: wp("42%"),
+    margin: wp("1%"),
+    width: wp("42.5%"),
     height: hp("13%"),
     alignItems: "center"
   },
