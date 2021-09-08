@@ -22,12 +22,12 @@ function ShowRuleModal({route, navigation }, props) {
 
   return (
     <>
-      <div >
+      
         {/* className={['modal', isActive ? "is-active" : ""].join(' ')} */}
             {rule}
         {/* <button className="button is-medium is-info is-outlined" onClick={() => setActive(false)} onClick={resetModal}>OK!</button> */}
         <button  onClick={() => redirect()}>OK!</button>
-      </div>
+      
     </>
   )
 }

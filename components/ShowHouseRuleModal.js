@@ -22,10 +22,10 @@ function ShowHouseRuleModal({route, navigation }, props) {
 
   return (
     <>
-      <div >
+      
             {rule.name}: {rule.description}
         <Button onPress={() => redirect()} title="OK!"/>
-      </div>
+      
     </>
   )
 }

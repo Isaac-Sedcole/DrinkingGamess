@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import React, { Fragment, useState } from 'react'
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
 import { Card } from 'react-native-paper'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
@@ -39,28 +39,30 @@ function Game({ route, navigation }) {
 
 
     return (
-      <View style={[styles.container, {
-        flexDirection: "column",
-        alignItems: 'center'
+      <ScrollView style={[styles.container, {
+        flexDirection: "column"
       }]}>
-        <Text>Hi! welcome to {gameName}</Text>
-        {/* <button>Customize rules</button> */}
-        {gameName == "Kings Cup" && <Text>Yeah its the kingscup</Text>}
-
-        <Text>This game is suggested for {route.params.game.suggestedPlayers} players</Text>
-        <Text>DrunkOMeter reaches a solid {route.params.game.drunkOMeter}/10</Text>
-        <Text>You will need: {route.params.game.itemsRequired.map(item => { return item + ", " })}to play.</Text>
-        <Text>{route.params.game.explanationBlurb}</Text>
-        <Button onPress={() => activateShowRules()} title="Show Rules!" />
-        <View style={[styles.box, {
-          flexDirection: "row",
-          flexWrap: "wrap",
+        <View style={[styles.container, {
+          alignItems: 'center'
         }]}>
-          {showRules && rules.map(rule => {
-            return (
-              <div key={rule.props.value}>
+
+          <Text>Hi! welcome to {gameName}</Text>
+          {/* <button>Customize rules</button> */}
+
+          <Text>This game is suggested for {route.params.game.suggestedPlayers} players</Text>
+          <Text>DrunkOMeter reaches a solid {route.params.game.drunkOMeter}/10</Text>
+          <Text>You will need: {route.params.game.itemsRequired.map(item => { return item + ", " })}to play.</Text>
+          <Text>{route.params.game.explanationBlurb}</Text>
+          <Button onPress={() => activateShowRules()} title="Show Rules!" />
+          <View style={[styles.box, {
+            flexDirection: "row",
+            flexWrap: "wrap",
+          }]}>
+            {showRules && rules.map(rule => {
+              return (
+                <View key={rule.id} style={[styles.wholeCardContainer]}>
                 <Card style={[styles.cardContainer]}>
-                  <View style={{flexDirection: "column"}}>
+                  <View style={{ flexDirection: "column" }}>
                     <View style={[styles.cardTitle]}>
                       <Card.Title title={rule.props.value} />
                     </View>
@@ -69,12 +71,13 @@ function Game({ route, navigation }) {
                     </View>
                   </View>
                 </Card>
-              </div>
-            )
-          })}
+                </View>
+              )
+            })}
+          </View>
+          {showRuleModal && navigation.navigate("Showing a rule", { rule: currentRule })}
         </View>
-        {showRuleModal && navigation.navigate("Showing a rule", { rule: currentRule })}
-      </View>
+      </ScrollView>
     )
   } else {
     // console.log(rulesObj)
@@ -85,7 +88,6 @@ function Game({ route, navigation }) {
       }]}>
         <Text>Hi! welcome to {gameName}</Text>
         {/* <button>Customize rules</button> */}
-        {gameName == "Kings Cup" && <Text>Yeah its the kingscup</Text>}
 
         <Text>This game is suggested for {route.params.game.suggestedPlayers} players</Text>
         <Text>DrunkOMeter reaches a solid {route.params.game.drunkOMeter}/10</Text>
@@ -117,6 +119,9 @@ const styles = StyleSheet.create({
   cardContent: {
     width: wp("40%"),
     height: hp("6%")
+  },
+  wholeCardContainer: {
+    width: wp("90%"),
   }
 });
 

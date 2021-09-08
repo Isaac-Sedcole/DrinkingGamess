@@ -44,17 +44,17 @@ function HouseRules(props) {
       <Text>Hi please select some House Rules</Text>
       {fullHouseRules.map(rule => {
         return (
-
-          <div key={rule.id}>
-            <Card style={{ margin: 20, width: 250, height: 125 }}>
+            <View key={rule.id}>
+            <Card  style={{ margin: 20, width: 250, height: 125 }}>
               <Card.Title title={<CheckBox label={rule.name} status={fullHouseRules[rule.id - 1].checked ? "checked" : "unchecked"} onPress={() => handleCheckBox(rule.id - 1)}></CheckBox>} />
               {/* <CheckBox label={rule.name} status={fullHouseRules[rule.id-1].checked ? "checked" : "unchecked"} onPress={() => handleCheckBox(rule.id-1)}></CheckBox> */}
               <Card.Content>
                 <Button onPress={() => activateShowHouseRuleModal(rule)} title="Rule Description" />
               </Card.Content>
             </Card>
+            </View>
 
-          </div>
+          
 
         )
       })}
