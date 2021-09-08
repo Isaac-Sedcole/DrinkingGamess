@@ -39,9 +39,7 @@ function Game({ route, navigation }) {
 
 
     return (
-      <ScrollView style={[styles.scrollViewCont, {
-        flexDirection: "column"
-      }]}>
+      <ScrollView style={[styles.scrollViewCont]}>
         <View style={[styles.container, {
           alignItems: 'center'
         }]}>
@@ -54,15 +52,15 @@ function Game({ route, navigation }) {
           <Text>You will need: {route.params.game.itemsRequired.map(item => { return item + ", " })}to play.</Text>
           <Text>{route.params.game.explanationBlurb}</Text>
           <Button onPress={() => activateShowRules()} title="Show Rules!" />
-          <View style={[styles.box, {
+          <View style={{
             flexDirection: "row",
             flexWrap: "wrap",
-          }]}>
+          }}>
             {showRules && rules.map(rule => {
               return (
-                <View key={rule.id} style={[styles.wholeCardContainer]}>
+                <View key={rule.id}>
                 <Card style={[styles.cardContainer]}>
-                  <View style={{ flexDirection: "column" }}>
+                  <View style={{ flexDirection: "column"}}>
                     <View style={[styles.cardTitle]}>
                       <Card.Title title={rule.props.value} />
                     </View>

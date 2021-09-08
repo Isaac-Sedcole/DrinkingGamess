@@ -10,6 +10,7 @@ function JustShowHouseRules(props) {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
+      paddingTop:65,
       padding: 20,
     },
     scrollViewCont:{
@@ -27,7 +28,7 @@ function JustShowHouseRules(props) {
     houseRulesMain: {
       justifyContent: "center",
       width: wp("33%"),
-      height: hp("15%")
+      height: hp("20%")
     }
   });
   

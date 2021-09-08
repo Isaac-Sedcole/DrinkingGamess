@@ -57,7 +57,9 @@ function NavHouseRules(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop:65,
     padding: 20,
+    height: hp("30%")
   },
   scrollViewCont:{
     flex: 1
