@@ -8,10 +8,18 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 function JustShowHouseRules(props) {
 
   const styles = StyleSheet.create({
-    container: {
+    containerSingle: {
       flex: 1,
-      paddingTop:65,
-      padding: 20,
+      paddingTop: hp("7%"),
+      paddingBottom: hp("5%"),
+      padding: wp("5%"),
+      height: hp("50%")
+    },
+    containerMulti: {
+      flex: 1,
+      paddingVertical: hp("9%"),
+      padding: wp("5%"),
+      height: hp("50%")
     },
     scrollViewCont:{
       flex: 1
@@ -40,7 +48,7 @@ function JustShowHouseRules(props) {
     return (
       
 
-        <View style={[styles.container, {
+        <View style={[styles.containerMulti, {
           flexDirection: "row",
           alignItems: "center",
         }]}>
@@ -63,7 +71,7 @@ function JustShowHouseRules(props) {
     )
   } else {
     return (
-        <View style={[styles.container, {
+        <View style={[styles.containerSingle, {
           flexDirection: "row",
           alignItems: "center"
         }]}>

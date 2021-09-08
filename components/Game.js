@@ -59,13 +59,13 @@ function Game({ route, navigation }) {
             {showRules && rules.map(rule => {
               return (
                 <View key={rule.id} stlye={{justifyContent: "center"}}>
-                <Card style={[styles.cardContainer]}>
-                  <View style={{ flexDirection: "column"}}>
-                    <View style={[styles.cardTitle]}>
-                      <Card.Title title={rule.props.value} />
+                <Card key={rule.id} style={[styles.cardContainer]}>
+                  <View key={rule.id} style={{ flexDirection: "column"}}>
+                    <View key={rule.id} style={[styles.cardTitle]}>
+                      <Card.Title key={rule.id} title={rule.props.value} />
                     </View>
-                    <View style={[styles.cardContent]}>
-                      <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children} /></Card.Content>
+                    <View key={rule.id} style={[styles.cardContent]}>
+                      <Card.Content key={rule.id}><Button key={rule.id} onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children} /></Card.Content>
                     </View>
                   </View>
                 </Card>

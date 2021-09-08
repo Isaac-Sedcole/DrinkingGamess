@@ -7,11 +7,12 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 function NavHouseRules(props) {
 
-  if (props.houseRules.length > 0) {
 
+  // (props.houseRules.length>3) : [styles.containerMulti ? [styles.containerSingle
+
+  if (props.houseRules.length > 0) {
     return (
-      
-        <View style={[styles.container, {
+        <View style={[styles.containerMulti, {
           flexDirection: "row",
           alignItems: 'center',
         }]}>
@@ -33,12 +34,10 @@ function NavHouseRules(props) {
       
     )
   } else {
-
-
     return (
       
 
-      <View style={[styles.container, {
+      <View style={[styles.containerSingle, {
         flexDirection: "row",
         alignItems: 'center'
       }]}>
@@ -55,11 +54,18 @@ function NavHouseRules(props) {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerMulti: {
     flex: 1,
-    paddingTop:65,
-    padding: 20,
-    height: hp("30%")
+    paddingVertical: hp("9%"),
+    padding: wp("5%"),
+    height: hp("50%")
+  },
+  containerSingle: {
+    flex: 1,
+    paddingTop: hp("7%"),
+    paddingBottom: hp("5%"),
+    padding: wp("5%"),
+    height: hp("50%")
   },
   scrollViewCont:{
     flex: 1
