@@ -7,38 +7,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 function JustShowHouseRules(props) {
 
-  const styles = StyleSheet.create({
-    containerSingle: {
-      flex: 1,
-      paddingTop: hp("7%"),
-      paddingBottom: hp("5%"),
-      padding: wp("5%"),
-      height: hp("50%")
-    },
-    containerMulti: {
-      flex: 1,
-      paddingVertical: hp("9%"),
-      padding: wp("5%"),
-      height: hp("50%")
-    },
-    scrollViewCont:{
-      flex: 1
-    },
-    houseRulesNav: {
-      padding: 3,
-      width: wp("20%")
-    },
-    cardHousing: {
-      marginLeft: 5,
-      width: wp("62%"),
-      height: hp("10%")
-    },
-    houseRulesMain: {
-      justifyContent: "center",
-      width: wp("33%"),
-      height: hp("20%")
-    }
-  });
+  
   
   // const [navBarHeight, setNavBarHeight] = useState(hp("15%"))
   
@@ -82,6 +51,39 @@ function JustShowHouseRules(props) {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  containerSingle: {
+    flex: 1,
+    paddingTop: hp("7%"),
+    paddingBottom: hp("5%"),
+    padding: wp("5%"),
+    height: hp("50%")
+  },
+  containerMulti: {
+    flex: 1,
+    paddingVertical: hp("9%"),
+    padding: wp("5%"),
+    height: hp("50%")
+  },
+  scrollViewCont:{
+    flex: 1
+  },
+  houseRulesNav: {
+    padding: 3,
+    width: wp("20%")
+  },
+  cardHousing: {
+    marginLeft: 5,
+    width: wp("62%"),
+    height: hp("10%")
+  },
+  houseRulesMain: {
+    justifyContent: "center",
+    width: wp("33%"),
+    height: hp("20%")
+  }
+});
 
 
 
