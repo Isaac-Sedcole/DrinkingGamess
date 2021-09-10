@@ -27,19 +27,22 @@ function ShowRuleModal({ route, navigation }, props) {
   // route.params.rule
   return (
     <>
-    <View style={{ padding: wp("5%"), flex: 1}}>
-      <View style={{ alignItems: "center"}}>
-        <View>
-          <Text>{route.params.rule[0].props.value}</Text>
+    <View style={{ padding: wp("5%"), flex: 1 }}>
+        <View style={{ alignItems: "center" }}>
+
+          <View>
+            <Text style={[styles.titleText]}>{route.params.rule.name}:</Text>
+          </View>
+          <View style={{ paddingLeft: wp("1%") }}>
+
+            <Text style={[styles.subText]}>{route.params.rule.desc}</Text>
+          </View>
+
         </View>
-        <View>
-          <Text>{route.params.rule}</Text>
+        <View style={{paddingTop: wp("3%")}}>
+          <Button onPress={() => redirect()} title="OK!" />
         </View>
       </View>
-      <View>
-      <Button onPress={() => redirect()} title="OK!" />
-      </View>
-    </View>
 
 
     </>
@@ -52,7 +55,6 @@ const styles = StyleSheet.create({
     fontSize: wp("8%"),
     color: "#2F4F4F",
     fontWeight: "600",
-    // textShadow: "1px 1px black"
   },
   subText: {
     fontFamily: "sans-serif-light",

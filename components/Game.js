@@ -26,15 +26,16 @@ function Game( props ) {
     const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
 
     const activateShowRuleModal = (ruleNeedingDescription) => {
-      console.log(rulesDescription)
+      // console.log(rulesDescription)
       let matchingWord = ruleNeedingDescription.replace(/\s/g, "")
       let theDescription = rulesDescription.filter(rule => {
         if (rule.props.value.toLowerCase() == matchingWord.toLowerCase()) {
           return rule
         }
-
       })
-      setCurrentRule(theDescription)
+      let newObj = {name: theDescription[0].props.value, desc: theDescription[0].props.children}
+      // console.log(newObj)
+      setCurrentRule(newObj)
       setShowRuleModal(!showRuleModal)
     }
 
@@ -60,14 +61,14 @@ function Game( props ) {
             }}>
               {showRules && rules.map(rule => {
                 return (
-                  <View key={rule.id} stlye={{ justifyContent: "center" }}>
-                    <Card key={rule.id} style={[styles.cardContainer]}>
-                      <View key={rule.id} style={{ flexDirection: "column" }}>
-                        <View key={rule.id} style={[styles.cardTitle]}>
-                          <Card.Title key={rule.id} title={rule.props.value} />
+                  <View stlye={{ justifyContent: "center" }}>
+                    <Card style={[styles.cardContainer]}>
+                      <View style={{ flexDirection: "column" }}>
+                        <View style={[styles.cardTitle]}>
+                          <Card.Title title={rule.props.value} />
                         </View>
-                        <View key={rule.id} style={[styles.cardContent]}>
-                          <Card.Content key={rule.id}><Button key={rule.id} onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children} /></Card.Content>
+                        <View style={[styles.cardContent]}>
+                          <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children} /></Card.Content>
                         </View>
                       </View>
                     </Card>
@@ -131,6 +132,18 @@ const styles = StyleSheet.create({
   },
   wholeCardContainer: {
     width: wp("90%"),
+  },
+  titleText: {
+    fontFamily: "sans-serif",
+    fontSize: wp("5%"),
+    color: "#2F4F4F",
+    fontWeight: "600",
+  },
+  subText: {
+    fontFamily: "sans-serif-light",
+    fontSize: wp("4%"),
+    fontWeight: "500",
+    color: "#008B8B"
   }
 });
 
