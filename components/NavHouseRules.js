@@ -42,7 +42,7 @@ function NavHouseRules(props) {
         alignItems: 'center'
       }]}>
         <View style={[styles.backButton]}>
-          <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
+          <Icon.Button onPress={() => props.navigation.goBack() } name="arrow-left"/>
         </View>
         <View style={[styles.houseRulesMain]}>
           <Icon.Button onPress={() => props.navigation.navigate("House rules")} >Click here to add some house rules!</Icon.Button>
@@ -71,7 +71,9 @@ const styles = StyleSheet.create({
     flex: 1
   },
   backButton: {
-    width: wp("10%")
+    marginTop: hp("5%"),
+    width: wp("10%"),
+    height: hp("10%")
   },
   houseRulesNav: {
     padding: 3,

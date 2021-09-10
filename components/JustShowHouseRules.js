@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
@@ -8,10 +8,20 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 function JustShowHouseRules(props) {
 
   
-  
+  const [displayHRules, setDisplayHRules] = useState(false)
+
+  useEffect(()=> {
+    let list = props.houseRules.filter(rule => { return rule.checked })
+    console.log(list)
+    if(list.length > 0) {
+      setDisplayHRules(true)
+    } else {
+      setDisplayHRules(false)
+    }
+  },[props.houseRules])
   // const [navBarHeight, setNavBarHeight] = useState(hp("15%"))
   
-  if (props.houseRules.length > 0) {
+  if (displayHRules) {
 
 
     return (
