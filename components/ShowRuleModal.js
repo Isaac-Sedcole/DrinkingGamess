@@ -14,8 +14,8 @@ function ShowRuleModal({ route, navigation }, props) {
   // useEffect(()=> {
   //   console.log(route.params.rule)
   //   let ruleName = route.params.rule[0].props.value
-  //   ruleName = ruleName.replace(/([A-Z])(?=)/g, " $1")
-  //   ruleName = ruleName[0].toUpperCase() + ruleName.substring(1)
+    let ruleName = route.params.rule.name.replace(/([A-Z])(?=)/g, " $1")
+    ruleName = ruleName[0].toUpperCase() + ruleName.substring(1)
   //   setNewRuleName(ruleName)
   // },[])
 
@@ -31,7 +31,7 @@ function ShowRuleModal({ route, navigation }, props) {
         <View style={{ alignItems: "center" }}>
 
           <View>
-            <Text style={[styles.titleText]}>{route.params.rule.name}:</Text>
+            <Text style={[styles.titleText]}>{ruleName}:</Text>
           </View>
           <View style={{ paddingLeft: wp("1%") }}>
 

@@ -99,25 +99,30 @@ function Game(props) {
         <ScrollView style={[styles.scrollViewCont]}>
 
           <View style={[styles.container, {
-            flexDirection: "column",
             alignItems: 'center'
           }]}>
-            <View >
-              <Text style={[styles.titleText]}>{gameName}</Text>
+            <Text style={[styles.titleText]}>{gameName}</Text>
+            <View style={{ paddingTop: hp("2%") }}>
+              <Text style={[styles.xxtraSubText]}>This game is suggested for {props.route.params.game.suggestedPlayers} players</Text>
             </View>
+            <View style={{ paddingTop: hp("1%") }}>
+              <Text style={[styles.xxtraSubText]}>DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10</Text>
+            </View>
+            <View style={{ paddingTop: hp("1%") }}>
+              <Text style={[styles.subTitleText]}>You will need:</Text>
+            </View>
+              <Text style={[styles.subText]}>{props.route.params.game.itemsRequired.map(item => { return item + ", " })}</Text>
 
-            <Text style={[styles.xxtraSubText]}>This game is suggested for {props.route.params.game.suggestedPlayers} players</Text>
-
-            <Text style={[styles.xxtraSubText]}>DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10</Text>
-
-            <Text style={[styles.subText]}>You will need: {props.route.params.game.itemsRequired.map(item => { return item + ", " })}to play.</Text>
-
-            <Text style={[styles.subTitleText]}>How to play: </Text>
-            <Text style={[styles.subText]}>{props.route.params.game.explanationBlurb}</Text>
-
+            <View style={{ paddingTop: hp("1%") }}>
+              <Text style={[styles.subTitleText]}>How to Play:</Text>
+            </View>
+              <Text style={[styles.subText]}>{props.route.params.game.explanationBlurb}</Text>
+            <View style={{ paddingTop: hp("1%") }}>
             <Button onPress={() => activateShowRules()} title="Show Rules!" />
-            {showRules && <Text>{rulesObj.rules}</Text>}
-
+            </View>
+            <View style={{ paddingTop: hp("1%") }}>
+            {showRules && <Text style={[styles.rulesText]}>{rulesObj.rules}</Text>}
+            </View>
           </View>
         </ScrollView>
       </>
@@ -181,6 +186,12 @@ const styles = StyleSheet.create({
   listSeperatorLeft: {
     marginTop: hp("0.5%"),
     alignItems: "flex-start"
+  },
+  rulesText: {
+    fontFamily: "sans-serif",
+    fontSize: wp("4%"),
+    color: "#2d5287",
+    fontWeight: "500",
   }
 });
 
