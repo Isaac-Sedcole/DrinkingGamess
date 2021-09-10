@@ -46,22 +46,26 @@ function Game(props) {
           <View style={[styles.container, {
             alignItems: 'center'
           }]}>
-            <View >
-              <Text style={[styles.titleText]}>{gameName}</Text>
+
+            <Text style={[styles.titleText]}>{gameName}</Text>
+            <View style={{ paddingTop: hp("2%") }}>
+              <Text style={[styles.xxtraSubText]}>This game is suggested for {props.route.params.game.suggestedPlayers} players</Text>
             </View>
-
-            <Text style={[styles.subTitleText]}>This game is suggested for {props.route.params.game.suggestedPlayers} players</Text>
-
-            <Text style={[styles.subTitleText]}>DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10</Text>
-            
-            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-              <Text style={[styles.subTitleText]}>You will need: </Text>
-              <Text style={[styles.subText]}>{props.route.params.game.itemsRequired.map(item => { return item + ", " })}to play.</Text>
+            <View style={{ paddingTop: hp("1%") }}>
+              <Text style={[styles.xxtraSubText]}>DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10</Text>
             </View>
+            <View style={{ paddingTop: hp("1%") }}>
+              <Text style={[styles.subTitleText]}>You will need:</Text>
+            </View>
+              <Text style={[styles.subText]}>{props.route.params.game.itemsRequired.map(item => { return item + ", " })}</Text>
 
-            <Text>{props.route.params.game.explanationBlurb}</Text>
-
+            <View style={{ paddingTop: hp("1%") }}>
+              <Text style={[styles.subTitleText]}>How to Play:</Text>
+            </View>
+              <Text style={[styles.subText]}>{props.route.params.game.explanationBlurb}</Text>
+            <View style={{ paddingTop: hp("1%") }}>
             <Button onPress={() => activateShowRules()} title="Show Rules!" />
+            </View>
             <View style={{
               flexDirection: "row",
               flexWrap: "wrap",
@@ -102,11 +106,15 @@ function Game(props) {
               <Text style={[styles.titleText]}>{gameName}</Text>
             </View>
 
+            <Text style={[styles.xxtraSubText]}>This game is suggested for {props.route.params.game.suggestedPlayers} players</Text>
 
-            <Text>This game is suggested for {props.route.params.game.suggestedPlayers} players</Text>
-            <Text>DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10</Text>
-            <Text>You will need: {props.route.params.game.itemsRequired.map(item => { return item + ", " })}to play.</Text>
-            <Text>{props.route.params.game.explanationBlurb}</Text>
+            <Text style={[styles.xxtraSubText]}>DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10</Text>
+
+            <Text style={[styles.subText]}>You will need: {props.route.params.game.itemsRequired.map(item => { return item + ", " })}to play.</Text>
+
+            <Text style={[styles.subTitleText]}>How to play: </Text>
+            <Text style={[styles.subText]}>{props.route.params.game.explanationBlurb}</Text>
+
             <Button onPress={() => activateShowRules()} title="Show Rules!" />
             {showRules && <Text>{rulesObj.rules}</Text>}
 
@@ -154,11 +162,25 @@ const styles = StyleSheet.create({
     color: "#2F4F4F",
     fontWeight: "600",
   },
+  xxtraSubText: {
+    fontFamily: "sans-serif",
+    fontSize: wp("4.5%"),
+    color: "#2d5287",
+    fontWeight: "600",
+  },
   subText: {
     fontFamily: "sans-serif-light",
     fontSize: wp("4%"),
     fontWeight: "500",
     color: "#008B8B"
+  },
+  listSeperatorCenter: {
+    marginTop: hp("0.5%"),
+    alignItems: "center"
+  },
+  listSeperatorLeft: {
+    marginTop: hp("0.5%"),
+    alignItems: "flex-start"
   }
 });
 
