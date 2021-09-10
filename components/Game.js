@@ -4,7 +4,7 @@ import { Card } from 'react-native-paper'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 
 
-function Game( props ) {
+function Game(props) {
 
   const [showRules, setShowRules] = useState(false)
   const [showRuleModal, setShowRuleModal] = useState(false)
@@ -33,7 +33,7 @@ function Game( props ) {
           return rule
         }
       })
-      let newObj = {name: theDescription[0].props.value, desc: theDescription[0].props.children}
+      let newObj = { name: theDescription[0].props.value, desc: theDescription[0].props.children }
       // console.log(newObj)
       setCurrentRule(newObj)
       setShowRuleModal(!showRuleModal)
@@ -46,14 +46,21 @@ function Game( props ) {
           <View style={[styles.container, {
             alignItems: 'center'
           }]}>
+            <View >
+              <Text style={[styles.titleText]}>{gameName}</Text>
+            </View>
 
-            <Text>Hi! welcome to {gameName}</Text>
-            {/* <button>Customize rules</button> */}
+            <Text style={[styles.subTitleText]}>This game is suggested for {props.route.params.game.suggestedPlayers} players</Text>
 
-            <Text>This game is suggested for {props.route.params.game.suggestedPlayers} players</Text>
-            <Text>DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10</Text>
-            <Text>You will need: {props.route.params.game.itemsRequired.map(item => { return item + ", " })}to play.</Text>
+            <Text style={[styles.subTitleText]}>DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10</Text>
+            
+            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+              <Text style={[styles.subTitleText]}>You will need: </Text>
+              <Text style={[styles.subText]}>{props.route.params.game.itemsRequired.map(item => { return item + ", " })}to play.</Text>
+            </View>
+
             <Text>{props.route.params.game.explanationBlurb}</Text>
+
             <Button onPress={() => activateShowRules()} title="Show Rules!" />
             <View style={{
               flexDirection: "row",
@@ -91,8 +98,10 @@ function Game( props ) {
             flexDirection: "column",
             alignItems: 'center'
           }]}>
-            <Text>Hi! welcome to {gameName}</Text>
-            {/* <button>Customize rules</button> */}
+            <View >
+              <Text style={[styles.titleText]}>{gameName}</Text>
+            </View>
+
 
             <Text>This game is suggested for {props.route.params.game.suggestedPlayers} players</Text>
             <Text>DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10</Text>
@@ -134,6 +143,12 @@ const styles = StyleSheet.create({
     width: wp("90%"),
   },
   titleText: {
+    fontFamily: "sans-serif",
+    fontSize: wp("8%"),
+    color: "#2F4F4F",
+    fontWeight: "600",
+  },
+  subTitleText: {
     fontFamily: "sans-serif",
     fontSize: wp("5%"),
     color: "#2F4F4F",

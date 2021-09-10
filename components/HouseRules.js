@@ -46,7 +46,7 @@ function HouseRules(props) {
         <View style={[styles.container, {
           alignItems: 'center'
         }]}>
-          <Text>Hi please select some House Rules</Text>
+          <Text style={[styles.titleText]}>House Rules</Text>
           <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
 
             {fullHouseRules.map(rule => {
@@ -97,6 +97,18 @@ const styles = StyleSheet.create({
   },
   wholeCardContainer: {
     width: wp("90%"),
+  },
+  titleText: {
+    fontFamily: "sans-serif",
+    fontSize: wp("8%"),
+    color: "#2F4F4F",
+    fontWeight: "600",
+  },
+  subText: {
+    fontFamily: "sans-serif-light",
+    fontSize: wp("5%"),
+    fontWeight: "500",
+    color: "#008B8B"
   }
 });
 
