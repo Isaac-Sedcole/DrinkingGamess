@@ -7,12 +7,6 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 function ShowHouseRuleModal({ route, navigation }, props) {
 
-  const [isActive, setActive] = useState(true)
-
-  useEffect(() => {
-    setActive(true)
-  }, [])
-
   let rule = route.params.rule
   // console.log(rule)
   //   const resetModal = () => {

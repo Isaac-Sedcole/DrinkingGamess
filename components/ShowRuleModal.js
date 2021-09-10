@@ -9,48 +9,40 @@ function ShowRuleModal({ route, navigation }, props) {
 
   // const [isActive, setActive] = useState(true)
 
-  let rule = ""
-  let newRuleName = ""
+  // const[newRuleName, setNewRuleName] = useState("")
 
+  // useEffect(()=> {
+  //   console.log(route.params.rule)
+  //   let ruleName = route.params.rule[0].props.value
+  //   ruleName = ruleName.replace(/([A-Z])(?=)/g, " $1")
+  //   ruleName = ruleName[0].toUpperCase() + ruleName.substring(1)
+  //   setNewRuleName(ruleName)
+  // },[])
 
-  rule = route.params.rule
-  let ruleName = route.params.rule[0].props.value
-  newRuleName = ruleName.replace(/([A-Z])(?=)/g, " $1")
-  newRuleName = newRuleName[0].toUpperCase() + newRuleName.substring(1)
-
-
-  // console.log(rule)
-
-  //   const resetModal = () => {
-  //     props.dispatch(setShowPersonModal(!props.showPersonModal))
-  //   }
   const redirect = () => {
     navigation.goBack()
   }
 
-
+  // newRuleName
+  // route.params.rule
   return (
     <>
-
-      <View style={{ padding: wp("5%"), flex: 1 }}>
-        <View style={{ alignItems: "center" }}>
-
-          <View>
-            <Text style={[styles.titleText]}>{newRuleName}:</Text>
-          </View>
-          <View style={{paddingLeft: wp("1%"), flexWrap: "wrap", flexDirection: "row" }}>
-
-            <Text style={[styles.subText]}>{rule}</Text>
-          </View>
-
+    <View style={{ padding: wp("5%"), flex: 1}}>
+      <View style={{ alignItems: "center"}}>
+        <View>
+          <Text>{route.params.rule[0].props.value}</Text>
         </View>
-        <View style={{ paddingTop: wp("3%") }}>
-          <Button onPress={() => redirect()} title="OK!" />
+        <View>
+          <Text>{route.params.rule}</Text>
         </View>
       </View>
+      <View>
+      <Button onPress={() => redirect()} title="OK!" />
+      </View>
+    </View>
+
+
     </>
-
-
   )
 }
 
