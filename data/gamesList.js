@@ -25,7 +25,7 @@ export default {
                 joker: "the fool"
             },
             customRules: [
-                "snakeEyes", "you", "me", "whores", "gecko", "dicks", "heaven", "mate", "waterfall", "social", "rhyme", "neverHaveIEver", "questionMaster", "categories", "helmet", "makeARule", "queasyCreation", "king"
+                "snakeEyes", "you", "me", "whores", "gecko", "dicks", "heaven", "mate", "waterfall", "social", "rhyme", "neverHaveIEver", "questionMaster", "categories", "helmet", "makeARule", "queasyCreation","bigBooty","theFool","highLow", "king"
             ],
             ruleDescription: {
                 snakeEyes: "Any player who looks you in the eyes must drink",
@@ -48,7 +48,7 @@ export default {
                 queasyCreation: "Combine any three drinks from the table into a shot glass and give it to someone",
                 bigBooty: "WRITE DESCRIPTION LATER",
                 theFool: "(typically the joker card): Take a shot",
-                hiLo: "(Typically Joker): Card drawer fills a shot glass with liquor, then players High or low, if successful, passes shot to the left and play continues",
+                highLow: "(Typically Joker): Card drawer fills a shot glass with liquor, then players High or low, if successful, passes shot to the left and play continues",
                 king: "Empty your vessel into the kings cup"
             }
         },

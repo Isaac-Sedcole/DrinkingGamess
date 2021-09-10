@@ -8,7 +8,7 @@ function Game({ route, navigation }) {
 
   const [showRules, setShowRules] = useState(false)
   const [showRuleModal, setShowRuleModal] = useState(false)
-  const [currentRule, setCurrentRule] = useState("")
+  const [currentRule, setCurrentRule] = useState({})
 
   const gameName = route.params.game.name
   let rulesObj = route.params.game.rules
@@ -27,9 +27,9 @@ function Game({ route, navigation }) {
 
     const activateShowRuleModal = (ruleNeedingDescription) => {
       let matchingWord = ruleNeedingDescription.replace(/\s/g, "")
-      let theDescription = rulesDescription.map(rule => {
+      let theDescription = rulesDescription.filter(rule => {
         if (rule.props.value.toLowerCase() == matchingWord.toLowerCase()) {
-          return rule.props.value + " " + rule.props.children
+          return { name :rule.props.value, value: rule.props.children}
         }
 
       })

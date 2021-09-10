@@ -12,7 +12,6 @@ function JustShowHouseRules(props) {
 
   useEffect(()=> {
     let list = props.houseRules.filter(rule => { return rule.checked })
-    console.log(list)
     if(list.length > 0) {
       setDisplayHRules(true)
     } else {
@@ -39,7 +38,7 @@ function JustShowHouseRules(props) {
               {props.houseRules.map(rule => {
                 return (
                   <View key={rule.id} style={[styles.houseRulesNav]}>
-                    {rule.checked && <Icon.Button backgroundColor="green" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
+                    {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
                   </View>
                 )
               })}

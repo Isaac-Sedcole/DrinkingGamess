@@ -26,7 +26,7 @@ function JustShowBack(props) {
 
                 return (
                   <View key={rule.id} style={[styles.houseRulesNav]}>
-                    {rule.checked && <Icon.Button backgroundColor="green" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
+                    {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
                   </View>
                 )
               })}
