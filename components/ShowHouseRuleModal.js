@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+
 
 
 
@@ -22,9 +24,11 @@ function ShowHouseRuleModal({route, navigation }, props) {
 
   return (
     <>
-      
+      <View style={{padding: wp("5%")}}>
+
             <Text>{rule.name}: {rule.description}</Text>
         <Button onPress={() => redirect()} title="OK!"/>
+      </View>
       
     </>
   )

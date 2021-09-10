@@ -21,9 +21,9 @@ function JustShowHouseRules(props) {
           flexDirection: "row",
           alignItems: "center",
         }]}>
-          <View style={[styles.houseRulesMain]}>
+          {/* <View style={[styles.houseRulesMainAppear]}>
             <Icon.Button onPress={() => props.navigation.navigate("House rules")}>Click here to add some house rules!</Icon.Button>
-          </View>
+          </View> */}
           <View style={[styles.cardHousing]}>
             <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
               {props.houseRules.map(rule => {
@@ -71,16 +71,21 @@ const styles = StyleSheet.create({
   },
   houseRulesNav: {
     padding: 3,
-    width: wp("20%")
+    width: wp("22.5%")
   },
   cardHousing: {
     marginLeft: 5,
-    width: wp("62%"),
+    width: wp("90%"),
     height: hp("10%")
   },
   houseRulesMain: {
     justifyContent: "center",
     width: wp("90%"),
+    height: hp("20%")
+  },
+  houseRulesMainAppear: {
+    justifyContent: "center",
+    width: wp("20%"),
     height: hp("20%")
   }
 });
