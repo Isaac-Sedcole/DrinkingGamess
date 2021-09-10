@@ -69,7 +69,9 @@ const styles = StyleSheet.create({
     flex: 1
   },
   backButton: {
-    width: wp("10%")
+    marginTop: hp("5%"),
+    width: wp("10%"),
+    height: hp("10%")
   },
   houseRulesNav: {
     padding: 3,
