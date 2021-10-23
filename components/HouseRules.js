@@ -11,7 +11,6 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 function HouseRules(props) {
 
-  // const [toggleCheckBox, setToggleCheckBox] = useState(false)
   const [currentRules, setCurrentRules] = useState([])
   const [fullHouseRules, setFullHouseRules] = useState([])
   const [showHouseRuleModal, setShowHouseRuleModal] = useState(false)
@@ -23,7 +22,9 @@ function HouseRules(props) {
     setFullHouseRules(houseRulesList.houseRules.map(rule => {
       return rule
     }))
-    setShowHouseRuleModal(false)
+    if (showHouseRuleModal) {
+      setShowHouseRuleModal(!showHouseRuleModal)
+    }
   }, [])
 
   useEffect(()=>{
@@ -54,7 +55,7 @@ function HouseRules(props) {
   const activateShowHouseRuleModal = (houseRule) => {
     let ruleDescription = fullHouseRules.filter(rule => { return houseRule.id == rule.id })
     setCurrentHouseRule(ruleDescription[0])
-    setShowHouseRuleModal(!showHouseRuleModal)
+    setShowHouseRuleModal(true) 
   }
 
   return (

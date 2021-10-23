@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
 import { Card } from 'react-native-paper'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
@@ -18,6 +18,10 @@ function Game(props) {
     // console.log(props.navigation)
     setShowRules(!showRules)
   }
+
+  useEffect(()=> {
+    setShowRuleModal(false)
+  },[])
 
   if (gameName == "Kings Cup") {
 
@@ -42,7 +46,7 @@ function Game(props) {
       let newObj = { name: theDescription[0].props.value, desc: theDescription[0].props.children }
       // console.log(newObj)
       setCurrentRule(newObj)
-      setShowRuleModal(!showRuleModal)
+      setShowRuleModal(true)
     }
 
 

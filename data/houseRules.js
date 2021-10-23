@@ -3,7 +3,7 @@ export default {
         {
             id: 1,
             name: "No D word",
-            description: "If drink is said, you must consume",
+            description: "If you say drink, you must consume",
             punishment: 1,
             checked: false
         },
@@ -17,7 +17,7 @@ export default {
         {
             id: 3,
             name: "Little green man",
-            description: "You must remove the little green man from the top of your drink everytime before taking a drink, or suffer a punishment (an additional drink)",
+            description: "You must remove the imaginary little green man from the top of your drink everytime before taking a drink, or suffer a punishment (an additional drink)",
             punishment: 1,
             checked: false
         },
