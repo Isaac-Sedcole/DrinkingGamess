@@ -16,6 +16,7 @@ function HouseRules(props) {
   const [fullHouseRules, setFullHouseRules] = useState([])
   const [showHouseRuleModal, setShowHouseRuleModal] = useState(false)
   const [currentHouseRule, setCurrentHouseRule] = useState({})
+   
 
   useEffect(() => {
     setFullHouseRules(houseRulesList.houseRules.map(rule => {
@@ -24,14 +25,25 @@ function HouseRules(props) {
     setShowHouseRuleModal(false)
   }, [])
 
-  const handleCheckBox = (index) => {
+  const handleCheckBox = (index, addedRule) => {
     if (showHouseRuleModal) {
       setShowHouseRuleModal(!showHouseRuleModal)
     }
     const rules = [...fullHouseRules]
     rules[index].checked = !rules[index].checked
     setFullHouseRules(rules)
-    props.dispatch(setHouseRules(rules))
+
+    setCurrentRules(currentRules => {
+      let newArr = currentRules.filter(rule => {
+        return addedRule.id != rule.id
+      })
+      return newArr.length == currentRules.length
+      ? [...newArr, addedRule]
+      : [...newArr]
+    })
+
+
+    props.dispatch(setHouseRules(currentRules))
   }
 
   const activateShowHouseRuleModal = (houseRule) => {
@@ -54,7 +66,7 @@ function HouseRules(props) {
                 <View key={rule.id} style={[{ justifyContent: "center" }]}>
                   <Card style={[styles.cardContainer]}>
                     <View style={[styles.cardTitle, {flexWrap: "wrap", flexDirection: "column"}]}>
-                      <Card.Title title={<CheckBox label={rule.name} status={fullHouseRules[rule.id - 1].checked ? "checked" : "unchecked"} onPress={() => handleCheckBox(rule.id - 1)}></CheckBox>} />
+                      <Card.Title title={<CheckBox label={rule.name} status={fullHouseRules[rule.id - 1].checked ? "checked" : "unchecked"} onPress={() => handleCheckBox(rule.id - 1, rule)}></CheckBox>} />
                     </View>
                     <View style={[styles.cardContent]}>
                       <Card.Content>
