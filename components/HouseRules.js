@@ -19,6 +19,7 @@ function HouseRules(props) {
    
 
   useEffect(() => {
+    setCurrentRules(props.houseRules)
     setFullHouseRules(houseRulesList.houseRules.map(rule => {
       return rule
     }))
@@ -132,6 +133,11 @@ const styles = StyleSheet.create({
 //   let actions = bindActionCreators({setHouseRules})
 //   return {...actions, dispatch}
 // }
+const mapStateToProps = (globalState) => {
+  return {
+    houseRules: globalState.houseRules
+  }
+}
 
 // export default connect(null,mapDispatchToProps)(HouseRules)
-export default connect()(HouseRules)
+export default connect(mapStateToProps)(HouseRules)
