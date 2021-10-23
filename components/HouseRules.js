@@ -25,6 +25,10 @@ function HouseRules(props) {
     setShowHouseRuleModal(false)
   }, [])
 
+  useEffect(()=>{
+    props.dispatch(setHouseRules(currentRules))
+  }, [currentRules])
+
   const handleCheckBox = (index, addedRule) => {
     if (showHouseRuleModal) {
       setShowHouseRuleModal(!showHouseRuleModal)
@@ -33,8 +37,8 @@ function HouseRules(props) {
     rules[index].checked = !rules[index].checked
     setFullHouseRules(rules)
 
-    setCurrentRules(currentRules => {
-      let newArr = currentRules.filter(rule => {
+    setCurrentRules(currentRulers => {
+      let newArr = currentRulers.filter(rule => {
         return addedRule.id != rule.id
       })
       return newArr.length == currentRules.length
@@ -43,7 +47,7 @@ function HouseRules(props) {
     })
 
 
-    props.dispatch(setHouseRules(currentRules))
+    // props.dispatch(setHouseRules(currentRules))
   }
 
   const activateShowHouseRuleModal = (houseRule) => {
