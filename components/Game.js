@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react'
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
 import { Card } from 'react-native-paper'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import AppButton from "./AppButton"
 
 
 function Game(props) {
@@ -71,20 +72,40 @@ function Game(props) {
               flexWrap: "wrap",
             }}>
               {showRules && rules.map(rule => {
+                //name was too long and made the button multi-lined - easiest way around the issue
+                if(rule.props.children.toLowerCase() == "question master"){
+                  
+                  return (
+                    <View stlye={{ justifyContent: "center" }}>
+                      <Card style={[styles.cardContainer]}>
+                        <View style={{ flexDirection: "row" }}>
+                          <View style={[styles.cardTitle]}>
+                            <Card.Title title={rule.props.value} />
+                          </View>
+                          <View style={[styles.cardContent]}>
+                            <Card.Content><AppButton onPress={() => activateShowRuleModal(rule.props.children)} title={"q master"} /></Card.Content>
+                          </View>
+                        </View>
+                      </Card>
+                    </View>
+                  )
+
+                } else {
                 return (
                   <View stlye={{ justifyContent: "center" }}>
                     <Card style={[styles.cardContainer]}>
-                      <View style={{ flexDirection: "column" }}>
+                      <View style={{ flexDirection: "row" }}>
                         <View style={[styles.cardTitle]}>
                           <Card.Title title={rule.props.value} />
                         </View>
                         <View style={[styles.cardContent]}>
-                          <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children} /></Card.Content>
+                          <Card.Content><AppButton onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children} /></Card.Content>
                         </View>
                       </View>
                     </Card>
                   </View>
                 )
+                }
               })}
             </View>
           </View>
@@ -140,13 +161,16 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     margin: wp("1%"),
-    width: wp("42.5%"),
-    height: hp("13%"),
+    // width: wp("42.5%"),
+    width: wp("80%"),
+    height: hp("5%"),
     alignItems: "center"
   },
   cardTitle: {
     width: wp("40%"),
-    height: hp("6%")
+    height: hp("4%"),
+    textTransform: "uppercase",
+    fontWeight: "bold"
   },
   cardContent: {
     width: wp("40%"),
