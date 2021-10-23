@@ -23,7 +23,12 @@ function Game(props) {
 
     let ruleDescObj = props.route.params.game.ruleDescription
 
-    const rules = Object.keys(rulesObj).map(key => <option value={key}>{rulesObj[key]}</option>)
+    let rules = Object.keys(rulesObj).map(key => <option value={key}>{rulesObj[key]}</option>)
+    //has automatically ordered list however we want the 9th index (Ace - snake eyes) to still appear at the top
+    //weird object
+    let ace = rules.splice(9,1)
+    rules.unshift(ace[0])
+    
     const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
 
     const activateShowRuleModal = (ruleNeedingDescription) => {
@@ -73,14 +78,14 @@ function Game(props) {
             }}>
               {showRules && rules.map(rule => {
                 //name was too long and made the button multi-lined - easiest way around the issue
-                if(rule.props.children.toLowerCase() == "question master"){
+                if(rule.props.children == "question master"){
                   
                   return (
                     <View stlye={{ justifyContent: "center" }}>
                       <Card style={[styles.cardContainer]}>
                         <View style={{ flexDirection: "row" }}>
                           <View style={[styles.cardTitle]}>
-                            <Card.Title title={rule.props.value} />
+                            <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
                           </View>
                           <View style={[styles.cardContent]}>
                             <Card.Content><AppButton onPress={() => activateShowRuleModal(rule.props.children)} title={"q master"} /></Card.Content>
@@ -96,7 +101,7 @@ function Game(props) {
                     <Card style={[styles.cardContainer]}>
                       <View style={{ flexDirection: "row" }}>
                         <View style={[styles.cardTitle]}>
-                          <Card.Title title={rule.props.value} />
+                          <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
                         </View>
                         <View style={[styles.cardContent]}>
                           <Card.Content><AppButton onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children} /></Card.Content>
@@ -216,6 +221,16 @@ const styles = StyleSheet.create({
     fontSize: wp("4%"),
     color: "#2d5287",
     fontWeight: "500",
+  },
+  titleStyling: {
+    color:"#fff", 
+    fontWeight:"bold", 
+    backgroundColor: "#2d5287", 
+    borderRadius:wp("1%"), 
+    paddingHorizontal: wp("1%") ,
+    marginBottom:hp("2.5%"), 
+    marginRight:wp("25%"),
+    alignSelf: "center"
   }
 });
 
