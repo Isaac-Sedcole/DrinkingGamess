@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { Card } from 'react-native-paper'
 
 import gamesList from '../data/gamesList'
 
@@ -16,35 +17,76 @@ function ShowKingsCupCustomRules(props) {
     props.navigation.goBack()
   }
 
+  const [showRuleModal, setShowRuleModal] = useState(false)
+  const [currentRule, setCurrentRule] = useState({})
+
+  useEffect(()=> {
+    setShowRuleModal(false)
+},[])
+
   let ruleDescObj = gamesList.games[0].ruleDescription
   let customRules = gamesList.games[0].customRulesData
   const customRulesExtracted = Object.keys(customRules).map(key => <option value={key}>{customRules[key]}</option>)
   const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
-  console.log(customRulesExtracted)
+  let ace = customRulesExtracted.splice(9,1)
+  customRulesExtracted.unshift(ace[0])
+  // console.log(customRulesExtracted)
   
-
+  const activateShowRuleModal = (ruleNeedingDescription) => {
+    // console.log(rulesDescription)
+    let matchingWord = ruleNeedingDescription.replace(/\s/g, "")
+    let theDescription = rulesDescription.filter(rule => {
+      if (rule.props.value.toLowerCase() == matchingWord.toLowerCase()) {
+        return rule
+      }
+    })
+    let newObj = { name: theDescription[0].props.value, desc: theDescription[0].props.children }
+    // console.log(newObj)
+    setCurrentRule(newObj)
+    setShowRuleModal(true)
+  }
 
   return (
     <>
-      <View style={{ padding: wp("5%"), flex: 1 }}>
-        <View style={{ alignItems: "center" }}>
-
-          <View>
-            <Text style={[styles.titleText]}>ya</Text>
-          </View>
-          <View style={{ paddingLeft: wp("1%") }}>
-
-            <Text style={[styles.subText]}>okay</Text>
-          </View>
-
+    {customRulesExtracted.map(rule => {
+    //name was too long and made the button multi-lined - easiest way around the issue
+    if(rule.props.children[0] == "question master"){
+      
+      return (
+        <View stlye={{ justifyContent: "center" }}>
+          <Card style={[styles.cardContainer]}>
+            <View style={{ flexDirection: "row" }}>
+              <View style={[styles.cardTitle]}>
+                <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
+              </View>
+              <View style={[styles.cardContent]}>
+                <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={"q master"} /></Card.Content>
+              </View>
+            </View>
+          </Card>
         </View>
-        <View style={{paddingTop: wp("3%")}}>
-          <Button onPress={() => redirect()} title="OK!" />
-        </View>
+      )
+
+    } else {
+    return (
+      <View stlye={{ justifyContent: "center" }}>
+        <Card style={[styles.cardContainer]}>
+          <View style={{ flexDirection: "row" }}>
+            <View style={[styles.cardTitle]}>
+              <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
+            </View>
+            <View style={[styles.cardContent]}>
+              <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={rule.props.children} /></Card.Content>
+            </View>
+          </View>
+        </Card>
       </View>
-
+    )
+    }
+  })}
     </>
   )
+  
 }
 
 const styles = StyleSheet.create({
