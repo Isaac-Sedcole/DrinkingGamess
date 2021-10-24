@@ -10,6 +10,7 @@ function Game(props) {
   const [showRules, setShowRules] = useState(false)
   const [showRuleModal, setShowRuleModal] = useState(false)
   const [currentRule, setCurrentRule] = useState({})
+  const [showKingsCupCustom, setShowKingsCupCustom] = useState(false)
 
   const gameName = props.route.params.game.name
   let rulesObj = props.route.params.game.rules
@@ -20,7 +21,8 @@ function Game(props) {
   }
 
   useEffect(()=> {
-    setShowRuleModal(false)
+      setShowKingsCupCustom(false)
+      setShowRuleModal(false)
   },[])
 
   if (gameName == "Kings Cup") {
@@ -47,6 +49,10 @@ function Game(props) {
       // console.log(newObj)
       setCurrentRule(newObj)
       setShowRuleModal(true)
+    }
+
+    const activateShowKingsCupRules = () => {
+      setShowKingsCupCustom(true)
     }
 
 
@@ -116,6 +122,8 @@ function Game(props) {
                 )
                 }
               })}
+              {showRules && <Button onPress={() => activateShowKingsCupRules()} title="Custom Rules"/>}
+              {showKingsCupCustom && props.navigation.navigate("Show kings cup custom rules")}
             </View>
           </View>
         </ScrollView>

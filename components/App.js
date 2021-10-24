@@ -15,6 +15,7 @@ import thunk from 'redux-thunk'
 import NavHouseRules from './NavHouseRules';
 import JustShowBack from './JustShowBack';
 import JustShowHouseRules from './JustShowHouseRules';
+import ShowKingsCupCustomRules from './ShowKingsCupCustomRules'
 
 import reducers from '../reducers'
 // import Navigator from '../routes/homeStack'
@@ -45,6 +46,7 @@ function App() {
           <Stack.Screen name="Selected game" component={Game} />
           <Stack.Screen name="Showing a rule" component={ShowRuleModal} />
           <Stack.Screen name="Showing a house rule" component={ShowHouseRuleModal} />
+          <Stack.Screen name="Show kings cup custom rules" component={ShowKingsCupCustomRules} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
