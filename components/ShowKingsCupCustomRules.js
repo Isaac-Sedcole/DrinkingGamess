@@ -84,6 +84,7 @@ function ShowKingsCupCustomRules(props) {
     )
     }
   })}
+  {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
     </>
   )
   
