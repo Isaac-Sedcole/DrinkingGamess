@@ -25,8 +25,24 @@ export default {
                 JOKER: "the fool"
             },
             customRules: [
-                "snakeEyes", "you", "me", "whores", "gecko", "dicks", "heaven", "mate", "waterfall", "social", "rhyme", "neverHaveIEver", "questionMaster", "categories", "helmet", "makeARule", "queasyCreation","bigBooty","theFool","highLow", "king"
+                "snakeEyes", "you", "me", "whores", "gecko", "dicks", "heaven", "mate", "waterfall", "social", "rhyme", "neverHaveIEver", "questionMaster", "categories", "helmet", "makeARule", "queasyCreation","bigBooty","theFool","highLow", "fillVessel"
             ],
+            customRulesData : {
+              A: ["snake eyes"],
+              2: ["you"],
+              3: ["me"],
+              4: ["categories", "whores", "big booty"],
+              5: ["gecko", "helmet"],
+              6: ["social", "dicks"],
+              7: ["heaven"],
+              8: ["mate"],
+              9: ["rhyme", "never have i ever"],
+              10: ["waterfall"],
+              J: ["make a rule"],
+              Q: ["question master", "queasyCreation"],
+              K: ["fill vessel"],
+              JOKER : ["the fool", "high low"]
+            },
             ruleDescription: {
                 snakeEyes: "Any player who looks you in the eyes must drink",
                 waterfall: "Everyone drinks and cannot stop until the person to their right has stopped, starting at the card drawer",
@@ -49,7 +65,7 @@ export default {
                 bigBooty: "WRITE DESCRIPTION LATER",
                 theFool: "(typically the joker card): Take a shot",
                 highLow: "(Typically Joker): Card drawer fills a shot glass with liquor, then players High or low, if successful, passes shot to the left and play continues",
-                king: "Empty your vessel into the kings cup"
+                fillVessel: "Empty your vessel into the kings cup"
             }
         },
         {
