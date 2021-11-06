@@ -26,12 +26,15 @@ function ShowKingsCupCustomRules(props) {
 },[])
 
   let ruleDescObj = gamesList.games[0].ruleDescription
-  let customRules = gamesList.games[0].customRulesData
-  const customRulesExtracted = Object.keys(customRules).map(key => <option value={key}>{customRules[key]}</option>)
   const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
-  let ace = customRulesExtracted.splice(9,1)
-  customRulesExtracted.unshift(ace[0])
+  let customRulesArr = gamesList.games[0].customRules
+  console.log(customRulesArr)
+  // let customRules = gamesList.games[0].customRulesData
+  // const customRulesExtracted = Object.keys(customRules).map(key => <option value={key}>{customRules[key]}</option>)
+  // let ace = customRulesExtracted.splice(9,1)
+  // customRulesExtracted.unshift(ace[0])
   // console.log(customRulesExtracted)
+
   
   const activateShowRuleModal = (ruleNeedingDescription) => {
     // console.log(rulesDescription)
@@ -60,7 +63,7 @@ function ShowKingsCupCustomRules(props) {
                 </View>
               </Card>
             </View>
-    {customRulesExtracted.map(rule => {
+    {customRulesArr.map(rule => {
     //name was too long and made the button multi-lined - easiest way around the issue
     // if(rule.props.children[0] == "question master"){
       
@@ -95,7 +98,8 @@ function ShowKingsCupCustomRules(props) {
         <View>
         <Draggable minX={wp("1%")} minY={hp("1%")} maxX={wp("95%")} maxY={hp("95%")}>
             <View style={[styles.cardContent]}>
-              <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={rule.props.children} /></Card.Content>
+              <Card.Content><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></Card.Content>
+              {/* <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={rule.props.children} /></Card.Content> */}
             </View>
         </Draggable>
 
