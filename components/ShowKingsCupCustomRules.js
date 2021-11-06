@@ -4,6 +4,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { Card } from 'react-native-paper'
 
 import gamesList from '../data/gamesList'
+import Draggable from 'react-native-draggable'
 
 
 function ShowKingsCupCustomRules(props) {
@@ -70,14 +71,18 @@ function ShowKingsCupCustomRules(props) {
     } else {
     return (
       <View stlye={{ justifyContent: "center" }}>
+              
         <Card style={[styles.cardContainer]}>
           <View style={{ flexDirection: "row" }}>
             <View style={[styles.cardTitle]}>
+
               <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
             </View>
+        <Draggable minX={wp("1%")} minY={hp("1%")} maxX={wp("95%")} maxY={hp("95%")}>
             <View style={[styles.cardContent]}>
               <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={rule.props.children} /></Card.Content>
             </View>
+        </Draggable>
           </View>
         </Card>
       </View>
@@ -103,7 +108,24 @@ const styles = StyleSheet.create({
     fontSize: wp("5%"),
     fontWeight: "500",
     color: "#008B8B"
-  }
+  },
+  cardContainer: {
+    margin: wp("1%"),
+    // width: wp("42.5%"),
+    width: wp("80%"),
+    height: hp("5%"),
+    alignItems: "center"
+  },
+  cardTitle: {
+    width: wp("40%"),
+    height: hp("4%"),
+    textTransform: "uppercase",
+    fontWeight: "bold"
+  },
+  cardContent: {
+    width: wp("40%"),
+    height: hp("6%")
+  },
 })
 
 export default ShowKingsCupCustomRules
