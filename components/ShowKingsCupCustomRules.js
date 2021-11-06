@@ -49,46 +49,60 @@ function ShowKingsCupCustomRules(props) {
 
   return (
     <>
+    <View stlye={{ justifyContent: "center" }}>
+              
+              <Card style={[styles.cardContainer]}>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={[styles.cardTitle]}>
+      
+                    <Card.Title titleStyle={[styles.titleStyling]} title={"hawtdog"/** rule.props.value*/} />
+                  </View>
+                </View>
+              </Card>
+            </View>
     {customRulesExtracted.map(rule => {
     //name was too long and made the button multi-lined - easiest way around the issue
-    if(rule.props.children[0] == "question master"){
+    // if(rule.props.children[0] == "question master"){
       
-      return (
-        <View stlye={{ justifyContent: "center" }}>
-          <Card style={[styles.cardContainer]}>
-            <View style={{ flexDirection: "row" }}>
-              <View style={[styles.cardTitle]}>
-                <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
-              </View>
-              <View style={[styles.cardContent]}>
-                <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={"q master"} /></Card.Content>
-              </View>
-            </View>
-          </Card>
-        </View>
-      )
+    //   return (
+    //     <View stlye={{ justifyContent: "center" }}>
+    //       <Card style={[styles.cardContainer]}>
+    //         <View style={{ flexDirection: "row" }}>
+    //           <View style={[styles.cardTitle]}>
+    //             <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
+    //           </View>
+    //           <View style={[styles.cardContent]}>
+    //             <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={"q master"} /></Card.Content>
+    //           </View>
+    //         </View>
+    //       </Card>
+    //     </View>
+    //   )
 
-    } else {
+    // } else {
     return (
-      <View stlye={{ justifyContent: "center" }}>
+      // <View stlye={{ justifyContent: "center" }}>
               
-        <Card style={[styles.cardContainer]}>
-          <View style={{ flexDirection: "row" }}>
-            <View style={[styles.cardTitle]}>
+      //   <Card style={[styles.cardContainer]}>
+      //     <View style={{ flexDirection: "row" }}>
+      //       <View style={[styles.cardTitle]}>
 
-              <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
-            </View>
+      //         <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
+      //       </View>
+      //     </View>
+      //   </Card>
+      // </View>
+        <View>
         <Draggable minX={wp("1%")} minY={hp("1%")} maxX={wp("95%")} maxY={hp("95%")}>
             <View style={[styles.cardContent]}>
               <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={rule.props.children} /></Card.Content>
             </View>
         </Draggable>
-          </View>
-        </Card>
-      </View>
+
+        </View>
     )
     }
-  })}
+    )/**} */}
   {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
     </>
   )
