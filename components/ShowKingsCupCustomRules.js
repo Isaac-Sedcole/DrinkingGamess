@@ -33,6 +33,7 @@ function ShowKingsCupCustomRules(props) {
   let ruleDescObj = gamesList.games[0].ruleDescription
   const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
   let customRulesArr = gamesList.games[0].customRules
+  let cardTitles = gamesList.games[0].customRulesData
   // console.log(customRulesArr)
   // let customRules = gamesList.games[0].customRulesData
   // const customRulesExtracted = Object.keys(customRules).map(key => <option value={key}>{customRules[key]}</option>)
@@ -57,17 +58,22 @@ function ShowKingsCupCustomRules(props) {
 
   return (
     <>
-    <View stlye={{ justifyContent: "center" }}>
+    {cardTitles.map(titles => {
+      return (
+
+        <View stlye={{ justifyContent: "center" }}>
               
               <Card style={[styles.cardContainer]}>
                 <View style={{ flexDirection: "row" }}>
                   <View style={[styles.cardTitle]}>
       
-                    <Card.Title titleStyle={[styles.titleStyling]} title={"hawtdog"/** rule.props.value*/} />
+                    <Card.Title titleStyle={[styles.titleStyling]} title={titles} />
                   </View>
                 </View>
               </Card>
             </View>
+      )
+    })}
             <View stlye={{ display: "flex", flexDirection: "row", flexWrap: "wrap" } }>
 
     {customRulesArr.map(rule => {
@@ -100,25 +106,25 @@ function ShowKingsCupCustomRules(props) {
               count++
               
               return (
-                <View stlye={{ justifyContent: "center" }}>
+                // <View stlye={{ justifyContent: "center" }}>
                 
-                  <Card style={[styles.cardContainer]}>
-                    <View style={{ flexDirection: "row" }}>
-                      <View style={[styles.cardTitle]}>
+                //   <Card style={[styles.cardContainer]}>
+                //     <View style={{ flexDirection: "row" }}>
+                //       <View style={[styles.cardTitle]}>
                 
-                        <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
-                      </View>
-                    </View>
-                  </Card>
-                {/* </View>
-                <View > */}
+                //         <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
+                //       </View>
+                //     </View>
+                //   </Card>
+                // </View>
+                // <View > 
               <Draggable x={x} y={y} minX={wp("1%")} maxX={wp("95%")} maxY={hp("95%")}>
             <View style={[styles.cardContent]}>
               <Card.Content><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></Card.Content>
               {/* <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={rule.props.children} /></Card.Content> */}
             </View>
         </Draggable>
-        // </View>
+        
     )
   }
   )/**} */}
