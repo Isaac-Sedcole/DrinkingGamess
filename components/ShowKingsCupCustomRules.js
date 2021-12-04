@@ -25,7 +25,6 @@ function ShowKingsCupCustomRules(props) {
   let x = wp("10%")
   let y = hp("1%")
   let count = 1
-  let yCount = 1
   
   useEffect(()=> {
     setShowRuleModal(false)
@@ -89,17 +88,9 @@ function ShowKingsCupCustomRules(props) {
           //       </Card>
           //     </View>
           //   )
-          
-          // console.log(xCount, yCount)
-          // if(xCount%2 == 0){ 
-            //   yCount++
-            //   xCount = 1
-            // }
-            // xCount++
-            // console.log(xCount, yCount)
-            
+
             // } else {
-              // y+= hp("5%")
+
               if(x < wp("45%") && count > 1) {
                 x+=wp("45%")
               } else if(x > wp("45%")) {
@@ -109,18 +100,18 @@ function ShowKingsCupCustomRules(props) {
               count++
               
               return (
-                // <View stlye={{ justifyContent: "center" }}>
+                <View stlye={{ justifyContent: "center" }}>
                 
-                //   <Card style={[styles.cardContainer]}>
-                //     <View style={{ flexDirection: "row" }}>
-                //       <View style={[styles.cardTitle]}>
+                  <Card style={[styles.cardContainer]}>
+                    <View style={{ flexDirection: "row" }}>
+                      <View style={[styles.cardTitle]}>
                 
-                //         <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
-                //       </View>
-                //     </View>
-                //   </Card>
-                // </View>
-                // <View >
+                        <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
+                      </View>
+                    </View>
+                  </Card>
+                {/* </View>
+                <View > */}
               <Draggable x={x} y={y} minX={wp("1%")} maxX={wp("95%")} maxY={hp("95%")}>
             <View style={[styles.cardContent]}>
               <Card.Content><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></Card.Content>
