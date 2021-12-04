@@ -58,9 +58,11 @@ function ShowKingsCupCustomRules(props) {
 
   return (
     <>
+    <ScrollView style={[styles.scrollViewCont]}>
+
     {cardTitles.map(titles => {
       return (
-
+        
         <View stlye={{ justifyContent: "center" }}>
               
               <Card style={[styles.cardContainer]}>
@@ -94,30 +96,30 @@ function ShowKingsCupCustomRules(props) {
           //       </Card>
           //     </View>
           //   )
-
-            // } else {
-
-              if(x < wp("45%") && count > 1) {
-                x+=wp("45%")
-              } else if(x > wp("45%")) {
-                x = wp("10%")
-                y+=hp("6%")
-              }
-              count++
+          
+          // } else {
+            
+            if(x < wp("45%") && count > 1) {
+              x+=wp("45%")
+            } else if(x > wp("45%")) {
+              x = wp("10%")
+              y+=hp("6%")
+            }
+            count++
+            
+            return (
+              // <View stlye={{ justifyContent: "center" }}>
               
-              return (
-                // <View stlye={{ justifyContent: "center" }}>
-                
-                //   <Card style={[styles.cardContainer]}>
-                //     <View style={{ flexDirection: "row" }}>
-                //       <View style={[styles.cardTitle]}>
-                
-                //         <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
-                //       </View>
-                //     </View>
-                //   </Card>
-                // </View>
-                // <View > 
+              //   <Card style={[styles.cardContainer]}>
+              //     <View style={{ flexDirection: "row" }}>
+              //       <View style={[styles.cardTitle]}>
+              
+              //         <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
+              //       </View>
+              //     </View>
+              //   </Card>
+              // </View>
+              // <View > 
               <Draggable x={x} y={y} minX={wp("1%")} maxX={wp("95%")} maxY={hp("95%")}>
             <View style={[styles.cardContent]}>
               <Card.Content><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></Card.Content>
@@ -125,10 +127,11 @@ function ShowKingsCupCustomRules(props) {
             </View>
         </Draggable>
         
-    )
-  }
+        )
+      }
   )/**} */}
   </View>
+</ScrollView>
   {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
     </>
   )
@@ -175,6 +178,9 @@ const styles = StyleSheet.create({
     marginBottom:hp("2.5%"), 
     marginRight:wp("65%"),
     alignSelf: "center"
+  },
+  scrollViewCont: {
+    flex: 1
   }
 })
 
