@@ -50,6 +50,7 @@ export default {
                 bigBooty: "Big Booty: WRITE DESCRIPTION LATER",
                 theFool: "The Fool: Take a shot",
                 highLow: "High-Low: Card drawer fills a shot glass with liquor, then players High or low, if successful, passes shot to the left and play continues",
+                fillVessel: "King: Pour your drink into the cup, 4th king drinks",
             }
         },
         {

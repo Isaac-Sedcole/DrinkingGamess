@@ -166,6 +166,16 @@ const styles = StyleSheet.create({
     width: wp("40%"),
     height: hp("6%")
   },
+  titleStyling: {
+    color:"#fff", 
+    fontWeight:"bold", 
+    backgroundColor: "#2d5287", 
+    borderRadius:wp("1%"), 
+    paddingHorizontal: wp("1%") ,
+    marginBottom:hp("2.5%"), 
+    marginRight:wp("65%"),
+    alignSelf: "center"
+  }
 })
 
 export default ShowKingsCupCustomRules

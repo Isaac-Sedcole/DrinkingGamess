@@ -21,6 +21,7 @@ function Game(props) {
   }
 
   useEffect(()=> {
+      setShowRules(false)
       setShowKingsCupCustom(false)
       setShowRuleModal(false)
   },[])
