@@ -20,15 +20,21 @@ function ShowKingsCupCustomRules(props) {
 
   const [showRuleModal, setShowRuleModal] = useState(false)
   const [currentRule, setCurrentRule] = useState({})
-
+  // const [xCount, setXCount] = useState(1)
+  // const [yCount, setYCount] = useState(1)
+  let x = wp("10%")
+  let y = hp("1%")
+  let count = 1
+  let yCount = 1
+  
   useEffect(()=> {
     setShowRuleModal(false)
-},[])
+  },[])
 
   let ruleDescObj = gamesList.games[0].ruleDescription
   const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
   let customRulesArr = gamesList.games[0].customRules
-  console.log(customRulesArr)
+  // console.log(customRulesArr)
   // let customRules = gamesList.games[0].customRulesData
   // const customRulesExtracted = Object.keys(customRules).map(key => <option value={key}>{customRules[key]}</option>)
   // let ace = customRulesExtracted.splice(9,1)
@@ -63,50 +69,69 @@ function ShowKingsCupCustomRules(props) {
                 </View>
               </Card>
             </View>
+            <View stlye={{ display: "flex", flexDirection: "row", flexWrap: "wrap" } }>
+
     {customRulesArr.map(rule => {
-    //name was too long and made the button multi-lined - easiest way around the issue
-    // if(rule.props.children[0] == "question master"){
-      
-    //   return (
-    //     <View stlye={{ justifyContent: "center" }}>
-    //       <Card style={[styles.cardContainer]}>
-    //         <View style={{ flexDirection: "row" }}>
-    //           <View style={[styles.cardTitle]}>
-    //             <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
-    //           </View>
-    //           <View style={[styles.cardContent]}>
-    //             <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={"q master"} /></Card.Content>
-    //           </View>
-    //         </View>
-    //       </Card>
-    //     </View>
-    //   )
-
-    // } else {
-    return (
-      // <View stlye={{ justifyContent: "center" }}>
+      //name was too long and made the button multi-lined - easiest way around the issue
+      // if(rule.props.children[0] == "question master"){
+        
+        //   return (
+          //     <View stlye={{ justifyContent: "center" }}>
+          //       <Card style={[styles.cardContainer]}>
+          //         <View style={{ flexDirection: "row" }}>
+          //           <View style={[styles.cardTitle]}>
+          //             <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
+          //           </View>
+          //           <View style={[styles.cardContent]}>
+          //             <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={"q master"} /></Card.Content>
+          //           </View>
+          //         </View>
+          //       </Card>
+          //     </View>
+          //   )
+          
+          // console.log(xCount, yCount)
+          // if(xCount%2 == 0){ 
+            //   yCount++
+            //   xCount = 1
+            // }
+            // xCount++
+            // console.log(xCount, yCount)
+            
+            // } else {
+              // y+= hp("5%")
+              if(x < wp("45%") && count > 1) {
+                x+=wp("45%")
+              } else if(x > wp("45%")) {
+                x = wp("10%")
+                y+=hp("6%")
+              }
+              count++
               
-      //   <Card style={[styles.cardContainer]}>
-      //     <View style={{ flexDirection: "row" }}>
-      //       <View style={[styles.cardTitle]}>
-
-      //         <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
-      //       </View>
-      //     </View>
-      //   </Card>
-      // </View>
-        <View>
-        <Draggable minX={wp("1%")} minY={hp("1%")} maxX={wp("95%")} maxY={hp("95%")}>
+              return (
+                // <View stlye={{ justifyContent: "center" }}>
+                
+                //   <Card style={[styles.cardContainer]}>
+                //     <View style={{ flexDirection: "row" }}>
+                //       <View style={[styles.cardTitle]}>
+                
+                //         <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
+                //       </View>
+                //     </View>
+                //   </Card>
+                // </View>
+                // <View >
+              <Draggable x={x} y={y} minX={wp("1%")} maxX={wp("95%")} maxY={hp("95%")}>
             <View style={[styles.cardContent]}>
               <Card.Content><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></Card.Content>
               {/* <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={rule.props.children} /></Card.Content> */}
             </View>
         </Draggable>
-
-        </View>
+        // </View>
     )
-    }
-    )/**} */}
+  }
+  )/**} */}
+  </View>
   {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
     </>
   )
