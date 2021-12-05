@@ -14,12 +14,14 @@ function ShowKingsCupCustomRules(props) {
   //   const resetModal = () => {
   //     props.dispatch(setShowPersonModal(!props.showPersonModal))
   //   }
+
   const redirect = () => {
     props.navigation.goBack()
   }
-
-  const [showRuleModal, setShowRuleModal] = useState(false)
-  const [currentRule, setCurrentRule] = useState({})
+  
+    const [showRuleModal, setShowRuleModal] = useState(false)
+    const [currentRule, setCurrentRule] = useState({})
+ 
   // const [xCount, setXCount] = useState(1)
   // const [yCount, setYCount] = useState(1)
   let x = wp("10%")
@@ -60,7 +62,7 @@ function ShowKingsCupCustomRules(props) {
     <>
     <ScrollView style={[styles.scrollViewCont]}>
 
-    {cardTitles.map(titles => {
+    {/* {cardTitles.map(titles => {
       return (
         
         <View stlye={{ justifyContent: "center" }}>
@@ -75,7 +77,7 @@ function ShowKingsCupCustomRules(props) {
               </Card>
             </View>
       )
-    })}
+    })} */}
             <View stlye={{ display: "flex", flexDirection: "row", flexWrap: "wrap" } }>
 
     {customRulesArr.map(rule => {
@@ -120,7 +122,7 @@ function ShowKingsCupCustomRules(props) {
               //   </Card>
               // </View>
               // <View > 
-              <Draggable x={x} y={y} minX={wp("1%")} maxX={wp("95%")} maxY={hp("95%")}>
+              <Draggable key={rule} x={x} y={y} minX={wp("1%")} maxX={wp("95%")} maxY={hp("95%")}>
             <View style={[styles.cardContent]}>
               <Card.Content><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></Card.Content>
               {/* <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={rule.props.children} /></Card.Content> */}

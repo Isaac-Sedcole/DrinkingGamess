@@ -92,7 +92,7 @@ function Game(props) {
                 if(rule.props.children == "question master"){
                   
                   return (
-                    <View stlye={{ justifyContent: "center" }}>
+                    <View key={rule.props.children} stlye={{ justifyContent: "center" }}>
                       <Card style={[styles.cardContainer]}>
                         <View style={{ flexDirection: "row" }}>
                           <View style={[styles.cardTitle]}>
@@ -108,7 +108,7 @@ function Game(props) {
 
                 } else {
                 return (
-                  <View stlye={{ justifyContent: "center" }}>
+                  <View key={rule.props.children} stlye={{ justifyContent: "center" }}>
                     <Card style={[styles.cardContainer]}>
                       <View style={{ flexDirection: "row" }}>
                         <View style={[styles.cardTitle]}>
