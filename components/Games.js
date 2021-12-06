@@ -23,9 +23,6 @@ function Games({ navigation }) {
             </View>
           )
         })}
-        <View style={[styles.fixedSingularGame]}>
-          <Button onPress={() => navigation.navigate("Show kings cup custom rules")} title={"test"} />
-        </View>
       </Card>
     </View>
   )

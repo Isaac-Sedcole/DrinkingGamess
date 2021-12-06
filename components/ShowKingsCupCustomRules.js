@@ -24,7 +24,7 @@ function ShowKingsCupCustomRules(props) {
  
   // const [xCount, setXCount] = useState(1)
   // const [yCount, setYCount] = useState(1)
-  let x = wp("10%")
+  let x = wp("17%")
   let y = hp("1%")
   let count = 1
   
@@ -60,12 +60,11 @@ function ShowKingsCupCustomRules(props) {
 
   return (
     <>
-    {/* <ScrollView style={[styles.scrollViewCont]}> */}
-
-    {/* {cardTitles.map(titles => {
+      <View stlye={{ display: "flex", flexDirection: "row", flexWrap: "wrap" } }>
+    {cardTitles.map(titles => {
       return (
         
-        <View stlye={{ justifyContent: "center" }}>
+        <View key={titles} stlye={{ justifyContent: "center" }}>
               
               <Card style={[styles.cardContainer]}>
                 <View style={{ flexDirection: "row" }}>
@@ -77,63 +76,29 @@ function ShowKingsCupCustomRules(props) {
               </Card>
             </View>
       )
-    })} */}
-            <View stlye={{ display: "flex", flexDirection: "row", flexWrap: "wrap" } }>
+    })}
 
-    {customRulesArr.map(rule => {
-      //name was too long and made the button multi-lined - easiest way around the issue
-      // if(rule.props.children[0] == "question master"){
-        
-        //   return (
-          //     <View stlye={{ justifyContent: "center" }}>
-          //       <Card style={[styles.cardContainer]}>
-          //         <View style={{ flexDirection: "row" }}>
-          //           <View style={[styles.cardTitle]}>
-          //             <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
-          //           </View>
-          //           <View style={[styles.cardContent]}>
-          //             <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={"q master"} /></Card.Content>
-          //           </View>
-          //         </View>
-          //       </Card>
-          //     </View>
-          //   )
-          
-          // } else {
-            
-            if(x < wp("45%") && count > 1) {
-              x+=wp("45%")
-            } else if(x > wp("45%")) {
-              x = wp("10%")
-              y+=hp("6%")
+    {customRulesArr.map(rule => {            
+            if(x < wp("35%") && count > 1) {
+              x+=wp("35%")
+            } else if(x > wp("35%")) {
+              x = wp("17%")
+              y+=hp("5.9%")
             }
             count++
             
             return (
-              // <View stlye={{ justifyContent: "center" }}>
-              
-              //   <Card style={[styles.cardContainer]}>
-              //     <View style={{ flexDirection: "row" }}>
-              //       <View style={[styles.cardTitle]}>
-              
-              //         <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
-              //       </View>
-              //     </View>
-              //   </Card>
-              // </View>
-              // <View > 
               <Draggable key={rule} x={x} y={y} minX={wp("1%")} maxX={wp("95%")} maxY={hp("95%")}>
             <View style={[styles.cardContent]}>
               <Card.Content><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></Card.Content>
-              {/* <Card.Content><Button onPress={() => activateShowRuleModal(rule.props.children[0])} title={rule.props.children} /></Card.Content> */}
             </View>
         </Draggable>
         
         )
       }
+
   )/**} */}
   </View>
-{/* </ScrollView> */}
   {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
     </>
   )
@@ -156,12 +121,14 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     margin: wp("1%"),
+    marginLeft: wp("10%"),
     // width: wp("42.5%"),
     width: wp("80%"),
     height: hp("5%"),
     alignItems: "center"
   },
   cardTitle: {
+    marginRight: wp("45%"),
     width: wp("40%"),
     height: hp("4%"),
     textTransform: "uppercase",
@@ -177,8 +144,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#2d5287", 
     borderRadius:wp("1%"), 
     paddingHorizontal: wp("1%") ,
-    marginBottom:hp("2.5%"), 
-    marginRight:wp("65%"),
+    marginBottom:hp("1%"), 
+    // justifyContent: "center",
+    marginRight:wp("27%"),
     alignSelf: "center"
   },
   scrollViewCont: {

@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#2d5287", 
     borderRadius:wp("1%"), 
     paddingHorizontal: wp("1%") ,
-    marginBottom:hp("2.5%"), 
+    marginBottom:hp("1%"), 
     marginRight:wp("25%"),
     alignSelf: "center"
   }
