@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Card } from 'react-native-paper'
+import Icon from 'react-native-vector-icons/FontAwesome5'
+
 
 import gamesList from '../data/gamesList'
 import Draggable from 'react-native-draggable'
@@ -32,9 +34,11 @@ function ShowKingsCupCustomRules(props) {
     setShowRuleModal(false)
   },[])
 
+  const [customRulesArr, setCustomRulesArr] = useState(gamesList.games[0].customRules)
+
   let ruleDescObj = gamesList.games[0].ruleDescription
   const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
-  let customRulesArr = gamesList.games[0].customRules
+  // let customRulesArr = gamesList.games[0].customRules
   let cardTitles = gamesList.games[0].customRulesData
   // console.log(customRulesArr)
   // let customRules = gamesList.games[0].customRulesData
@@ -56,6 +60,10 @@ function ShowKingsCupCustomRules(props) {
     // console.log(newObj)
     setCurrentRule(newObj)
     setShowRuleModal(true)
+  }
+
+  const removeRuleFromList = (rule) => {
+    setCustomRulesArr(customRulesArr.filter(cRule => {return cRule != rule}))
   }
 
   return (
@@ -88,7 +96,9 @@ function ShowKingsCupCustomRules(props) {
             count++
             
             return (
-              <Draggable key={rule} x={x} y={y} minX={wp("1%")} maxX={wp("95%")} maxY={hp("95%")}>
+              <Draggable key={rule} x={x} y={y} minX={wp("1%")} maxX={wp("95%")} maxY={hp("95%")} 
+              onDragRelease={(event, gestureState, bounds)=>console.log("gestureStates: "+ gestureState.moveX, gestureState.moveY,)}>
+                {/* move y is 790 or higher for delete */}
             <View style={[styles.cardContent]}>
               <Card.Content><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></Card.Content>
             </View>
@@ -98,6 +108,9 @@ function ShowKingsCupCustomRules(props) {
       }
 
   )/**} */}
+  </View>
+  <View style={[styles.trashIcon]}>
+    <Icon name="trash-alt" size={20} />
   </View>
   {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
     </>
@@ -151,6 +164,10 @@ const styles = StyleSheet.create({
   },
   scrollViewCont: {
     flex: 1
+  },
+  trashIcon: {
+    alignSelf: "center",
+    marginTop: hp("1%"),
   }
 })
 
