@@ -60,7 +60,7 @@ function ShowKingsCupCustomRules(props) {
 
   return (
     <>
-    <ScrollView style={[styles.scrollViewCont]}>
+    {/* <ScrollView style={[styles.scrollViewCont]}> */}
 
     {/* {cardTitles.map(titles => {
       return (
@@ -133,7 +133,7 @@ function ShowKingsCupCustomRules(props) {
       }
   )/**} */}
   </View>
-</ScrollView>
+{/* </ScrollView> */}
   {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
     </>
   )

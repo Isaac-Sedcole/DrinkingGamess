@@ -44,9 +44,9 @@ function App() {
           <Stack.Screen options={{ header: props => <JustShowHouseRules {...props} /> }} name="Games" component={Games} />
           <Stack.Screen options={{ header: props => <JustShowBack {...props} /> }} name="House rules" component={HouseRules} />
           <Stack.Screen name="Selected game" component={Game} />
+          <Stack.Screen name="Show kings cup custom rules" component={ShowKingsCupCustomRules} />
           <Stack.Screen name="Showing a rule" component={ShowRuleModal} />
           <Stack.Screen name="Showing a house rule" component={ShowHouseRuleModal} />
-          <Stack.Screen name="Show kings cup custom rules" component={ShowKingsCupCustomRules} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

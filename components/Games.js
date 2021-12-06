@@ -23,6 +23,9 @@ function Games({ navigation }) {
             </View>
           )
         })}
+        <View style={[styles.fixedSingularGame]}>
+          <Button onPress={() => navigation.navigate("Show kings cup custom rules")} title={"test"} />
+        </View>
       </Card>
     </View>
   )
@@ -34,9 +37,9 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   gamesDisplay: {
-    borderRadius: 20,
+    borderRadius: wp("5%"),
     width: wp("90%"),
-    height: hp("10%") * gamesList.games.length
+    height: hp("7.5%") * gamesList.games.length
   },
   singleGameDisplay: {
     paddingTop: hp("2.5%"),
@@ -52,7 +55,8 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     width: 300,
     height: 58 * gamesList.games.length
-  }
+  },
+
 });
 
 export default Games
