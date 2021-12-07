@@ -97,10 +97,16 @@ function ShowKingsCupCustomRules(props) {
             
             return (
               <Draggable key={rule} x={x} y={y} minX={wp("1%")} maxX={wp("95%")} maxY={hp("95%")} 
-              onDragRelease={(event, gestureState, bounds)=>console.log("gestureStates: "+ gestureState.moveX, gestureState.moveY,)}>
+              /**onDragRelease={(event, gestureState, bounds)=>console.log("gestureStates: "+ gestureState.moveX, gestureState.moveY,)}*/>
                 {/* move y is 790 or higher for delete */}
             <View style={[styles.cardContent]}>
-              <Card.Content><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></Card.Content>
+              <Card.Content style={[styles.buttonsWithTrash]}>
+                <Button onPress={() => activateShowRuleModal(rule)} title={rule} />
+                <View style={[styles.trashIcon]}><Icon.Button onPress={() => removeRuleFromList(rule)} name="trash-alt" size={10} /></View>
+              </Card.Content>
+              {/* <View style={[styles.trashIcon]}> */}
+                
+              {/* </View> */}
             </View>
         </Draggable>
         
@@ -109,9 +115,9 @@ function ShowKingsCupCustomRules(props) {
 
   )/**} */}
   </View>
-  <View style={[styles.trashIcon]}>
+  {/* <View style={[styles.trashIcon]}>
     <Icon name="trash-alt" size={20} />
-  </View>
+  </View> */}
   {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
     </>
   )
@@ -148,8 +154,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   cardContent: {
-    width: wp("40%"),
-    height: hp("6%")
+    width: wp("42%"),
+    height: hp("6%"),
   },
   titleStyling: {
     color:"#fff", 
@@ -166,8 +172,17 @@ const styles = StyleSheet.create({
     flex: 1
   },
   trashIcon: {
-    alignSelf: "center",
+    // justifyContent: "stretch",
+    // alignItems: "stretch",
+    // alignContent: "stretch",
     marginTop: hp("1%"),
+    
+    
+  },
+  buttonsWithTrash: {
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "center",
   }
 })
 
