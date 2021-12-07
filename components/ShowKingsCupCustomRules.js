@@ -104,9 +104,6 @@ function ShowKingsCupCustomRules(props) {
                 <Button onPress={() => activateShowRuleModal(rule)} title={rule} />
                 <View style={[styles.trashIcon]}><Icon.Button onPress={() => removeRuleFromList(rule)} name="trash-alt" size={10} /></View>
               </Card.Content>
-              {/* <View style={[styles.trashIcon]}> */}
-                
-              {/* </View> */}
             </View>
         </Draggable>
         

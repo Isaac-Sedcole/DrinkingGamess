@@ -123,7 +123,9 @@ function Game(props) {
                 )
                 }
               })}
-              {showRules && <Button onPress={() => activateShowKingsCupRules()} title="Custom Rules"/>}
+              <View style={[styles.middleButton]}>
+                {showRules && <Button onPress={() => activateShowKingsCupRules()} title="Custom Rules"/>}
+              </View> 
               {showKingsCupCustom && props.navigation.navigate("Show kings cup custom rules")}
             </View>
           </View>
@@ -244,6 +246,9 @@ const styles = StyleSheet.create({
     marginBottom:hp("1%"), 
     marginRight:wp("25%"),
     alignSelf: "center"
+  },
+  middleButton: {
+    marginLeft: wp("25%")
   }
 });
 
