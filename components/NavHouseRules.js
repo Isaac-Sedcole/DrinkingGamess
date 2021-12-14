@@ -11,6 +11,12 @@ function NavHouseRules(props) {
 
   const [displayHRules, setDisplayHRules] = useState(false)
 
+  const [moreThanThree, setMoreThanThree] = useState(false)
+
+  useEffect(()=> {
+    setMoreThanThree(props.houseRules.length > 3)
+  },[props.houseRules])
+
   useEffect(()=> {
     let list = props.houseRules.filter(rule => { return rule.checked })
     if(list.length > 0) {
@@ -23,7 +29,32 @@ function NavHouseRules(props) {
   // (props.houseRules.length>3) : [styles.containerMulti ? [styles.containerSingle
 
   if (displayHRules) {
-    return (
+
+    if(moreThanThree){
+      return (
+        <View style={[styles.containerMultiMoreThanThree, {
+          flexDirection: "row",
+          alignItems: 'center',
+        }]}>
+          <View style={[styles.backButton]}>
+            <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
+          </View>
+          <View style={[styles.cardHousing]}>
+            <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
+              {props.houseRules.map(rule => {
+                return (
+                  <View key={rule.id} style={styles.houseRulesNav}>
+                    {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
+                  </View>
+                )
+              })}
+            </View>
+          </View>
+        </View>
+      
+    )
+    } else {
+      return (
         <View style={[styles.containerMulti, {
           flexDirection: "row",
           alignItems: 'center',
@@ -45,6 +76,9 @@ function NavHouseRules(props) {
         </View>
       
     )
+    }
+
+   
   } else {
     return (
       
@@ -75,6 +109,13 @@ const styles = StyleSheet.create({
   containerMulti: {
     flex: 1,
     marginTop: hp("9%"),
+    marginLeft: wp("5%"),
+    height: hp("50%")
+  },
+  containerMultiMoreThanThree: {
+    flex: 1,
+    marginTop: hp("9%"),
+    paddingBottom: hp("3%"),
     marginLeft: wp("5%"),
     height: hp("50%")
   },
