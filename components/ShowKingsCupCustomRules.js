@@ -32,6 +32,7 @@ function ShowKingsCupCustomRules(props) {
   
   useEffect(()=> {
     setShowRuleModal(false)
+    count = 1
   },[])
 
   const [customRulesArr, setCustomRulesArr] = useState(gamesList.games[0].customRules)
@@ -120,7 +121,9 @@ function ShowKingsCupCustomRules(props) {
       }
 
   )/**} */}
-
+  <View style={{alignItems: "center"}}>
+    <Text>You need 14 total rules so you need to delete: {customRulesArr.length - 14} rules</Text>
+  </View>
   </View>
   {/* <View style={[styles.trashIcon]}>
     <Icon name="trash-alt" size={20} />
