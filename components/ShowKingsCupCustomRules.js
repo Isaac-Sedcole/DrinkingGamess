@@ -4,7 +4,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { Card } from 'react-native-paper'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
-
+import TrashIconButton from "./TrashIconButton"
 import gamesList from '../data/gamesList'
 import Draggable from 'react-native-draggable'
 
@@ -101,8 +101,9 @@ function ShowKingsCupCustomRules(props) {
                 {/* move y is 790 or higher for delete */}
             <View style={[styles.cardContent]}>
               <Card.Content style={[styles.buttonsWithTrash]}>
-                <Button onPress={() => activateShowRuleModal(rule)} title={rule} />
-                <View style={[styles.trashIcon]}><Icon.Button onPress={() => removeRuleFromList(rule)} name="trash-alt" size={10} /></View>
+                <View style={[styles.word]}><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></View>
+                {/* <View style={[styles.trashIcon]}><Icon.Button onPress={() => removeRuleFromList(rule)} name="trash-alt" size={10} /></View> */}
+                <View style={[styles.trashIcon]}><TrashIconButton onPress={() => removeRuleFromList(rule)} title={"trash-alt"} size={18}/></View>
               </Card.Content>
             </View>
         </Draggable>
@@ -153,6 +154,7 @@ const styles = StyleSheet.create({
   cardContent: {
     width: wp("42%"),
     height: hp("6%"),
+    
   },
   titleStyling: {
     color:"#fff", 
@@ -172,14 +174,20 @@ const styles = StyleSheet.create({
     // justifyContent: "stretch",
     // alignItems: "stretch",
     // alignContent: "stretch",
-    marginTop: hp("1%"),
-    
+    // marginTop: hp("1%"),
+    alignSelf: "center",
+    // height: hp("10%")
     
   },
   buttonsWithTrash: {
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "center",
+    // flexBasis: "100%"
+    
+  },
+  word: {
+    flexGrow: 1
   }
 })
 
