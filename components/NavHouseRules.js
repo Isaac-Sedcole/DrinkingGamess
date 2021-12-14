@@ -66,17 +66,16 @@ function NavHouseRules(props) {
 }
 
 const styles = StyleSheet.create({
-  containerMulti: {
-    flex: 1,
-    paddingVertical: hp("9%"),
-    padding: wp("5%"),
-    height: hp("50%")
-  },
   containerSingle: {
     flex: 1,
-    paddingTop: hp("7%"),
-    paddingBottom: hp("5%"),
-    padding: wp("5%"),
+    marginTop: hp("7%"),
+    marginLeft: wp("5%"),
+    height: hp("50%")
+  },
+  containerMulti: {
+    flex: 1,
+    marginTop: hp("9%"),
+    marginLeft: wp("5%"),
     height: hp("50%")
   },
   scrollViewCont:{
@@ -89,11 +88,11 @@ const styles = StyleSheet.create({
   },
   houseRulesNav: {
     padding: 3,
-    width: wp("25%")
+    // width: wp("25%")
   },
   cardHousing: {
     marginLeft: 5,
-    width: wp("77%"),
+    // width: wp("77%"),
     height: hp("10%")
   },
   houseRulesMain: {

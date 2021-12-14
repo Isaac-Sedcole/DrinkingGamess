@@ -54,19 +54,15 @@ function JustShowBack(props) {
 const styles = StyleSheet.create({
   containerSingle: {
     flex: 1,
-    paddingTop: hp("7%"),
-    paddingBottom: hp("5%"),
-    padding: wp("5%"),
+    marginTop: hp("7%"),
+    marginLeft: wp("5%"),
     height: hp("50%")
   },
   containerMulti: {
     flex: 1,
-    paddingVertical: hp("9%"),
-    padding: wp("5%"),
+    marginTop: hp("9%"),
+    marginLeft: wp("5%"),
     height: hp("50%")
-  },
-  scrollViewCont:{
-    flex: 1
   },
   backButton: {
     marginTop: hp("5%"),
@@ -75,11 +71,11 @@ const styles = StyleSheet.create({
   },
   houseRulesNav: {
     padding: 3,
-    width: wp("24%")
+    // width: wp("24%")
   },
   cardHousing: {
     marginLeft: 5,
-    width: wp("75%"),
+    // width: wp("75%"),
     height: hp("10%")
   }
 });

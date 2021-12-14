@@ -31,7 +31,8 @@ function Games({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingVertical: wp("10%"),
+    alignItems: 'center'
   },
   gamesDisplay: {
     borderRadius: wp("5%"),
