@@ -174,7 +174,9 @@ function Game(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: wp("5%"),
+    paddingHorizontal: wp("5%"),
+    paddingBottom: hp("2%"),
+    // marginTop: hp("2.5%")
   },
   scrollViewCont: {
     flex: 1
@@ -182,7 +184,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     margin: wp("1%"),
     // width: wp("42.5%"),
-    width: wp("80%"),
+    width: wp("85%"),
     height: hp("5%"),
     alignItems: "center"
   },

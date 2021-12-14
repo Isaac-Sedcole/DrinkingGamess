@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   containerMultiMoreThanThree: {
     flex: 1,
     marginTop: hp("9%"),
-    paddingBottom: hp("3%"),
+    paddingBottom: hp("7%"),
     marginLeft: wp("5%"),
     height: hp("50%")
   },
