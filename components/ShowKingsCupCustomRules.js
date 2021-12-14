@@ -26,8 +26,8 @@ function ShowKingsCupCustomRules(props) {
  
   // const [xCount, setXCount] = useState(1)
   // const [yCount, setYCount] = useState(1)
-  let x = wp("17%")
-  let y = hp("1%")
+  let x = wp("16.6%")
+  let y = hp(".75%")
   let count = 1
   
   useEffect(()=> {
@@ -61,6 +61,15 @@ function ShowKingsCupCustomRules(props) {
     setCurrentRule(newObj)
     setShowRuleModal(true)
   }
+  //21
+  let weirdArr = [[wp("16.6%"), hp("6.7%")],[wp("51.6%"), hp("6.7%")],[wp("16.6%"), hp("12.65%")],
+    [wp("51.6%"), hp("12.65%")], [wp("16.6%"), hp("18.6%")], [wp("51.6%"), hp("18.6%")],
+    [wp("16.6%"), hp("24.55%")], [wp("51.6%"), hp("24.55%")], [wp("16.6%"), hp("30.5%")],
+    [wp("51.6%"), hp("30.5%")], [wp("16.6%"), hp("36.45%")], [wp("51.6%"), hp("36.45%%")], 
+    [wp("16.6%"), hp("42.4%")], [wp("51.6%"), hp("42.4%")], [wp("16.6%"), hp("48.35%")], 
+    [wp("51.6%"), hp("48.35%")], [wp("16.6%"), hp("54.3%")], [wp("51.6%"), hp("54.3%")],
+    [wp("16.6%"), hp("60.25%")], [wp("51.6%"), hp("60.25%")], [wp("16.6%"), hp("66.2%")]
+  ]
 
   const removeRuleFromList = (rule) => {
     setCustomRulesArr(customRulesArr.filter(cRule => {return cRule != rule}))
@@ -89,20 +98,19 @@ function ShowKingsCupCustomRules(props) {
     {customRulesArr.map(rule => {            
             if(x < wp("35%") && count > 1) {
               x+=wp("35%")
-            } else if(x > wp("35%")) {
-              x = wp("17%")
-              y+=hp("5.9%")
+            } else if(x = wp("51.6%")) {
+              x = wp("16.6%")
+              y+=hp("5.95%")
             }
             count++
             
             return (
-              <Draggable key={rule} x={x} y={y} minX={wp("1%")} maxX={wp("95%")} maxY={hp("95%")} 
+              <Draggable key={rule} x={x} y={y} minX={wp("16.6%")} maxX={wp("93.6%")} minY= {hp(".75%")} maxY={hp("84.4%")} 
               /**onDragRelease={(event, gestureState, bounds)=>console.log("gestureStates: "+ gestureState.moveX, gestureState.moveY,)}*/>
                 {/* move y is 790 or higher for delete */}
             <View style={[styles.cardContent]}>
               <Card.Content style={[styles.buttonsWithTrash]}>
                 <View style={[styles.word]}><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></View>
-                {/* <View style={[styles.trashIcon]}><Icon.Button onPress={() => removeRuleFromList(rule)} name="trash-alt" size={10} /></View> */}
                 <View style={[styles.trashIcon]}><TrashIconButton onPress={() => removeRuleFromList(rule)} title={"trash-alt"} size={18}/></View>
               </Card.Content>
             </View>
@@ -112,6 +120,7 @@ function ShowKingsCupCustomRules(props) {
       }
 
   )/**} */}
+
   </View>
   {/* <View style={[styles.trashIcon]}>
     <Icon name="trash-alt" size={20} />
