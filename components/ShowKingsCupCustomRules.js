@@ -27,8 +27,7 @@ function ShowKingsCupCustomRules(props) {
   // const [xCount, setXCount] = useState(1)
   // const [yCount, setYCount] = useState(1)
   let x = wp("16.6%")
-  let y = hp("3.2%")
-  let otherY = hp("0.75")
+  let y = hp("0.75%")
   let count = 1
   
   useEffect(()=> {
@@ -138,7 +137,7 @@ function ShowKingsCupCustomRules(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: wp("5%"),
+    // paddingVertical: hp("1%"),
     alignItems: 'center'
   },
   titleText: {
