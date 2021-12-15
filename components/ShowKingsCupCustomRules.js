@@ -23,6 +23,8 @@ function ShowKingsCupCustomRules(props) {
   
     const [showRuleModal, setShowRuleModal] = useState(false)
     const [currentRule, setCurrentRule] = useState({})
+    const [notEnoughCustomRules, setNotEnoughCustomRules] = useState(false)
+    const [refreshPage, setRefreshPage] = useState(false)
  
   // const [xCount, setXCount] = useState(1)
   // const [yCount, setYCount] = useState(1)
@@ -30,12 +32,18 @@ function ShowKingsCupCustomRules(props) {
   let y = hp("0.75%")
   let count = 1
   
+  const [customRulesArr, setCustomRulesArr] = useState(gamesList.games[0].customRules)
+  
   useEffect(()=> {
     setShowRuleModal(false)
     count = 1
+    setRefreshPage(false)
+    // console.log(customRulesArr)
   },[])
 
-  const [customRulesArr, setCustomRulesArr] = useState(gamesList.games[0].customRules)
+  useEffect(()=> {
+    setNotEnoughCustomRules((customRulesArr.length - 14) < 0)
+  },[customRulesArr])
 
   let ruleDescObj = gamesList.games[0].ruleDescription
   const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
@@ -62,19 +70,27 @@ function ShowKingsCupCustomRules(props) {
     setCurrentRule(newObj)
     setShowRuleModal(true)
   }
+
+  const refreshPageEvent = () => {
+    setRefreshPage(true)
+  }
   //21
-  let weirdArr = [[wp("16.6%"), hp("6.7%")],[wp("51.6%"), hp("6.7%")],[wp("16.6%"), hp("12.65%")],
-    [wp("51.6%"), hp("12.65%")], [wp("16.6%"), hp("18.6%")], [wp("51.6%"), hp("18.6%")],
-    [wp("16.6%"), hp("24.55%")], [wp("51.6%"), hp("24.55%")], [wp("16.6%"), hp("30.5%")],
-    [wp("51.6%"), hp("30.5%")], [wp("16.6%"), hp("36.45%")], [wp("51.6%"), hp("36.45%%")], 
-    [wp("16.6%"), hp("42.4%")], [wp("51.6%"), hp("42.4%")], [wp("16.6%"), hp("48.35%")], 
-    [wp("51.6%"), hp("48.35%")], [wp("16.6%"), hp("54.3%")], [wp("51.6%"), hp("54.3%")],
-    [wp("16.6%"), hp("60.25%")], [wp("51.6%"), hp("60.25%")], [wp("16.6%"), hp("66.2%")]
-  ]
+  // let weirdArr = [[wp("16.6%"), hp("6.7%")],[wp("51.6%"), hp("6.7%")],[wp("16.6%"), hp("12.65%")],
+  //   [wp("51.6%"), hp("12.65%")], [wp("16.6%"), hp("18.6%")], [wp("51.6%"), hp("18.6%")],
+  //   [wp("16.6%"), hp("24.55%")], [wp("51.6%"), hp("24.55%")], [wp("16.6%"), hp("30.5%")],
+  //   [wp("51.6%"), hp("30.5%")], [wp("16.6%"), hp("36.45%")], [wp("51.6%"), hp("36.45%%")], 
+  //   [wp("16.6%"), hp("42.4%")], [wp("51.6%"), hp("42.4%")], [wp("16.6%"), hp("48.35%")], 
+  //   [wp("51.6%"), hp("48.35%")], [wp("16.6%"), hp("54.3%")], [wp("51.6%"), hp("54.3%")],
+  //   [wp("16.6%"), hp("60.25%")], [wp("51.6%"), hp("60.25%")], [wp("16.6%"), hp("66.2%")]
+  // ]
 
   const removeRuleFromList = (rule) => {
+ 
     setCustomRulesArr(customRulesArr.filter(cRule => {return cRule != rule}))
+    // setCustomRulesArr(customRulesArr.push(customRulesArr.splice(customRulesArr.indexOf(rule), 1)[0])
+    // setRuleToBeRemoved(arr)
   }
+
 
   return (
     <>
@@ -106,9 +122,8 @@ function ShowKingsCupCustomRules(props) {
             count++
             
             return (
-              <Draggable key={rule} x={x} y={y} minX={wp("16.6%")} maxX={wp("93.6%")} minY= {hp(".75%")} maxY={hp("84.4%")} 
-              /**onDragRelease={(event, gestureState, bounds)=>console.log("gestureStates: "+ gestureState.moveX, gestureState.moveY,)}*/>
-                {/* move y is 790 or higher for delete */}
+              <Draggable key={rule} x={x} y={y} minX={wp("16.6%")} maxX={wp("93.6%")} minY= {hp(".75%")} maxY={hp("84.4%")}>
+               
             <View style={[styles.cardContent]}>
               <Card.Content style={[styles.buttonsWithTrash]}>
                 <View style={[styles.word]}><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></View>
@@ -121,14 +136,19 @@ function ShowKingsCupCustomRules(props) {
       }
 
   )/**} */}
-  <View style={{alignItems: "center"}}>
+  {!notEnoughCustomRules &&
+
+    <View style={{alignItems: "center"}}>
     <Text>You need 14 total rules so you need to delete: {customRulesArr.length - 14} rules</Text>
   </View>
+  }
+  {notEnoughCustomRules && 
+    <View style={{marginLeft: wp("6%")}}>
+      <Text>You don't have enough rules left. Click <Card.Content><Button onPress={() => refreshPageEvent()} title={"this"} /></Card.Content> to refresh the page.</Text>
+    </View>}
   </View>
-  {/* <View style={[styles.trashIcon]}>
-    <Icon name="trash-alt" size={20} />
-  </View> */}
   {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
+  {refreshPage && props.navigation.push("Show kings cup custom rules")}
     </>
   )
   
