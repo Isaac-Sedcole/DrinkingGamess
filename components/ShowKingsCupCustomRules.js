@@ -33,6 +33,14 @@ function ShowKingsCupCustomRules(props) {
   let count = 1
   
   const [customRulesArr, setCustomRulesArr] = useState(gamesList.games[0].customRules)
+  // const [weirdArr, setWeirdArr] = useState([["snakeEyes", wp("16.6%"), hp("6.7%")],["you", wp("51.6%"), hp("6.7%")],["me", wp("16.6%"), hp("12.65%")],
+  //   ["whores", wp("51.6%"), hp("12.65%")], ["gecko", wp("16.6%"), hp("18.6%")], ["dicks", wp("51.6%"), hp("18.6%")],
+  //   ["heaven", wp("16.6%"), hp("24.55%")], ["mate", wp("51.6%"), hp("24.55%")], ["waterfall", wp("16.6%"), hp("30.5%")],
+  //   ["social", wp("51.6%"), hp("30.5%")], ["rhyme", wp("16.6%"), hp("36.45%")], ["NHIE", wp("51.6%"), hp("36.45%%")], 
+  //   ["qMaster", wp("16.6%"), hp("42.4%")], ["categories", wp("51.6%"), hp("42.4%")], ["helmet", wp("16.6%"), hp("48.35%")], 
+  //   ["makeARule", wp("51.6%"), hp("48.35%")], ["qCreation", wp("16.6%"), hp("54.3%")], ["bigBooty", wp("51.6%"), hp("54.3%")],
+  //   ["theFool",  wp("16.6%"), hp("60.25%")], ["highLow", wp("51.6%"), hp("60.25%")], ["fillVessel", wp("16.6%"), hp("66.2%")]
+  // ])
   
   useEffect(()=> {
     setShowRuleModal(false)
@@ -75,17 +83,9 @@ function ShowKingsCupCustomRules(props) {
     setRefreshPage(true)
   }
   //21
-  // let weirdArr = [[wp("16.6%"), hp("6.7%")],[wp("51.6%"), hp("6.7%")],[wp("16.6%"), hp("12.65%")],
-  //   [wp("51.6%"), hp("12.65%")], [wp("16.6%"), hp("18.6%")], [wp("51.6%"), hp("18.6%")],
-  //   [wp("16.6%"), hp("24.55%")], [wp("51.6%"), hp("24.55%")], [wp("16.6%"), hp("30.5%")],
-  //   [wp("51.6%"), hp("30.5%")], [wp("16.6%"), hp("36.45%")], [wp("51.6%"), hp("36.45%%")], 
-  //   [wp("16.6%"), hp("42.4%")], [wp("51.6%"), hp("42.4%")], [wp("16.6%"), hp("48.35%")], 
-  //   [wp("51.6%"), hp("48.35%")], [wp("16.6%"), hp("54.3%")], [wp("51.6%"), hp("54.3%")],
-  //   [wp("16.6%"), hp("60.25%")], [wp("51.6%"), hp("60.25%")], [wp("16.6%"), hp("66.2%")]
-  // ]
 
   const removeRuleFromList = (rule) => {
- 
+    // setWeirdArr(weirdArr.filter(cRule => {return cRule != rule}))
     setCustomRulesArr(customRulesArr.filter(cRule => {return cRule != rule}))
     // setCustomRulesArr(customRulesArr.push(customRulesArr.splice(customRulesArr.indexOf(rule), 1)[0])
     // setRuleToBeRemoved(arr)
@@ -112,6 +112,21 @@ function ShowKingsCupCustomRules(props) {
       )
     })}
 
+    {/* {weirdArr.map(rule => {
+      return (
+        <Draggable key={rule[0]} x={rule[1]} y={rule[2]} minX={wp("16.6%")} maxX={wp("93.6%")} minY= {hp(".75%")} maxY={hp("84.4%")}>
+         
+      <View style={[styles.cardContent]}>
+        <Card.Content style={[styles.buttonsWithTrash]}>
+          <View style={[styles.word]}><Button onPress={() => activateShowRuleModal(rule[0])} title={rule[0]} /></View>
+          <View style={[styles.trashIcon]}><TrashIconButton onPress={() => removeRuleFromList(rule[0])} title={"trash-alt"} size={18}/></View>
+        </Card.Content>
+      </View>
+    </Draggable>
+  
+    )
+    })} */}
+
     {customRulesArr.map(rule => {            
             if(x < wp("35%") && count > 1) {
               x+=wp("35%")
@@ -135,7 +150,7 @@ function ShowKingsCupCustomRules(props) {
         )
       }
 
-  )/**} */}
+  )}
   {!notEnoughCustomRules &&
 
     <View style={{alignItems: "center"}}>
