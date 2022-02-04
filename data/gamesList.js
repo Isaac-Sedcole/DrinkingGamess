@@ -76,7 +76,7 @@ export default {
             itemsRequired: ["Pack of cards", "Large bowl or cup"],
             explanationBlurb: "A high/low based card game that can be quick for some and deadly for others. Best played in a group and with a deck without jokers",
             rules: {
-                rules: "Deal 8 cards face up in a line. The “driver’ choses which side to start on and calls if the next card is higher, lower or the same. A card is then dealt on top of the first card in the line, if the driver is correct they proceed to the next card, if the driver is wrong they start again from the start and drink once per card they have traveled (including the card they were on). If the same numbered card is dealt, this counts as a fail and the driver must choose someone else to hop in the car (drink when the driver drinks). If the driver calls “same’ and is correct, they win the game instantly. The game is also over if the drivers makes it to the end and guesses the last card correctly.",
+                rules: "Deal 8 cards face up in a line. The 'driver' choses which side to start on and calls if the next card is higher, lower or the same. A card is then dealt on top of the first card in the line, if the driver is correct they proceed to the next card, if the driver is wrong they start again from the start and drink once per card they have traveled (including the card they were on). If the same numbered card is dealt, this counts as a fail and the driver must choose someone else to hop in the car (drink when the driver drinks). If the driver calls 'same' and is correct, they win the game instantly. The game is also over if the drivers makes it to the end and guesses the last card correctly.",
             },
             customRules: [],
             ruleDescription: null
@@ -94,6 +94,22 @@ export default {
             },
             customRules: [],
             ruleDescription: null
-        }
+        },
+        {
+          id: 5,
+          Name: "Horses",
+          suggestedPlayers: "4+",
+          drunkOMeter: 5,
+          gameDuration: "2 mins per round",
+          itemsRequired: ["Pack of cards", "Music and/or Singing"],
+          explainationBlurb: "A card game based on suits, bet on a horse, place your bets, and then start flipping!",
+          rules: {
+            setup: "Firstly take the 4 Ace cards out of the deck and place them in a line together. Next place a card of each suit down like a ladder that the Ace cards need to climb. You can make this ladder as long as you want just be sure to keep an equal amount of suited cards in that line (eg multiples of 4, 1 of each suit) the remaining cards are shuffled into a deck.",
+            gamePlay: "With all the horses lined up, flip one card from the deck face up, depending on what suit that card is, the corresponding Ace will move one space for ward on the ladder. For example, if you flip a card and it is a diamond, the diamond ace will move 1 space forward. Repeat this process until one of the Aces has reached the end of the ladder",
+            betting: "You can bet drinks (or anything else) on the outcome of the race, bet before the race starts, if you lose you must drink and if you win you can nominate other players to drink. You can multiply the drinks for the winner if you choose as it’s more likely to lose than win. For example, say I bet one drink on my horse, if I lose I drink once, if I win, I can nominate 4",
+            music: "This game is best played to the ‘Lone Ranger Theme Song,’ singing this song as the game is played is also encouraged."
+          }
+        }  
     ]
 }
+
