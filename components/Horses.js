@@ -54,7 +54,7 @@ function Horses(props) {
 
           <Text style={[styles.titleText]}>{gameName}</Text>
           <View>
-          <AppButton onPress={() => activateShowRuleModal(rule)} title={'Start Game'} />
+          <AppButton onPress={() => props.navigate} title={'Start Game'} buttonColour={'red'} />
           </View>
 
           <View style={{ paddingTop: hp("2%") }}>
