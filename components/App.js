@@ -53,7 +53,7 @@ function App() {
           <Stack.Screen name="Showing a house rule" component={ShowHouseRuleModal} />
           <Stack.Screen name="Horses" component={Horses}/>
           <Stack.Screen name="Play horses" component={PlayHorses}/>
-          <Stack.Screen name="KingsCup" component={KingsCup} />
+          <Stack.Screen name="Kings Cup" component={KingsCup} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

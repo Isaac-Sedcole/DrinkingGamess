@@ -29,27 +29,28 @@ function Game(props) {
   },[])
 
   const navigateToGame = (name) => {
-    props.navigation.navigate(name, {game})
+    setTimeout(()=> {props.navigation.navigate(name, {game})})
+    // props.navigation.navigate(name, {game})
   }
 
   console.log(props)
 
-  if (gameName == "Kings Cup") {
+  // if (gameName == "Kings Cup") {
 
-    return (
-      <>
-      {navigateToGame("KingsCup")}
-      </>
-    )
+  //   return (
+  //     <>
+  //     {navigateToGame("KingsCup")}
+  //     </>
+  //   )
 
-  } else if(gameName == "Horses") {
-    return (
-      <>
-      {navigateToGame("Horses")}
-      </>
-    )
-  }
-    else {
+  // } else if(gameName == "Horses") {
+  //   return (
+  //     <>
+  //     {navigateToGame("Horses")}
+  //     </>
+  //   )
+  // }
+  //   else {
     // console.log(rulesObj)
     return (
       <>
@@ -85,7 +86,7 @@ function Game(props) {
       </>
     )
   }
-}
+// }
 
 const styles = StyleSheet.create({
   container: {

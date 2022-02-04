@@ -10,16 +10,24 @@ import HouseRules from './HouseRules'
 
 function Games({ navigation }) {
 
-  return (
-    <View style={[styles.container, {
-      flexDirection: "column",
-      alignItems: 'center'
-    }]}>
+  const navigateToGame = (game) => {
+    console.log(game.name)
+    if(game.name == "Kings Cup" || game.name == "Horses") {
+      navigation.navigate(game.name, {game})
+    } else {
+      navigation.navigate("Selected game", { game })}
+    }
+    
+    return (
+      <View style={[styles.container, {
+        flexDirection: "column",
+        alignItems: 'center'
+      }]}>
       <Card style={[styles.fixedGamesDisplay]}>
         {gamesList.games.map(game => {
           return (
             <View style={[styles.fixedSingularGame]} key={game.id}>
-              <Button onPress={() => navigation.navigate("Selected game", { game })} title={game.name} />
+              <Button onPress={() => navigateToGame(game)} title={game.name} />
             </View>
           )
         })}
@@ -27,6 +35,7 @@ function Games({ navigation }) {
     </View>
   )
 }
+
 
 const styles = StyleSheet.create({
   container: {
