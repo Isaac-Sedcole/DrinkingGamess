@@ -51,7 +51,6 @@ function NavHouseRules(props) {
             </View>
           </View>
         </View>
-      
     )
     } else {
       return (
@@ -60,7 +59,7 @@ function NavHouseRules(props) {
           alignItems: 'center',
         }]}>
           <View style={[styles.backButton]}>
-            <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
+            <Icon.Button onPress={() => props.navigation.popToTop()} name="arrow-left" />
           </View>
           <View style={[styles.cardHousing]}>
             <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
