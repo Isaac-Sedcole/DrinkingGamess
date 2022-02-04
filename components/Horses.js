@@ -54,7 +54,7 @@ function Horses(props) {
 
           <Text style={[styles.titleText]}>{gameName}</Text>
           <View>
-          <AppButton onPress={() => props.navigate} title={'Start Game'} buttonColour={'red'} />
+          <AppButton onPress={() => props.navigation.navigate("Play horses")} title={'Start Game'} buttonColour={'red'} />
           </View>
 
           <View style={{ paddingTop: hp("2%") }}>

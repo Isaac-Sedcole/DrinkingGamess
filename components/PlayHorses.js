@@ -6,7 +6,11 @@ import AppButton from "./AppButton"
 
 
 function PlayHorses(props) {
-  
+  return(
+    <>
+    Hello world
+    </>
+  )
 }
 
 const styles = StyleSheet.create({
