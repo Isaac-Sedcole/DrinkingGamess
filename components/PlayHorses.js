@@ -6,9 +6,16 @@ import AppButton from "./AppButton"
 
 
 function PlayHorses(props) {
+  
   return(
     <>
-    Hello world
+    Place bets
+
+    Intermission music
+
+    Horse music
+
+    Play game for me
     </>
   )
 }
