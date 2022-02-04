@@ -1,21 +1,30 @@
-import React, {useEffect, useState} from 'react'
-import {StyleSheet, Text, View, Button, ScrollView } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
 import { Card } from 'react-native-paper'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import AppButton from "./AppButton"
 
 
 function PlayHorses(props) {
-  
-  return(
+
+  return (
     <>
-    Place bets
+      <ScrollView style={[styles.scrollViewCont]}>
+        <View style={[styles.container, {
+          alignItems: 'center'
+        }]}>
 
-    Intermission music
 
-    Horse music
+          Place bets
 
-    Play game for me
+          Intermission music
+
+          Horse music
+
+          Play game for me
+          
+        </View>
+      </ScrollView>
     </>
   )
 }

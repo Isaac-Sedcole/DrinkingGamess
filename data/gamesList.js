@@ -27,6 +27,7 @@ export default {
             customRules: [
                 "snakeEyes", "you", "me", "whores", "gecko", "dicks", "heaven", "mate", "waterfall", "social", "rhyme", "NHIE", "qMaster", "categories", "helmet", "makeARule", "qCreation", "bigBooty", "theFool", "highLow", "fillVessel"
             ],
+            customRulesData : ["A","2","3","4","5","6","7","8","9","10","J","Q","K","JOKER"],
             ruleDescription: {
                 snakeEyes: "Snake Eyes: Any player who looks you in the eyes must drink",
                 waterfall: "Waterfall: Everyone drinks and cannot stop until the person to their right has stopped, starting at the card drawer",
