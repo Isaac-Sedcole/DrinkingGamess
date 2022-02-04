@@ -9,10 +9,12 @@ function JustShowHouseRules(props) {
 
   
   const [displayHRules, setDisplayHRules] = useState(false)
+  const [currentHouseRules, setCurrentHouseRules] = useState([])
   const [moreThanThree, setMoreThanThree] = useState(false)
 
   useEffect(()=> {
     setMoreThanThree(props.houseRules.length > 3)
+    setCurrentHouseRules(props.houseRules)
   },[props.houseRules])
 
   useEffect(()=> {
@@ -38,7 +40,7 @@ function JustShowHouseRules(props) {
         </View> */}
         <View style={[styles.cardHousing]}>
           <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
-            {props.houseRules.map(rule => {
+            {currentHouseRules.map(rule => {
               return (
                 <View key={rule.id} style={[styles.houseRulesNav]}>
                   {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
@@ -61,7 +63,7 @@ function JustShowHouseRules(props) {
         </View> */}
         <View style={[styles.cardHousing]}>
           <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
-            {props.houseRules.map(rule => {
+            {currentHouseRules.map(rule => {
               return (
                 <View key={rule.id} style={[styles.houseRulesNav]}>
                   {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
