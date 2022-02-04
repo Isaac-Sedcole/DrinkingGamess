@@ -14,26 +14,16 @@ function Horses(props) {
   console.log(props)
 
   useEffect(()=> {
-    // setShowRules(false)
-    // setShowKingsCupCustom(false)
     setShowRuleModal(false)
 },[])
 
-  // let rules = Object.keys(rulesObj).map(key => <option value={key}>{rulesObj[key]}</option>)
-  //has automatically ordered list however we want the 9th index (Ace - snake eyes) to still appear at the top
-  //weird object
-  // let ace = rules.splice(9,1)
-  // rules.unshift(ace[0])
 
-
-  // console.log(props.route.params.game)
   let gameName = props.route.params.game.name
   let ruleDescObj = props.route.params.game.ruleDescription
   let rules = props.route.params.game.customRules
   const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
 
   const activateShowRuleModal = (ruleNeedingDescription) => {
-    // console.log(rulesDescription)
     let matchingWord = ruleNeedingDescription.replace(/\s/g, "")
     let theDescription = rulesDescription.filter(rule => {
       if (rule.props.value.toLowerCase() == matchingWord.toLowerCase()) {
@@ -41,7 +31,6 @@ function Horses(props) {
       }
     })
     let newObj = { name: theDescription[0].props.value, desc: theDescription[0].props.children }
-    // console.log(newObj)
     setCurrentRule(newObj)
     setShowRuleModal(true)
   }
@@ -75,14 +64,12 @@ function Horses(props) {
           </View>
             <Text style={[styles.subText]}>{props.route.params.game.explanationBlurb}</Text>
           <View style={{ paddingTop: hp("1%") }}>
-          {/* <Button onPress={() => activateShowRules()} title="Show Rules!" /> */}
           </View>
           <View style={{
             flexDirection: "row",
             flexWrap: "wrap",
           }}>
             {rules.map(rule => {
-              //name was too long and made the button multi-lined - easiest way around the issue
               return (
                 <View key={rule} stlye={{ justifyContent: "center" }}>
                   <View style={[styles.cardContainer]}>

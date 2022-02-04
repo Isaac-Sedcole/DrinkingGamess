@@ -13,13 +13,11 @@ function CheckBox({ title, onPress, buttonColour }) {
 }
 
 const styles = StyleSheet.create({
-  // ...
   appButtonContainer: {
     elevation: hp("0.8%"),
     borderRadius: wp("1%"),
     paddingVertical: hp("1%"),
     paddingHorizontal: wp("1%")
-    // backgroundColor: "#2196F3",
   },
   appButtonText: {
     fontSize: hp("2%"),

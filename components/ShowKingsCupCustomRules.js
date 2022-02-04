@@ -11,12 +11,6 @@ import Draggable from 'react-native-draggable'
 
 function ShowKingsCupCustomRules(props) {
 
-  // let rule = route.params.rule
-  // console.log(rule)
-  //   const resetModal = () => {
-  //     props.dispatch(setShowPersonModal(!props.showPersonModal))
-  //   }
-
   const redirect = () => {
     props.navigation.goBack()
   }
@@ -26,8 +20,7 @@ function ShowKingsCupCustomRules(props) {
     const [notEnoughCustomRules, setNotEnoughCustomRules] = useState(false)
     const [refreshPage, setRefreshPage] = useState(false)
  
-  // const [xCount, setXCount] = useState(1)
-  // const [yCount, setYCount] = useState(1)
+
   let x = wp("16.6%")
   let y = hp("0.75%")
   let count = 1
@@ -46,7 +39,6 @@ function ShowKingsCupCustomRules(props) {
     setShowRuleModal(false)
     count = 1
     setRefreshPage(false)
-    // console.log(customRulesArr)
   },[])
 
   useEffect(()=> {
@@ -55,18 +47,10 @@ function ShowKingsCupCustomRules(props) {
 
   let ruleDescObj = gamesList.games[0].ruleDescription
   const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
-  // let customRulesArr = gamesList.games[0].customRules
   let cardTitles = gamesList.games[0].customRulesData
-  // console.log(customRulesArr)
-  // let customRules = gamesList.games[0].customRulesData
-  // const customRulesExtracted = Object.keys(customRules).map(key => <option value={key}>{customRules[key]}</option>)
-  // let ace = customRulesExtracted.splice(9,1)
-  // customRulesExtracted.unshift(ace[0])
-  // console.log(customRulesExtracted)
 
   
   const activateShowRuleModal = (ruleNeedingDescription) => {
-    // console.log(rulesDescription)
     let matchingWord = ruleNeedingDescription.replace(/\s/g, "")
     let theDescription = rulesDescription.filter(rule => {
       if (rule.props.value.toLowerCase() == matchingWord.toLowerCase()) {
@@ -74,7 +58,6 @@ function ShowKingsCupCustomRules(props) {
       }
     })
     let newObj = { name: theDescription[0].props.value, desc: theDescription[0].props.children }
-    // console.log(newObj)
     setCurrentRule(newObj)
     setShowRuleModal(true)
   }
@@ -85,10 +68,7 @@ function ShowKingsCupCustomRules(props) {
   //21
 
   const removeRuleFromList = (rule) => {
-    // setWeirdArr(weirdArr.filter(cRule => {return cRule != rule}))
     setCustomRulesArr(customRulesArr.filter(cRule => {return cRule != rule}))
-    // setCustomRulesArr(customRulesArr.push(customRulesArr.splice(customRulesArr.indexOf(rule), 1)[0])
-    // setRuleToBeRemoved(arr)
   }
 
 
@@ -111,21 +91,6 @@ function ShowKingsCupCustomRules(props) {
             </View>
       )
     })}
-
-    {/* {weirdArr.map(rule => {
-      return (
-        <Draggable key={rule[0]} x={rule[1]} y={rule[2]} minX={wp("16.6%")} maxX={wp("93.6%")} minY= {hp(".75%")} maxY={hp("84.4%")}>
-         
-      <View style={[styles.cardContent]}>
-        <Card.Content style={[styles.buttonsWithTrash]}>
-          <View style={[styles.word]}><Button onPress={() => activateShowRuleModal(rule[0])} title={rule[0]} /></View>
-          <View style={[styles.trashIcon]}><TrashIconButton onPress={() => removeRuleFromList(rule[0])} title={"trash-alt"} size={18}/></View>
-        </Card.Content>
-      </View>
-    </Draggable>
-  
-    )
-    })} */}
 
     {customRulesArr.map(rule => {            
             if(x < wp("35%") && count > 1) {
@@ -172,7 +137,6 @@ function ShowKingsCupCustomRules(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingVertical: hp("1%"),
     alignItems: 'center'
   },
   titleText: {
@@ -180,7 +144,6 @@ const styles = StyleSheet.create({
     fontSize: wp("8%"),
     color: "#2F4F4F",
     fontWeight: "600",
-    // textShadow: "1px 1px black"
   },
   subText: {
     fontFamily: "sans-serif-light",
@@ -190,8 +153,6 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     margin: wp("1%"),
-    // marginLeft: wp("10%"),
-    // width: wp("42.5%"),
     width: wp("80%"),
     height: hp("5%"),
     alignItems: "center"
@@ -215,7 +176,6 @@ const styles = StyleSheet.create({
     borderRadius:wp("1%"), 
     paddingHorizontal: wp("1%") ,
     marginBottom:hp("1%"), 
-    // justifyContent: "center",
     marginRight:wp("27%"),
     alignSelf: "center"
   },
@@ -223,20 +183,12 @@ const styles = StyleSheet.create({
     flex: 1
   },
   trashIcon: {
-    // justifyContent: "stretch",
-    // alignItems: "stretch",
-    // alignContent: "stretch",
-    // marginTop: hp("1%"),
     alignSelf: "center",
-    // height: hp("10%")
-    
   },
   buttonsWithTrash: {
     flexWrap: "wrap",
     flexDirection: "row",
-    justifyContent: "center",
-    // flexBasis: "100%"
-    
+    justifyContent: "center",    
   },
   word: {
     flexGrow: 1

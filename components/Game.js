@@ -9,49 +9,20 @@ import AppButton from "./AppButton"
 function Game(props) {
 
   const [showRules, setShowRules] = useState(false)
-  const [showRuleModal, setShowRuleModal] = useState(false)
-  const [currentRule, setCurrentRule] = useState({})
-  const [showKingsCupCustom, setShowKingsCupCustom] = useState(false)
+
 
   const gameName = props.route.params.game.name
-  let rulesObj = props.route.params.game.rules
-  const game = props.route.params.game
+  const rulesObj = props.route.params.game.rules
+
 
   const activateShowRules = () => {
-    // console.log(props.navigation)
     setShowRules(!showRules)
   }
 
   useEffect(()=> {
       setShowRules(false)
-      setShowKingsCupCustom(false)
-      setShowRuleModal(false)
   },[])
 
-  const navigateToGame = (name) => {
-    setTimeout(()=> {props.navigation.navigate(name, {game})})
-    // props.navigation.navigate(name, {game})
-  }
-
-  console.log(props)
-
-  // if (gameName == "Kings Cup") {
-
-  //   return (
-  //     <>
-  //     {navigateToGame("KingsCup")}
-  //     </>
-  //   )
-
-  // } else if(gameName == "Horses") {
-  //   return (
-  //     <>
-  //     {navigateToGame("Horses")}
-  //     </>
-  //   )
-  // }
-  //   else {
-    // console.log(rulesObj)
     return (
       <>
         <ScrollView style={[styles.scrollViewCont]}>
