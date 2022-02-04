@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
 import { Card } from 'react-native-paper'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import AppButton from "./AppButton"
+import Horses from './Horses'
 
 
 function Game(props) {
@@ -133,7 +134,14 @@ function Game(props) {
         {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
       </>
     )
-  } else {
+  } else if(gameName == "Horses") {
+    return (
+      <>
+      {props.navigation.navigate("Horses", {game: props.route.params.game})}
+      </>
+    )
+  }
+    else {
     // console.log(rulesObj)
     return (
       <>

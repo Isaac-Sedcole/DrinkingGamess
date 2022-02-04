@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   gamesDisplay: {
+    paddingTop: hp('2%'),
     borderRadius: wp("5%"),
     width: wp("90%"),
     height: hp("7.5%") * gamesList.games.length

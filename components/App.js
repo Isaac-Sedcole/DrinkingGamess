@@ -16,8 +16,11 @@ import NavHouseRules from './NavHouseRules';
 import JustShowBack from './JustShowBack';
 import JustShowHouseRules from './JustShowHouseRules';
 import ShowKingsCupCustomRules from './ShowKingsCupCustomRules'
+import Horses from './Horses';
+import PlayHorses from './PlayHorses'
 
 import reducers from '../reducers'
+import { startClock } from 'react-native-reanimated';
 // import Navigator from '../routes/homeStack'
 // const AnimatedIcon = Animated.createAnimatedComponent(Icon)
 
@@ -47,6 +50,8 @@ function App() {
           <Stack.Screen name="Show kings cup custom rules" component={ShowKingsCupCustomRules} />
           <Stack.Screen name="Showing a rule" component={ShowRuleModal} />
           <Stack.Screen name="Showing a house rule" component={ShowHouseRuleModal} />
+          <Stack.Screen name="Horses" component={Horses}/>
+          <Stack.Screen name="Play horses" component={PlayHorses}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
