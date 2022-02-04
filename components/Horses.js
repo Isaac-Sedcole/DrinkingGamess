@@ -14,6 +14,7 @@ function Horses(props) {
   useEffect(()=> {
     // setShowRules(false)
     // setShowKingsCupCustom(false)
+    props.setAuthenticated(true);
     setShowRuleModal(false)
 },[])
 

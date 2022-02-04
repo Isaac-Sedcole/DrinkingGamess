@@ -11,12 +11,14 @@ function JustShowBack(props) {
 
 
   const [moreThanThree, setMoreThanThree] = useState(false)
+  const [currentHouseRules, setCurrentHouseRules] = useState([])
 
   useEffect(()=> {
     setMoreThanThree(props.houseRules.length > 3)
+    setCurrentHouseRules(props.houseRules)
   },[props.houseRules])
 
-  if (props.houseRules.length > 0) {
+  if (currentHouseRules.length > 0) {
 
     if(moreThanThree) {
       return (
@@ -29,7 +31,7 @@ function JustShowBack(props) {
           </View>
           <View style={[styles.cardHousing]}>
             <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
-              {props.houseRules.map(rule => {
+              {currentHouseRules.map(rule => {
 
                 return (
                   <View key={rule.id} style={[styles.houseRulesNav]}>
@@ -53,7 +55,7 @@ function JustShowBack(props) {
           </View>
           <View style={[styles.cardHousing]}>
             <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
-              {props.houseRules.map(rule => {
+              {currentHouseRules.map(rule => {
 
                 return (
                   <View key={rule.id} style={[styles.houseRulesNav]}>
