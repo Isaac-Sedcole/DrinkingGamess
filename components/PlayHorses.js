@@ -3,8 +3,6 @@ import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
 import { Card } from 'react-native-paper'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import AppButton from "./AppButton"
-import horseMusic from '../soundAssets/horseMusic.mp3'
-import elevatorMusic from '../soundAssets/ElevatorMusic.mp3'
 import { Audio } from 'expo-av'
 
 
@@ -12,7 +10,7 @@ function PlayHorses(props) {
 
   const [sound, setSound] = useState()
   const [bets, setBets] = useState({})
-  const [musicPlaying, setMusicPlaying] = useState(false)
+  const [turnMusicOff, setTurnMusicOff] = useState(false)
 
   async function playElevatorSound() {
     console.log('Loading Sound');
@@ -40,12 +38,12 @@ function PlayHorses(props) {
           console.log('Unloading Sound');
           sound.unloadAsync(); }
       : undefined;
-  },[sound])    
+  },[sound,turnMusicOff])    
 
   const stopMusic = () => {
-    
-    setMusicPlaying(false)
+    setTurnMusicOff(!turnMusicOff)
   }
+  
 
   return (
     <>
@@ -59,13 +57,10 @@ function PlayHorses(props) {
           -- hit confirm 
           -- a button will then appear where you can choose to reset bets or reset everything
           Place bets -- requires a name a bet amount and the ability to add more people - and a way to reset the bets (with and without removing names)
-
-          -- starting one music will stop the other
-          Intermission music -- has a start label until pressed then changes to stop
+          
           <AppButton onPress={() => playElevatorSound()} title="intermission music"/>
           <AppButton onPress={() => playHorseSound()} title="horse music"/>
           <AppButton onPress={() => stopMusic()} title="stop music"/>
-          Horse music -- has a start label until pressed then changes to stop -- after stopping it resets to beginning
 
           Play game for me
 
