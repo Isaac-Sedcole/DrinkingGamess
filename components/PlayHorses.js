@@ -171,17 +171,19 @@ function PlayHorses(props) {
             return (
               <View style={{flex: 1, flexDirection: 'row'}} key={bet.data.name}>
                 <Text>{bet.data.name}</Text>
+                <Text>
+
                 <EditableLabel
                   text={bet.data.bet}
                   inputWidth={wp('20%')}
                   inputHeight={hp('6%')}
                   inputMaxLength='20'
                   onChange={e => setBetAmount(e.target.value)}
-                />
+                  />
+                  </Text>
               </View>
             )
           })}
-          <Text> a button will then appear where you can choose to reset bets or reset everything </Text>
 
           <View stlye={{ justifyContent: "center" }}>
             <View style={[styles.cardContainer]}>
