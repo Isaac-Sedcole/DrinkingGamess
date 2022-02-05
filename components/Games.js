@@ -23,7 +23,7 @@ function Games({ navigation }) {
         flexDirection: "column",
         alignItems: 'center'
       }]}>
-      <Card style={[styles.fixedGamesDisplay]}>
+      <Card style={[styles.gamesDisplay]}>
         {gamesList.games.map(game => {
           return (
             <View style={[styles.fixedSingularGame]} key={game.id}>
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   gamesDisplay: {
+    paddingLeft: wp('3%'),
     paddingTop: hp('2%'),
     borderRadius: wp("5%"),
     width: wp("90%"),
