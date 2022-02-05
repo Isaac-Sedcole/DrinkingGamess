@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   gamesDisplay: {
-    paddingLeft: wp('3%'),
+    paddingLeft: wp('8%'),
     paddingTop: hp('2%'),
     borderRadius: wp("5%"),
     width: wp("90%"),
-    height: hp("7.5%") * gamesList.games.length
+    height: hp("6.5%") * gamesList.games.length
   },
   singleGameDisplay: {
     paddingTop: hp("2.5%"),
