@@ -11,7 +11,7 @@ import HouseRules from './HouseRules'
 function Games({ navigation }) {
 
   const navigateToGame = (game) => {
-    console.log(game.name)
+    // console.log(game.name)
     if(game.name == "Kings Cup" || game.name == "Horses") {
       navigation.navigate(game.name, {game})
     } else {

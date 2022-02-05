@@ -104,10 +104,10 @@ export default {
       itemsRequired: ["Pack of cards", "Music and/or Singing"],
       explainationBlurb: "A card game based on suits, bet on a horse, place your bets, and then start flipping!",
       rules: {},
-      customRules: ["setup", "gamePlay", "betting", "music"],
+      customRules: ["setup", "gameplay", "betting", "music"],
       ruleDescription: {
         setup: "Firstly take the 4 Ace cards out of the deck and place them in a line together. Next place a card of each suit down like a ladder that the Ace cards need to climb. You can make this ladder as long as you want just be sure to keep an equal amount of suited cards in that line (eg multiples of 4, 1 of each suit) the remaining cards are shuffled into a deck.",
-        gamePlay: "With all the horses lined up, flip one card from the deck face up, depending on what suit that card is, the corresponding Ace will move one space for ward on the ladder. For example, if you flip a card and it is a diamond, the diamond ace will move 1 space forward. Repeat this process until one of the Aces has reached the end of the ladder",
+        gameplay: "With all the horses lined up, flip one card from the deck face up, depending on what suit that card is, the corresponding Ace will move one space for ward on the ladder. For example, if you flip a card and it is a diamond, the diamond ace will move 1 space forward. Repeat this process until one of the Aces has reached the end of the ladder",
         betting: "You can bet drinks (or anything else) on the outcome of the race, bet before the race starts, if you lose you must drink and if you win you can nominate other players to drink. You can multiply the drinks for the winner if you choose as it’s more likely to lose than win. For example, say I bet one drink on my horse, if I lose I drink once, if I win, I can nominate 4",
         music: "This game is best played to the ‘Lone Ranger Theme Song,’ singing this song as the game is played is also encouraged."
       }

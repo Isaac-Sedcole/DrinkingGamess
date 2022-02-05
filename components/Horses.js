@@ -12,6 +12,7 @@ function Horses(props) {
   const [showRuleModal, setShowRuleModal] = useState(false)
 
 
+
   useEffect(()=> {
     setShowRuleModal(false)
 },[])
@@ -30,8 +31,12 @@ function Horses(props) {
       }
     })
     let newObj = { name: theDescription[0].props.value, desc: theDescription[0].props.children }
-    setCurrentRule(newObj)
-    setShowRuleModal(true)
+    if(currentRule.name == ruleNeedingDescription) {
+      setShowRuleModal(!showRuleModal)
+    } else {
+      setCurrentRule(newObj)
+      setShowRuleModal(true)
+    }
   }
 
 
@@ -141,7 +146,7 @@ const styles = StyleSheet.create({
   },
   descriptionContainer:{
     flexDirection: 'row',
-    height: hp('20%'),
+    height: hp('40%'),
     width: wp('80%'),
     marginLeft: wp('5%'),
   },
