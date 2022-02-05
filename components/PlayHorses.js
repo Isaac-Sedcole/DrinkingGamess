@@ -5,6 +5,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import AppButton from "./AppButton"
 import { Audio } from 'expo-av'
 import { useForm, Controller } from 'react-hook-form'
+import EditableLabel from 'react-inline-editing'
 
 
 function PlayHorses(props) {
@@ -18,6 +19,8 @@ function PlayHorses(props) {
   const [fourPressed, setFourPressed] = useState(false)
 
   const [currentButton, setCurrentButton] = useState("")
+
+  const [betAmount, setBetAmount] = useState("")
 
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
@@ -95,10 +98,6 @@ function PlayHorses(props) {
     setTurnMusicOff(!turnMusicOff)
   }
 
-  const resetBets = () => {
-
-  }
-
   const resetList = () => {
     setListOfBets([])
   }
@@ -164,21 +163,22 @@ function PlayHorses(props) {
 
           <View>
             <View>
-              <AppButton title="Reset bets" onPress={() => resetBets()} />
-            </View>
-            <View>
               <AppButton title="Reset list" onPress={() => resetList()} />
             </View>
           </View>
 
           {listOfBets && listOfBets.map(bet => {
             return (
-              <View key={bet.data.name}>
-                <Text>{bet.data.name} : {bet.data.bet}</Text>
+              <View style={{flex: 1, flexDirection: 'row'}} key={bet.data.name}>
+                <Text>{bet.data.name}</Text>
+                <EditableLabel
+                  text={bet.data.bet}
+                  inputWidth={wp('20%')}
+                  inputHeight={hp('6%')}
+                  inputMaxLength='20'
+                  onChange={e => setBetAmount(e.target.value)}
+                />
               </View>
-              // <>
-              // {console.log(bet.data)}
-              // </>
             )
           })}
           <Text> a button will then appear where you can choose to reset bets or reset everything </Text>
