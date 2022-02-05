@@ -11,7 +11,6 @@ function Horses(props) {
   const [currentRule, setCurrentRule] = useState({})
   const [showRuleModal, setShowRuleModal] = useState(false)
 
-  console.log(props)
 
   useEffect(()=> {
     setShowRuleModal(false)

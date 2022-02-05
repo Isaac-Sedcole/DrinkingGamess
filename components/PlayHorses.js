@@ -10,7 +10,7 @@ import { useForm, Controller } from 'react-hook-form'
 function PlayHorses(props) {
 
   const [sound, setSound] = useState()
-  const [bets, setBets] = useState({})
+  const [listOfBets, setListOfBets] = useState([])
   const [turnMusicOff, setTurnMusicOff] = useState(false)
 
   const [onePressed, setOnePressed] = useState(false)
@@ -23,7 +23,11 @@ function PlayHorses(props) {
       bet: ''
     }
   })
-  const onSubmit = data => console.log(data)
+  const onSubmit = data => {
+    setListOfBets(listOfBets => {
+     return [...listOfBets, {data}]
+    })
+  }
 
   async function playElevatorSound() {
     console.log('Loading Sound');
@@ -94,19 +98,17 @@ function PlayHorses(props) {
                     value={value}
                   />
                 )}
-                name="Dave"
+                name="name"
               />
               {errors.name && <Text>This is required.</Text>}
 
               <Controller
                 control={control}
                 rules={{
-                  maxLength: 100,
+                  required: true,
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
                   <TextInput
-                    // selectionColor={'red'}
-                    // underlineColorAndroid={'green'}
                     placeholder={'1 shot'}
                     style={styles.input}
                     onBlur={onBlur}
@@ -114,15 +116,24 @@ function PlayHorses(props) {
                     value={value}
                   />
                 )}
-                bet="1 shot"
+                name="bet"
               />
 
               <AppButton title="Submit" onPress={handleSubmit(onSubmit)} />
             </View>
           </Card>
-          <Text>-- hit confirm -- a button will then appear where you can choose to reset bets or reset everything </Text>
 
-          <Text>Place bets -- requires a name a bet amount and the ability to add more people - and a way to reset the bets (with and without removing names)</Text>
+          {listOfBets && listOfBets.map(bet => {
+            return (
+              <View key={bet.data.name}>
+                <Text>{bet.data.name} : {bet.data.bet}</Text>
+              </View>
+              // <>
+              // {console.log(bet.data)}
+              // </>
+            )
+          })}
+          <Text> a button will then appear where you can choose to reset bets or reset everything </Text>
 
           <View stlye={{ justifyContent: "center" }}>
             <View style={[styles.cardContainer]}>
