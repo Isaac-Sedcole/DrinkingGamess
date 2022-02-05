@@ -17,6 +17,8 @@ function PlayHorses(props) {
   const [twoPressed, setTwoPressed] = useState(false)
   const [fourPressed, setFourPressed] = useState(false)
 
+  const [currentButton, setCurrentButton] = useState("")
+
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       name: '',
@@ -27,6 +29,35 @@ function PlayHorses(props) {
     setListOfBets(listOfBets => {
      return [...listOfBets, {data}]
     })
+  }
+
+  const buttonHandler = (buttonName) => {
+    if(buttonName == currentButton) {
+      if(buttonName == "X1") {
+        setOnePressed(false)
+      } else if(buttonName == "X2") {
+        setTwoPressed(false)
+      } else {
+        setFourPressed(false)
+      }
+    } else {
+      if(buttonName == "X1") {
+        setOnePressed(true)
+        setTwoPressed(false)
+        setFourPressed(false)
+        setCurrentButton("X1")
+      } else if(buttonName == "X2") {
+        setOnePressed(false)
+        setTwoPressed(true)
+        setFourPressed(false)
+        setCurrentButton("X2")
+      } else {
+        setOnePressed(false)
+        setTwoPressed(false)
+        setFourPressed(true)
+        setCurrentButton("X4")
+      }
+    }
   }
 
   async function playElevatorSound() {
@@ -73,13 +104,13 @@ function PlayHorses(props) {
         }]}>
           <View style={{ flex: 1, flexDirection: 'row', width: wp('85%') }}>
             <View style={{width: wp('28.33%')}}>
-              <AppButton title="X1" onPress={() => setOnePressed(!onePressed)} buttonColour={onePressed ? '#2196F3' : '#216bf3'} />
+              <AppButton title="X1" onPress={() => buttonHandler("X1")} buttonColour={onePressed ? '#2196F3' : '#216bf3'} />
             </View>
             <View style={{width: wp('28.33%')}}>
-              <AppButton title="X2" onPress={() => setTwoPressed(!twoPressed)} buttonColour={twoPressed ? '#2196F3' : '#216bf3'} />
+              <AppButton title="X2" onPress={() => buttonHandler("X2")} buttonColour={twoPressed ? '#2196F3' : '#216bf3'} />
             </View>
             <View style={{width: wp('28.33%')}}>
-              <AppButton title="X4" onPress={() => setFourPressed(!fourPressed)} buttonColour={fourPressed ? '#2196F3' : '#216bf3'} />
+              <AppButton title="X4" onPress={() => buttonHandler("X4")} buttonColour={fourPressed ? '#2196F3' : '#216bf3'} />
             </View>
           </View>
           <Card style={[styles.formBackground]}>
