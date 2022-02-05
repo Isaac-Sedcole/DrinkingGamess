@@ -27,26 +27,26 @@ function PlayHorses(props) {
   })
   const onSubmit = data => {
     setListOfBets(listOfBets => {
-     return [...listOfBets, {data}]
+      return [...listOfBets, { data }]
     })
   }
 
   const buttonHandler = (buttonName) => {
-    if(buttonName == currentButton) {
-      if(buttonName == "X1") {
+    if (buttonName == currentButton) {
+      if (buttonName == "X1") {
         setOnePressed(false)
-      } else if(buttonName == "X2") {
+      } else if (buttonName == "X2") {
         setTwoPressed(false)
       } else {
         setFourPressed(false)
       }
     } else {
-      if(buttonName == "X1") {
+      if (buttonName == "X1") {
         setOnePressed(true)
         setTwoPressed(false)
         setFourPressed(false)
         setCurrentButton("X1")
-      } else if(buttonName == "X2") {
+      } else if (buttonName == "X2") {
         setOnePressed(false)
         setTwoPressed(true)
         setFourPressed(false)
@@ -95,6 +95,14 @@ function PlayHorses(props) {
     setTurnMusicOff(!turnMusicOff)
   }
 
+  const resetBets = () => {
+
+  }
+
+  const resetList = () => {
+    setListOfBets([])
+  }
+
 
   return (
     <>
@@ -103,13 +111,13 @@ function PlayHorses(props) {
           alignItems: 'center'
         }]}>
           <View style={{ flex: 1, flexDirection: 'row', width: wp('85%') }}>
-            <View style={{width: wp('28.33%')}}>
+            <View style={{ width: wp('28.33%') }}>
               <AppButton title="X1" onPress={() => buttonHandler("X1")} buttonColour={onePressed ? '#2196F3' : '#216bf3'} />
             </View>
-            <View style={{width: wp('28.33%')}}>
+            <View style={{ width: wp('28.33%') }}>
               <AppButton title="X2" onPress={() => buttonHandler("X2")} buttonColour={twoPressed ? '#2196F3' : '#216bf3'} />
             </View>
-            <View style={{width: wp('28.33%')}}>
+            <View style={{ width: wp('28.33%') }}>
               <AppButton title="X4" onPress={() => buttonHandler("X4")} buttonColour={fourPressed ? '#2196F3' : '#216bf3'} />
             </View>
           </View>
@@ -153,6 +161,15 @@ function PlayHorses(props) {
               <AppButton title="Submit" onPress={handleSubmit(onSubmit)} />
             </View>
           </Card>
+
+          <View>
+            <View>
+              <AppButton title="Reset bets" onPress={() => resetBets()} />
+            </View>
+            <View>
+              <AppButton title="Reset list" onPress={() => resetList()} />
+            </View>
+          </View>
 
           {listOfBets && listOfBets.map(bet => {
             return (
