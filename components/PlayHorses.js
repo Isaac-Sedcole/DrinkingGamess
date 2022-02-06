@@ -34,6 +34,10 @@ function PlayHorses(props) {
     })
   }
 
+  useEffect(()=> {
+    setBetAmount([...listOfBets])
+  },[listOfBets])
+
   const buttonHandler = (buttonName) => {
     if (buttonName == currentButton) {
       if (buttonName == "X1") {
@@ -171,16 +175,12 @@ function PlayHorses(props) {
             return (
               <View style={{flex: 1, flexDirection: 'row'}} key={bet.data.name}>
                 <Text>{bet.data.name}</Text>
-                <Text>
-
-                <EditableLabel
-                  text={bet.data.bet}
-                  inputWidth={wp('20%')}
-                  inputHeight={hp('6%')}
-                  inputMaxLength='20'
-                  onChange={e => setBetAmount(e.target.value)}
-                  />
-                  </Text>
+                <Text>{bet.data.bet}</Text>
+                {/* <TextInput
+                  onChangeText={text => setBetAmount(betAmount =>[...betAmount], {name: bet.data.name, bet:text})}
+                  value={betAmount.filter(bet=> {if(bet.name == bet.data.name) {return bet.bet}})}
+                  placeholder={bet.data.bet}
+                /> */}
               </View>
             )
           })}
