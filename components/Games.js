@@ -12,7 +12,7 @@ function Games({ navigation }) {
 
   const navigateToGame = (game) => {
     // console.log(game.name)
-    if(game.name == "Kings Cup" || game.name == "Horses") {
+    if(game.customRules.length > 0) {
       navigation.navigate(game.name, {game})
     } else {
       navigation.navigate("Selected game", { game })}

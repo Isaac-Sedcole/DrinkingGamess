@@ -6,7 +6,7 @@ import AppButton from "./AppButton"
 
 
 
-function Horses(props) {
+function BeerPong(props) {
 
   const [currentRule, setCurrentRule] = useState({})
   const [showRuleModal, setShowRuleModal] = useState(false)
@@ -49,7 +49,7 @@ function Horses(props) {
 
           <Text style={[styles.titleText]}>{gameName}</Text>
           <View>
-          <AppButton onPress={() => props.navigation.navigate("Play horses")} title={'Start Game'} buttonColour={'red'} />
+          {/* <AppButton onPress={() => props.navigation.navigate("Play horses")} title={'Start Game'} buttonColour={'red'} /> */}
           </View>
 
           <View style={{ paddingTop: hp("2%") }}>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     margin: wp("1%"),
     // width: wp("42.5%"),
-    width: wp("85%"),
+    width: wp("80%"),
     height: hp("5%"),
     alignItems: "center"
   },
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   cardContent: {
-    width: wp("40%"),
+    width: wp("50%"),
     height: hp("6%")
   },
   wholeCardContainer: {
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Horses
+export default BeerPong
     
     
     

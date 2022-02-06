@@ -18,10 +18,11 @@ import JustShowHouseRules from './JustShowHouseRules';
 import ShowKingsCupCustomRules from './ShowKingsCupCustomRules'
 import Horses from './Horses';
 import PlayHorses from './PlayHorses'
+import KingsCup from './KingsCup';
+import BeerPong from './BeerPong'
 
 import reducers from '../reducers'
 import { startClock } from 'react-native-reanimated';
-import KingsCup from './KingsCup';
 // import Navigator from '../routes/homeStack'
 // const AnimatedIcon = Animated.createAnimatedComponent(Icon)
 
@@ -54,6 +55,7 @@ function App() {
           <Stack.Screen name="Horses" component={Horses}/>
           <Stack.Screen name="Play horses" component={PlayHorses}/>
           <Stack.Screen name="Kings Cup" component={KingsCup} />
+          <Stack.Screen name="Beer Pong" component={BeerPong} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
