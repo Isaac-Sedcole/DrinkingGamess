@@ -6,6 +6,7 @@ import AppButton from "./AppButton"
 import { Audio } from 'expo-av'
 import { useForm, Controller } from 'react-hook-form'
 import EditableLabel from 'react-inline-editing'
+import DropDownPicker from 'react-native-dropdown-picker'
 
 
 function PlayHorses(props) {
@@ -21,11 +22,44 @@ function PlayHorses(props) {
   const [currentButton, setCurrentButton] = useState("")
 
   const [betAmount, setBetAmount] = useState("")
+  
+  //for dropdown menu
+  const [openQuantity, setOpenQuantity] = useState(false)
+  const [valueQuantity, setValueQuantity] = useState(null)
+  const [drinkQuantity, setDrinkQuantity] = useState([
+    {label: '1', value: '1'},
+    {label: '2', value: '2'},
+    {label: '3', value: '3'},
+    {label: '4', value: '4'},
+    {label: '5', value: '5'},
+    {label: '6', value: '6'},
+    {label: '7', value: '7'},
+    {label: '8', value: '8'},
+    {label: '9', value: '9'},
+    {label: '10', value: '10'},
+    {label: '11', value: '11'},
+    {label: '12', value: '12'},
+    {label: '13', value: '13'},
+    {label: '14', value: '14'},
+    {label: '15', value: '15'},
+    {label: '16', value: '16'},
+    {label: '17', value: '17'},
+    {label: '18', value: '18'},
+    {label: '19', value: '19'},
+    {label: '20', value: '20'}
+  ])
+  const [openForm, setOpenForm] = useState(false)
+  const [valueForm, setValueForm] = useState(null)
+  const [drinkForm, setDrinkForm] = useState([
+    {label: 'Sip', value: 'sip'},
+    // {label: 'Drink', value: 'drink'},
+    {label: 'Shot', value: 'shot'}
+  ])
 
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      name: '',
-      bet: ''
+      name: ''//,
+      //bet: ''
     }
   })
   const onSubmit = data => {
@@ -144,21 +178,22 @@ function PlayHorses(props) {
               />
               {errors.name && <Text>This is required.</Text>}
 
-              <Controller
-                control={control}
-                rules={{
-                  required: true,
-                }}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <TextInput
-                    placeholder={'1 shot'}
-                    style={styles.input}
-                    onBlur={onBlur}
-                    onChangeText={onChange}
-                    value={value}
-                  />
-                )}
-                name="bet"
+              <DropDownPicker 
+                open={openQuantity}
+                value={valueQuantity}
+                items={drinkQuantity}
+                setOpen={setOpenQuantity}
+                setValue={setValueQuantity}
+                setItems={setDrinkQuantity}
+              />
+
+              <DropDownPicker 
+                open={openForm}
+                value={valueForm}
+                items={drinkForm}
+                setOpen={setOpenForm}
+                setValue={setValueForm}
+                setItems={setDrinkForm}
               />
 
               <AppButton title="Submit" onPress={handleSubmit(onSubmit)} />
