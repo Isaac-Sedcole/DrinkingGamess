@@ -20,6 +20,7 @@ import Horses from './Horses';
 import PlayHorses from './PlayHorses'
 import KingsCup from './KingsCup';
 import BeerPong from './BeerPong'
+import CheersGovernor from './CheersGovernor'
 
 import reducers from '../reducers'
 import { startClock } from 'react-native-reanimated';
@@ -56,6 +57,7 @@ function App() {
           <Stack.Screen name="Play horses" component={PlayHorses}/>
           <Stack.Screen name="Kings Cup" component={KingsCup} />
           <Stack.Screen name="Beer Pong" component={BeerPong} />
+          <Stack.Screen name="Cheers Governor" component={CheersGovernor} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

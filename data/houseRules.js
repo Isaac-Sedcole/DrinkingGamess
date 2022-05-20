@@ -34,6 +34,20 @@ export default {
           description: "If you say the name of any person for any reason, you must drink",
           punishment: 1,
           checked: false
+        },
+        {
+          id: 6,
+          name: "Nice Biceps",
+          description: "Every time someone has to drink, they have to flex and kiss their arms, to which everyone must respond, 'NICE BICEPS!'",
+          punishment: 1,
+          checked: false
+        },
+        {
+          id: 7,
+          name: "Floor Suck",
+          description:"",
+          punishment: 1,
+          checked: false
         }
     ]
 }

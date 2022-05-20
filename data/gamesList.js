@@ -131,6 +131,17 @@ export default {
         redemption2:"The team with 0 cups get 1 throw each, if this throw lands in a cup, they may place their last cup back on the table and play continues.",
         additionalRules: "If a player knocks over any of their own cups, this counts as the cup being eliminated and must be drank or put to the side. Use one ball for single player teams and two balls for doubles."
         }  
+    },
+    {
+      id: 7,
+      name: "Cheers Governor",
+      suggestedPlayers: "5+",
+      drunkOMeter: 4,
+      gameDuration: "10 - 20 mins",
+      itemsRequired: ["none"],
+      explainationBlurb: "Count to 21 and drink as the game evolves as you play",
+      customRules: ["adRules"],
+      ruleDescription: "Choose a player to start, this player starts on the number 1. Each player may say between 1 and 3 numbers on their turn counting upwards, for example the first player could say 1, 2 and 3. It is then the next players turn, repeat the process until someone is forced to say the number 21. When a player says the number 21 they must drink and all other players must say 'cheers governor.' The governor may now make a new rule which will be played every round moving forward. Some examples of rules could be, the player that says X number must drink or instead of saying the number 7, say my name. Play until it's too complicated."
     }
   ]
 }
