@@ -6,7 +6,7 @@ import AppButton from "./AppButton"
 
 
 
-function CheersGovernor(props) {
+function BoozeOrNoBooze(props) {
 
   const [currentRule, setCurrentRule] = useState({})
   const [showRuleModal, setShowRuleModal] = useState(false)
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CheersGovernor
+export default BoozeOrNoBooze
     
     
     

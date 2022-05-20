@@ -45,7 +45,7 @@ export default {
         {
           id: 7,
           name: "Floor Suck",
-          description:"",
+          description:"If you spill a drink, you suck it up, be it floor or table.",
           punishment: 1,
           checked: false
         }

@@ -142,6 +142,16 @@ export default {
       explainationBlurb: "Count to 21 and drink as the game evolves as you play",
       customRules: ["adRules"],
       ruleDescription: "Choose a player to start, this player starts on the number 1. Each player may say between 1 and 3 numbers on their turn counting upwards, for example the first player could say 1, 2 and 3. It is then the next players turn, repeat the process until someone is forced to say the number 21. When a player says the number 21 they must drink and all other players must say 'cheers governor.' The governor may now make a new rule which will be played every round moving forward. Some examples of rules could be, the player that says X number must drink or instead of saying the number 7, say my name. Play until it's too complicated."
+    },
+    {
+      id: 8,
+      name: "Booze or no Booze",
+      suggestedPlayers: "4+",
+      drunkOMeter: 8,
+      gameDuration: "10 mins",
+      itemsRequired: ["Shot glasses"],
+      explainationBlurb: "Try to guess which is alcohol and which is not by the reaction of your friends",
+      ruleDescription: "Fill as many shot glasses as you like, half with water and half with clear liquor (like gin or vodka). Choose someone to start, this person picks a shot glass at random and drinks it. The person to their left has to guess whether they drank alcohol or water based on their reaction. If the guesser is correct, the drinker must pick another shot glass and drink it. The next person to guess is then moved one more person to the left. If the guesser is wrong, they must now pick a glass to drink and the person to their left guesses."
     }
   ]
 }
