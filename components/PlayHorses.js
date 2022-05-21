@@ -178,7 +178,7 @@ function PlayHorses(props) {
               />
               {errors.name && <Text>This is required.</Text>}
 
-              <DropDownPicker 
+              {/* <DropDownPicker 
                 open={openQuantity}
                 value={valueQuantity}
                 items={drinkQuantity}
@@ -194,7 +194,7 @@ function PlayHorses(props) {
                 setOpen={setOpenForm}
                 setValue={setValueForm}
                 setItems={setDrinkForm}
-              />
+              /> */}
 
               <AppButton title="Submit" onPress={handleSubmit(onSubmit)} />
             </View>
@@ -210,7 +210,23 @@ function PlayHorses(props) {
             return (
               <View style={{flex: 1, flexDirection: 'row'}} key={bet.data.name}>
                 <Text>{bet.data.name}</Text>
-                <Text>{bet.data.bet}</Text>
+                <DropDownPicker 
+                open={openQuantity} //each need own open 
+                value={valueQuantity} // each need own value
+                items={drinkQuantity} //can use same items
+                setOpen={setOpenQuantity}
+                setValue={setValueQuantity}
+                setItems={setDrinkQuantity}
+              />
+
+              <DropDownPicker 
+                open={openForm}
+                value={valueForm}
+                items={drinkForm}
+                setOpen={setOpenForm}
+                setValue={setValueForm}
+                setItems={setDrinkForm}
+              />
                 {/* <TextInput
                   onChangeText={text => setBetAmount(betAmount =>[...betAmount], {name: bet.data.name, bet:text})}
                   value={betAmount.filter(bet=> {if(bet.name == bet.data.name) {return bet.bet}})}
