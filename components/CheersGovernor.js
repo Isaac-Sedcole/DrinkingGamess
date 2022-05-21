@@ -21,23 +21,31 @@ function CheersGovernor(props) {
   let gameName = props.route.params.game.name
   let ruleDescObj = props.route.params.game.ruleDescription
   let rules = props.route.params.game.customRules
-  const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
-
-  const activateShowRuleModal = (ruleNeedingDescription) => {
-    let matchingWord = ruleNeedingDescription.replace(/\s/g, "")
-    let theDescription = rulesDescription.filter(rule => {
-      if (rule.props.value.toLowerCase() == matchingWord.toLowerCase()) {
-        return rule
-      }
-    })
-    let newObj = { name: theDescription[0].props.value, desc: theDescription[0].props.children }
-    if(currentRule.name == ruleNeedingDescription) {
-      setShowRuleModal(!showRuleModal)
-    } else {
-      setCurrentRule(newObj)
+  // const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
+  
+  const activateShowRuleModal = () => {
+    if(!showRuleModal) {
       setShowRuleModal(true)
+    } else {
+      setShowRuleModal(false)
     }
   }
+  
+  // const activateShowRuleModal = (ruleNeedingDescription) => {
+  //   let matchingWord = ruleNeedingDescription.replace(/\s/g, "")
+  //   let theDescription = rulesDescription.filter(rule => {
+  //     if (rule.props.value.toLowerCase() == matchingWord.toLowerCase()) {
+  //       return rule
+  //     }
+  //   })
+  //   let newObj = { name: theDescription[0].props.value, desc: theDescription[0].props.children }
+  //   if(currentRule.name == ruleNeedingDescription) {
+  //     setShowRuleModal(!showRuleModal)
+  //   } else {
+  //     setCurrentRule(newObj)
+  //     setShowRuleModal(true)
+  //   }
+  // }
 
 
   return (
@@ -73,7 +81,15 @@ function CheersGovernor(props) {
             flexDirection: "row",
             flexWrap: "wrap",
           }}>
-            {rules.map(rule => {
+            <View  stlye={{ justifyContent: "center" }}>
+                  <View style={[styles.cardContainer]}>
+                    <View style={[styles.cardContent]}>
+                      <AppButton onPress={activateShowRuleModal} title='Show Rules' />
+                      {showRuleModal && <Text>{ruleDescObj}</Text>}
+                    </View>
+                  </View>
+                </View>
+            {/* {rules.map(rule => {
               return (
                 <View key={rule} stlye={{ justifyContent: "center" }}>
                   <View style={[styles.cardContainer]}>
@@ -86,7 +102,7 @@ function CheersGovernor(props) {
             })}
             <View style={[styles.descriptionContainer]}> 
               {showRuleModal && <Text style={[styles.descriptionText]}>{currentRule.desc}</Text>}
-            </View>
+            </View> */}
           </View>
         </View>
       </ScrollView>
