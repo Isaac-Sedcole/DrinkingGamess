@@ -17,12 +17,17 @@ function Games({ navigation }) {
     } else {
       navigation.navigate("Selected game", { game })}
     }
+
+    const nav2WHeel = () => {
+      navigation.navigate("Punishment Wheel")
+    }
     
     return (
       <View style={[styles.container, {
         flexDirection: "column",
         alignItems: 'center'
       }]}>
+      {/* <View><Button onPress={() => nav2WHeel()} title={"Wheel"} /> </View> */}
       <Card style={[styles.gamesDisplay]}>
         {gamesList.games.map(game => {
           return (
