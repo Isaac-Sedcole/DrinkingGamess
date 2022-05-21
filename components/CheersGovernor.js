@@ -30,7 +30,7 @@ function CheersGovernor(props) {
       setShowRuleModal(false)
     }
   }
-  
+
   // const activateShowRuleModal = (ruleNeedingDescription) => {
   //   let matchingWord = ruleNeedingDescription.replace(/\s/g, "")
   //   let theDescription = rulesDescription.filter(rule => {
@@ -74,9 +74,10 @@ function CheersGovernor(props) {
           <View style={{ paddingTop: hp("1%") }}>
             <Text style={[styles.subTitleText]}>How to Play:</Text>
           </View>
-            <Text style={[styles.subText]}>{props.route.params.game.explanationBlurb}</Text>
           <View style={{ paddingTop: hp("1%") }}>
+            <Text style={[styles.subText]}>{props.route.params.game.explanationBlurb}</Text>
           </View>
+          
           <View style={{
             flexDirection: "row",
             flexWrap: "wrap",

@@ -7,7 +7,7 @@ export default {
       drunkOMeter: 8,
       gameDuration: "40-60 mins",
       itemsRequired: ["Pack of cards", "Large bowl/cup"],
-      explanationBlurb: "To set up the game, evenly spread a deck of cards face down around the cup. All cards much touch the cards on either side, creating a ‘chain’ of cards, then place the cup/bowl in the middle of this circle. To play king’s cup, players must take turns picking cards, going around the circle. Each card in the deck corresponds to a specific mini game shown below. If, when picking up a card, a player breaks the circle of cards, that player must finish the rest of their drink. The Game finishes when the last King is drawn and that person must drink whatever is in the king’s cup",
+      explanationBlurb: "To set up the game, evenly spread a deck of cards face down around the cup. All cards much touch the cards on either side, creating a ‘chain' of cards, then place the cup/bowl in the middle of this circle. To play king's cup, players must take turns picking cards, going around the circle. Each card in the deck corresponds to a specific mini game shown below. If, when picking up a card, a player breaks the circle of cards, that player must finish the rest of their drink. The Game finishes when the last King is drawn and that person must drink whatever is in the king's cup",
       rules: {
         A: "snake eyes",
         2: "you",
@@ -62,7 +62,7 @@ export default {
       itemsRequired: ["2 Ping pong balls", "many cups"],
       explanationBlurb: "get yo balls in the cup boi",
       rules: {
-        rules: "Setting up the game requires a flat surface that players can stand around (a table works best). Grab 20 or so cups and fill them about 1/3 with your drink of choice, then place them all together in the middle of the table. 2 players opposite each other start with an empty cup and a ball, these players must bounce the ball on the table and into the empty cup. If the player is successful on the first attempt, they may pass their cup and ball to any player on the table, if successful after the first attempt, the player may pass their cup and ball to the left. If a player moves their cup to a player still completing the bounce, they may stack their cup in that player’s cup (forming a tower), this player must now choose a cup from the center to drink from and play with that cup (passing their original tower to the left)",
+        rules: "Setting up the game requires a flat surface that players can stand around (a table works best). Grab 20 or so cups and fill them about 1/3 with your drink of choice, then place them all together in the middle of the table. 2 players opposite each other start with an empty cup and a ball, these players must bounce the ball on the table and into the empty cup. If the player is successful on the first attempt, they may pass their cup and ball to any player on the table, if successful after the first attempt, the player may pass their cup and ball to the left. If a player moves their cup to a player still completing the bounce, they may stack their cup in that player's cup (forming a tower), this player must now choose a cup from the center to drink from and play with that cup (passing their original tower to the left)",
       },
       customRules: [],
       ruleDescription: null
@@ -88,7 +88,7 @@ export default {
       drunkOMeter: 2,
       gameDuration: "2-10 mins",
       itemsRequired: ["Bowl or Glass"],
-      explainationBlurb: "A quick guessing game usually used and an icebreaker using nothing but a glass and your fingers.",
+      explanationBlurb: "A quick guessing game usually used and an icebreaker using nothing but a glass and your fingers.",
       rules: {
         rules: "The game progresses in a series of turns clockwise. Each turn starts with all players putting one finger on the rim of the cup. When all fingers are on the rim, the player whose turn it is announces, 'three - two - one' followed by a number.The number is the player's guess at how many fingers will remain on the cup. All participating players, including the player whose turn it is, have the option to keep their finger on the cup or to remove it from the cup after the 'three - two - one' count. If a players guesses correctly they must say 'Thanks you ladies and gentlemen for playing fingers with me.' If they do so without smiling they are removed from the game (a win), an incorrect guess keeps the player active in the game."
       },
@@ -102,14 +102,14 @@ export default {
       drunkOMeter: 5,
       gameDuration: "2 mins per round",
       itemsRequired: ["Pack of cards", "Music and/or Singing"],
-      explainationBlurb: "A card game based on suits, bet on a horse, place your bets, and then start flipping!",
+      explanationBlurb: "A card game based on suits, bet on a horse, place your bets, and then start flipping!",
       rules: {},
       customRules: ["setup", "gameplay", "betting", "music"],
       ruleDescription: {
         setup: "Firstly take the 4 Ace cards out of the deck and place them in a line together. Next place a card of each suit down like a ladder that the Ace cards need to climb. You can make this ladder as long as you want just be sure to keep an equal amount of suited cards in that line (eg multiples of 4, 1 of each suit) the remaining cards are shuffled into a deck.",
         gameplay: "With all the horses lined up, flip one card from the deck face up, depending on what suit that card is, the corresponding Ace will move one space for ward on the ladder. For example, if you flip a card and it is a diamond, the diamond ace will move 1 space forward. Repeat this process until one of the Aces has reached the end of the ladder",
-        betting: "You can bet drinks (or anything else) on the outcome of the race, bet before the race starts, if you lose you must drink and if you win you can nominate other players to drink. You can multiply the drinks for the winner if you choose as it’s more likely to lose than win. For example, say I bet one drink on my horse, if I lose I drink once, if I win, I can nominate 4",
-        music: "This game is best played to the ‘Lone Ranger Theme Song,’ singing this song as the game is played is also encouraged."
+        betting: "You can bet drinks (or anything else) on the outcome of the race, bet before the race starts, if you lose you must drink and if you win you can nominate other players to drink. You can multiply the drinks for the winner if you choose as it's more likely to lose than win. For example, say I bet one drink on my horse, if I lose I drink once, if I win, I can nominate 4",
+        music: "This game is best played to the 'Lone Ranger Theme Song,' singing this song as the game is played is also encouraged."
       }
     },
     {
@@ -119,12 +119,12 @@ export default {
       drunkOMeter: 7,
       gameDuration: "10 - 20 mins",
       itemsRequired: ["20 plastic cups", "1 - 2 ping pong balls"],
-      explainationBlurb: "A classic American drinking game that consists of throwing balls into cups across a table",
+      explanationBlurb: "A classic American drinking game that consists of throwing balls into cups across a table",
       rules: {},
       customRules: ["setUp", "throwingRules", "defenceRules", "redemptionBasics", "redemption1", "redemption2", "additionalRules"],
       ruleDescription: {
-        setUp: "Arrange 10 plastic cups in a triangle on each side of a largetable; fill these cups with your alcoholic beverage (or water, you can drink from another vessel). Separate into 2 teams, the objective of the game is to throw a ball into the opposition’s cups whilst standing behind your own cups. When a team reaches 0 cups, they lose.",
-        throwingRules: "When throwing a ball, the players elbow must be behind the table. If a ball lands in a cup, that cup is eliminated and taken away (and drunk if alcoholic). If the ball goes into the opposition’s cup after bouncing at least once on the table, these counts as 2x, the defending team must select the closest cup of their choice to remove in addition to the cup that was hit, and drink for both. If a ball lands in any of the cups that have already been eliminated, the thrower of that ball must take a drink. If 2 balls land in the same cup this is called an explosion, all other cups touching this cup are therefore eliminated. If the ball bounces back to your team after you throw, you may throw it again however this shot must be a trick shot. If a player throws a ball and hits neither the table nor the cups, this shameful player must drink once",
+        setUp: "Arrange 10 plastic cups in a triangle on each side of a largetable; fill these cups with your alcoholic beverage (or water, you can drink from another vessel). Separate into 2 teams, the objective of the game is to throw a ball into the opposition's cups whilst standing behind your own cups. When a team reaches 0 cups, they lose.",
+        throwingRules: "When throwing a ball, the players elbow must be behind the table. If a ball lands in a cup, that cup is eliminated and taken away (and drunk if alcoholic). If the ball goes into the opposition's cup after bouncing at least once on the table, these counts as 2x, the defending team must select the closest cup of their choice to remove in addition to the cup that was hit, and drink for both. If a ball lands in any of the cups that have already been eliminated, the thrower of that ball must take a drink. If 2 balls land in the same cup this is called an explosion, all other cups touching this cup are therefore eliminated. If the ball bounces back to your team after you throw, you may throw it again however this shot must be a trick shot. If a player throws a ball and hits neither the table nor the cups, this shameful player must drink once",
         defenceRules: "The defending team may grab or slap a ball if it has bounced off that table at any point. If you catch a ball that bounces off the rim of your cups with one hand (without the ball touching the table or your body), you may give out a sip to the thrower of that ball. If a ball is thrown into a cup and is spinning around the rim, the defending team may blow into the cup in an attempt to force the ball out. If the ball successfully flies out, the cup may stay in-play. If the ball stays in the cup or touches the liquid in the cup then said cup is eliminated and must be drunk.",
         redemptionBasics: "A redemption shot is the last chance a team may have after their cups have all been eliminated, if they hit a cup then the game may continue. There are 2 versions of redemption:",
         redemption1: "The team with 0 cups may keep throwing without being interrupted regardless of the shot, if the ball lands in a cup, they may throw again until they miss. If all members of the team miss then the game ends, however if the team attempting redemption manages to get all the oppositions cups, both teams place one cup back on the table and the game continues.",
@@ -139,7 +139,7 @@ export default {
       drunkOMeter: 4,
       gameDuration: "10 - 20 mins",
       itemsRequired: ["nothing"],
-      explainationBlurb: "Count to 21 and drink as the game evolves as you play",
+      explanationBlurb: "Count to 21 and drink as the game evolves as you play",
       rules: {},
       customRules: ["adRules"],
       ruleDescription: "Choose a player to start, this player starts on the number 1. Each player may say between 1 and 3 numbers on their turn counting upwards, for example the first player could say 1, 2 and 3. It is then the next players turn, repeat the process until someone is forced to say the number 21. When a player says the number 21 they must drink and all other players must say 'cheers governor.' The governor may now make a new rule which will be played every round moving forward. Some examples of rules could be, the player that says X number must drink or instead of saying the number 7, say my name. Play until it's too complicated."
@@ -151,7 +151,7 @@ export default {
       drunkOMeter: 8,
       gameDuration: "10 mins",
       itemsRequired: ["Shot glasses"],
-      explainationBlurb: "Try to guess which is alcohol and which is not by the reaction of your friends",
+      explanationBlurb: "Try to guess which is alcohol and which is not by the reaction of your friends",
       rules: {},
       customRules: ["adRules"],
       ruleDescription: "Fill as many shot glasses as you like, half with water and half with clear liquor (like gin or vodka). Choose someone to start, this person picks a shot glass at random and drinks it. The person to their left has to guess whether they drank alcohol or water based on their reaction. If the guesser is correct, the drinker must pick another shot glass and drink it. The next person to guess is then moved one more person to the left. If the guesser is wrong, they must now pick a glass to drink and the person to their left guesses."
