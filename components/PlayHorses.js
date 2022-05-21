@@ -12,7 +12,6 @@ import DropDownPicker from 'react-native-dropdown-picker'
 function PlayHorses(props) {
 
   const [sound, setSound] = useState()
-  const [listOfBets, setListOfBets] = useState([])
   const [turnMusicOff, setTurnMusicOff] = useState(false)
 
   const [onePressed, setOnePressed] = useState(false)
@@ -21,11 +20,11 @@ function PlayHorses(props) {
 
   const [currentButton, setCurrentButton] = useState("")
 
-  const [betAmount, setBetAmount] = useState("")
-  
-  //for dropdown menu
-  const [openQuantity, setOpenQuantity] = useState(false)
-  const [valueQuantity, setValueQuantity] = useState(null)
+  const [formValues, setFormValues] = useState([
+    {name: 'Dave', openQuantity: false, valueQuantity: '4', openForm: false, valueForm: 'sip'},
+    {name: 'Kate', openQuantity: false, valueQuantity: '1', openForm: false, valueForm: 'shot'}
+  ])
+
   const [drinkQuantity, setDrinkQuantity] = useState([
     {label: '1', value: '1'},
     {label: '2', value: '2'},
@@ -48,29 +47,25 @@ function PlayHorses(props) {
     {label: '19', value: '19'},
     {label: '20', value: '20'}
   ])
-  const [openForm, setOpenForm] = useState(false)
-  const [valueForm, setValueForm] = useState(null)
   const [drinkForm, setDrinkForm] = useState([
     {label: 'Sip', value: 'sip'},
-    // {label: 'Drink', value: 'drink'},
     {label: 'Shot', value: 'shot'}
   ])
 
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      name: ''//,
-      //bet: ''
+      name: ''
     }
   })
   const onSubmit = data => {
-    setListOfBets(listOfBets => {
-      return [...listOfBets, { data }]
+    setFormValues(listOfFormValues => {
+      return [...listOfFormValues, { name: data.name, openQuantity: false, valueQuantity: null, openForm: false, valueForm: null }]
     })
   }
 
-  useEffect(()=> {
-    setBetAmount([...listOfBets])
-  },[listOfBets])
+  // useEffect(()=> {
+  //   setBetAmount([...listOfBets])
+  // },[listOfBets])
 
   const buttonHandler = (buttonName) => {
     if (buttonName == currentButton) {
@@ -137,7 +132,23 @@ function PlayHorses(props) {
   }
 
   const resetList = () => {
-    setListOfBets([])
+    setFormValues([])
+  }
+
+  const handleStateChange = (name, action, form) => {
+    setFormValues(listOfFormValues => {
+      for(let i = 0; i < formValues.length; i++) {
+        if(listOfFormValues[i].name == name) {
+          if(action == 'open'){
+            listOfFormValues[i][form] = !listOfFormValues[i][form]
+            return [...listOfFormValues]
+          }else {
+            listOfFormValues[i][form] = action.value
+            return[...listOfFormValues]
+          }
+        }
+      }
+    }) 
   }
 
 
@@ -178,24 +189,6 @@ function PlayHorses(props) {
               />
               {errors.name && <Text>This is required.</Text>}
 
-              {/* <DropDownPicker 
-                open={openQuantity}
-                value={valueQuantity}
-                items={drinkQuantity}
-                setOpen={setOpenQuantity}
-                setValue={setValueQuantity}
-                setItems={setDrinkQuantity}
-              />
-
-              <DropDownPicker 
-                open={openForm}
-                value={valueForm}
-                items={drinkForm}
-                setOpen={setOpenForm}
-                setValue={setValueForm}
-                setItems={setDrinkForm}
-              /> */}
-
               <AppButton title="Submit" onPress={handleSubmit(onSubmit)} />
             </View>
           </Card>
@@ -206,36 +199,34 @@ function PlayHorses(props) {
             </View>
           </View>
 
-          {listOfBets && listOfBets.map(bet => {
+          {formValues && formValues.map(bet => {
             return (
-              <View style={{flex: 1, flexDirection: 'row'}} key={bet.data.name}>
-                <Text>{bet.data.name}</Text>
+              <View style={{flex: 1, flexDirection: 'row'}} key={bet.name}>
+                <Text>{bet.name}</Text>
                 <DropDownPicker 
-                open={openQuantity} //each need own open 
-                value={valueQuantity} // each need own value
+                open={bet.openQuantity} //each need own open 
+                value={bet.valueQuantity} // each need own value
                 items={drinkQuantity} //can use same items
-                setOpen={setOpenQuantity}
-                setValue={setValueQuantity}
+                setOpen={()=>handleStateChange(bet.name, 'open', 'openQuantity')}
+                // setValue={()=>handleStateChange()}
+                onSelectItem={(item)=> {handleStateChange(bet.name, item, 'valueQuantity')}}
                 setItems={setDrinkQuantity}
               />
 
               <DropDownPicker 
-                open={openForm}
-                value={valueForm}
+                open={bet.openForm}
+                value={bet.valueForm}
                 items={drinkForm}
-                setOpen={setOpenForm}
-                setValue={setValueForm}
+                setOpen={()=>handleStateChange(bet.name, 'open', 'openForm')}
+                onSelectItem={(item)=> {handleStateChange(bet.name, item, 'valueForm')}}
                 setItems={setDrinkForm}
               />
-                {/* <TextInput
-                  onChangeText={text => setBetAmount(betAmount =>[...betAmount], {name: bet.data.name, bet:text})}
-                  value={betAmount.filter(bet=> {if(bet.name == bet.data.name) {return bet.bet}})}
-                  placeholder={bet.data.bet}
-                /> */}
               </View>
             )
           })}
+          <View style={{paddingBottom: hp('20%')}}>
 
+          </View>
           <View stlye={{ justifyContent: "center" }}>
             <View style={[styles.cardContainer]}>
               <View style={[styles.cardContent]}>
