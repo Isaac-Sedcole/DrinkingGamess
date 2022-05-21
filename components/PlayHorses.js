@@ -20,11 +20,9 @@ function PlayHorses(props) {
 
   const [currentButton, setCurrentButton] = useState("")
 
-  const [formValues, setFormValues] = useState([
-    {name: 'Dave', openQuantity: false, valueQuantity: '4', openForm: false, valueForm: 'sip'},
-    {name: 'Kate', openQuantity: false, valueQuantity: '1', openForm: false, valueForm: 'shot'}
-  ])
+  const [formValues, setFormValues] = useState([])
 
+  //base data for picklist
   const [drinkQuantity, setDrinkQuantity] = useState([
     {label: '1', value: '1'},
     {label: '2', value: '2'},
@@ -47,26 +45,27 @@ function PlayHorses(props) {
     {label: '19', value: '19'},
     {label: '20', value: '20'}
   ])
+  //base data for picklist
   const [drinkForm, setDrinkForm] = useState([
     {label: 'Sip', value: 'sip'},
     {label: 'Shot', value: 'shot'}
   ])
 
+  //base useform state
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       name: ''
     }
   })
+
+  //when the form is submitted create the required data
   const onSubmit = data => {
     setFormValues(listOfFormValues => {
       return [...listOfFormValues, { name: data.name, openQuantity: false, valueQuantity: null, openForm: false, valueForm: null }]
     })
   }
 
-  // useEffect(()=> {
-  //   setBetAmount([...listOfBets])
-  // },[listOfBets])
-
+  //does things for the multiplier button
   const buttonHandler = (buttonName) => {
     if (buttonName == currentButton) {
       if (buttonName == "X1") {
@@ -201,8 +200,10 @@ function PlayHorses(props) {
 
           {formValues && formValues.map(bet => {
             return (
-              <View style={{flex: 1, flexDirection: 'row'}} key={bet.name}>
-                <Text>{bet.name}</Text>
+              <View style={{flexDirection: 'row', width: wp('85%'), height: hp('10%'), paddingTop: hp('1%'), paddingBottom: hp('6%')}} key={bet.name}>
+                <View style={{width: wp('10%'), height: hp('10%'), justifyContent: 'space-evenly'}}>
+                  <Text>{bet.name}</Text>
+                </View>
                 <DropDownPicker 
                 open={bet.openQuantity} //each need own open 
                 value={bet.valueQuantity} // each need own value
@@ -211,6 +212,10 @@ function PlayHorses(props) {
                 // setValue={()=>handleStateChange()}
                 onSelectItem={(item)=> {handleStateChange(bet.name, item, 'valueQuantity')}}
                 setItems={setDrinkQuantity}
+                // style={{width: wp('10%'), height: hp('10%')}}
+                containerStyle={{width: wp('35%'), height: hp('10%')}}
+                // stickyHeader={true}
+                maxHeight={hp('5%')}
               />
 
               <DropDownPicker 
@@ -220,13 +225,15 @@ function PlayHorses(props) {
                 setOpen={()=>handleStateChange(bet.name, 'open', 'openForm')}
                 onSelectItem={(item)=> {handleStateChange(bet.name, item, 'valueForm')}}
                 setItems={setDrinkForm}
+                // style={{width: wp('35%'), height: hp('35%'), margin: wp('1%')}}
+                containerStyle={{width: wp('35%'), height: hp('10%')}}
+                // stickyHeader={true}
+                maxHeight={hp('5%')}
               />
               </View>
             )
           })}
-          <View style={{paddingBottom: hp('20%')}}>
 
-          </View>
           <View stlye={{ justifyContent: "center" }}>
             <View style={[styles.cardContainer]}>
               <View style={[styles.cardContent]}>
@@ -241,7 +248,7 @@ function PlayHorses(props) {
             </View>
           </View>
 
-          <Text>Play game for me</Text>
+          {/* <Text>Play game for me</Text> */}
 
         </View>
       </ScrollView>
@@ -258,13 +265,13 @@ const styles = StyleSheet.create({
   cardContainer: {
     margin: wp("1%"),
     width: wp("85%"),
-    height: hp("20%"),
+    height: hp("25%"),
     alignItems: "center",
   },
   cardContent: {
-    paddingVertical: wp('5%'),
+    // paddingVertical: wp('1%'),
     width: wp("60%"),
-    height: hp("6%"),
+    height: hp("10%"),
   },
   formBackground: {
     width: wp('85%'),
