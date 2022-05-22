@@ -1,4 +1,8 @@
 import React, {useState} from 'react'
+import { StyleSheet, Text, TouchableHighlight, View, Button } from 'react-native'
+import  WheelOfFortune  from 'react-native-wheel-of-fortune'
+// import knob from '../assets/images/knob.png'
+import knob from './ImageManager'
 
 import punishmentWheel from '../data/punishmentWheel'
 

@@ -27,7 +27,7 @@ function Games({ navigation }) {
         flexDirection: "column",
         alignItems: 'center'
       }]}>
-      {/* <View><Button onPress={() => nav2WHeel()} title={"Wheel"} /> </View> */}
+      <View><Button onPress={() => nav2WHeel()} title={"Wheel"} /> </View>
       <Card style={[styles.gamesDisplay]}>
         {gamesList.games.map(game => {
           return (
