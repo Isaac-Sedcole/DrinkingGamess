@@ -193,15 +193,15 @@ function PlayHorses(props) {
           </Card>
 
           <View>
-            <View>
+          </View>
+            <View style={{paddingTop: hp('2%')}}>
               <AppButton title="Reset list" onPress={() => resetList()} />
             </View>
-          </View>
 
           {formValues && formValues.map(bet => {
             return (
               <View style={{flexDirection: 'row', width: wp('85%'), height: hp('10%'), paddingTop: hp('1%'), paddingBottom: hp('6%')}} key={bet.name}>
-                <View style={{width: wp('10%'), height: hp('10%'), justifyContent: 'space-evenly'}}>
+                <View style={{width: wp('20%'), height: hp('10%'), justifyContent: 'center', paddingBottom: hp('4%')}}>
                   <Text>{bet.name}</Text>
                 </View>
                 <DropDownPicker 
@@ -213,9 +213,9 @@ function PlayHorses(props) {
                 onSelectItem={(item)=> {handleStateChange(bet.name, item, 'valueQuantity')}}
                 setItems={setDrinkQuantity}
                 // style={{width: wp('10%'), height: hp('10%')}}
-                containerStyle={{width: wp('35%'), height: hp('10%')}}
+                containerStyle={{width: wp('30%'), height: hp('10%'), paddingRight: wp('1%')}}
                 // stickyHeader={true}
-                maxHeight={hp('5%')}
+                maxHeight={hp('4%')}
               />
 
               <DropDownPicker 
@@ -226,9 +226,9 @@ function PlayHorses(props) {
                 onSelectItem={(item)=> {handleStateChange(bet.name, item, 'valueForm')}}
                 setItems={setDrinkForm}
                 // style={{width: wp('35%'), height: hp('35%'), margin: wp('1%')}}
-                containerStyle={{width: wp('35%'), height: hp('10%')}}
+                containerStyle={{width: wp('30%'), height: hp('10%')}}
                 // stickyHeader={true}
-                maxHeight={hp('5%')}
+                maxHeight={hp('4%')}
               />
               </View>
             )
@@ -275,7 +275,8 @@ const styles = StyleSheet.create({
   },
   formBackground: {
     width: wp('85%'),
-    height: hp('12%')
+    height: hp('8%'),
+    paddingBottom: hp('3%')
   },
 })
 
