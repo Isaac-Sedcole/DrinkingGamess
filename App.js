@@ -1,30 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import Games from './Games'
-import Game from './Game';
-import HouseRules from './HouseRules';
-import ShowRuleModal from './ShowRuleModal';
-import ShowHouseRuleModal from './ShowHouseRuleModal';
+import Games from './components/Games'
+import Game from './components/Game';
+import HouseRules from './components/HouseRules';
+import ShowRuleModal from './components/ShowRuleModal';
+import ShowHouseRuleModal from './components/ShowHouseRuleModal';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-import NavHouseRules from './NavHouseRules';
-import JustShowBack from './JustShowBack';
-import JustShowHouseRules from './JustShowHouseRules';
-import ShowKingsCupCustomRules from './ShowKingsCupCustomRules'
-import Horses from './Horses';
-import PlayHorses from './PlayHorses'
-import KingsCup from './KingsCup';
-import BeerPong from './BeerPong'
-import CheersGovernor from './CheersGovernor'
-import BoozeOrNoBooze from './BoozeOrNoBooze';
-import PunishmentWheel from './PunishmentWheel';
+import NavHouseRules from './components/NavHouseRules';
+import JustShowBack from './components/JustShowBack';
+import JustShowHouseRules from './components/JustShowHouseRules';
+import ShowKingsCupCustomRules from './components/ShowKingsCupCustomRules'
+import Horses from './components/Horses';
+import PlayHorses from './components/PlayHorses'
+import KingsCup from './components/KingsCup';
+import BeerPong from './components/BeerPong'
+import CheersGovernor from './components/CheersGovernor'
+import BoozeOrNoBooze from './components/BoozeOrNoBooze';
+import PunishmentWheel from './components/PunishmentWheel';
 
-import reducers from '../reducers'
+import reducers from './reducers'
 import { startClock } from 'react-native-reanimated';
 // import Navigator from '../routes/homeStack'
 // const AnimatedIcon = Animated.createAnimatedComponent(Icon)
