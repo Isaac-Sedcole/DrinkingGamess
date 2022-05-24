@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import punishmentWheel from '../data/punishmentWheel'
 import AppButton from './AppButton'
 import { useAnimatedRef } from "react-native-reanimated";
-import { StyleSheet, Text, TouchableHighlight, View, Button } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Card } from 'react-native-paper'
 import {
