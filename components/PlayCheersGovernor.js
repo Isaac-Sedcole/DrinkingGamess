@@ -17,12 +17,14 @@ function PlayCheersGovernor() {
   })
 
   const onSubmit = data => {
+    // console.log(data)
     setFormValues(listOfFormValues => {
       return [...listOfFormValues, { data }]
     })
   }
 
   const resetList = () => {
+    // console.log(formValues)
     setFormValues([])
   }
 
@@ -63,9 +65,9 @@ function PlayCheersGovernor() {
 
           {formValues && formValues.map(bet => {
             return (
-              <View key={bet.name}>
+              <View key={bet.data.name}>
                 <View>
-                  <Text>{bet.name}</Text>
+                  <Text>{bet.data.name}</Text>
                 </View>
               </View>
             )
