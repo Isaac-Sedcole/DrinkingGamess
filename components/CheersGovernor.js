@@ -57,7 +57,7 @@ function CheersGovernor(props) {
 
           <Text style={[styles.titleText]}>{gameName}</Text>
           <View>
-          {/* <AppButton onPress={() => props.navigation.navigate("Play horses")} title={'Start Game'} buttonColour={'red'} /> */}
+          <AppButton onPress={() => props.navigation.navigate("Play Cheers Governor")} title={'Start Game'} buttonColour={'red'} />
           </View>
 
           <View style={{ paddingTop: hp("2%") }}>

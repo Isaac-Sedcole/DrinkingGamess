@@ -24,6 +24,7 @@ import CheersGovernor from './components/CheersGovernor'
 import BoozeOrNoBooze from './components/BoozeOrNoBooze';
 import PunishmentWheel from './components/PunishmentWheel';
 import NoShowPunishment from './components/NoShowPunishment'
+import PlayCheersGovernor from './components/PlayCheersGovernor'
 
 import reducers from './reducers'
 import { startClock } from 'react-native-reanimated';
@@ -63,6 +64,7 @@ function App() {
           <Stack.Screen name="Beer Pong" component={BeerPong} />
           <Stack.Screen name="Cheers Governor" component={CheersGovernor} />
           <Stack.Screen name="Booze or no Booze" component={BoozeOrNoBooze} />
+          <Stack.Screen name="Play Cheers Governor" component={PlayCheersGovernor} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
