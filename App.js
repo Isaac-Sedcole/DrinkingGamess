@@ -23,6 +23,7 @@ import BeerPong from './components/BeerPong'
 import CheersGovernor from './components/CheersGovernor'
 import BoozeOrNoBooze from './components/BoozeOrNoBooze';
 import PunishmentWheel from './components/PunishmentWheel';
+import NoShowPunishment from './components/NoShowPunishment'
 
 import reducers from './reducers'
 import { startClock } from 'react-native-reanimated';
@@ -51,6 +52,7 @@ function App() {
         >
           <Stack.Screen options={{ header: props => <JustShowHouseRules {...props} /> }} name="Games" component={Games} />
           <Stack.Screen options={{ header: props => <JustShowBack {...props} /> }} name="House rules" component={HouseRules} />
+          <Stack.Screen options={{ header: props => <NoShowPunishment {...props} /> }} name="Punishment Wheel" component={PunishmentWheel} />
           <Stack.Screen name="Selected game" component={Game} />
           <Stack.Screen name="Show kings cup custom rules" component={ShowKingsCupCustomRules} />
           <Stack.Screen name="Showing a rule" component={ShowRuleModal} />
@@ -61,7 +63,6 @@ function App() {
           <Stack.Screen name="Beer Pong" component={BeerPong} />
           <Stack.Screen name="Cheers Governor" component={CheersGovernor} />
           <Stack.Screen name="Booze or no Booze" component={BoozeOrNoBooze} />
-          <Stack.Screen name="Punishment Wheel" component={PunishmentWheel} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
