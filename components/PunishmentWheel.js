@@ -25,9 +25,7 @@ function PunishmentWheel (props) {
   const scrollView = useRef()
   const[goToRuleModal, setGoToRuleModal] = useState(false)
   
-  const navigateToRuleModal = () => {
-      setGoToRuleModal(true)
-    }
+  
   const spinTheCarosel = () => {
     let number = Math.floor(Math.random() * punishWheel.length)
     let xPos = Math.round(number * windowWidth)
@@ -65,14 +63,14 @@ return (
                 // onScroll={handleScroll}
                 scrollEventThrottle={100}
                 >
-        {punishWheel.map(imageIndex => {
+        {punishWheel.map(punishmentObj => {
           return (
             <View
             style={{ width: windowWidth, height: 250 }}
-            key={imageIndex}
+            key={punishmentObj.id}
             >
                 <View style={styles.textContainer}>
-                    <AppButton onPress={props.navigation.navigate("Showing a house rule", { rule: punishWheel[imageIndex] })} title={punishWheel[imageIndex].name} />
+                    <AppButton onPress={()=> props.navigation.navigate("Showing a house rule", { rule: punishmentObj })} title={punishmentObj.name} />
                 </View>
             </View>
           );
@@ -98,12 +96,6 @@ return (
           })}
         </View> */}
     </View>
-    {showPunishment && 
-      <View>
-        <AppButton onPress={navigateToRuleModal} title={punishment.name}/>
-      </View>
-    }
-    {goToRuleModal && props.navigation.navigate("Showing a house rule", { rule: punishment })}
   </SafeAreaView>
 );
 }
