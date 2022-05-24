@@ -32,48 +32,59 @@ function NavHouseRules(props) {
 
     if(moreThanThree){
       return (
-        <View style={[styles.containerMultiMoreThanThree, {
-          flexDirection: "row",
-          alignItems: 'center',
-        }]}>
-          <View style={[styles.backButton]}>
-            <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
-          </View>
-          <View style={[styles.cardHousing]}>
-            <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
-              {props.houseRules.map(rule => {
-                return (
-                  <View key={rule.id} style={styles.houseRulesNav}>
-                    {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
-                  </View>
-                )
-              })}
+        <View style={{flexDirection: "column"}}>
+
+          <View style={[styles.containerMultiMoreThanThree, {
+            flexDirection: "row",
+            alignItems: 'center',
+          }]}>
+            <View style={[styles.backButton]}>
+              <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
             </View>
+            <View style={[styles.cardHousing]}>
+              <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
+                {props.houseRules.map(rule => {
+                  return (
+                    <View key={rule.id} style={styles.houseRulesNav}>
+                      {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
+                    </View>
+                  )
+                })}
+              </View>
+            </View>
+          </View>
+          <View style={[styles.houseRulesMainSpecial]}>
+              <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")} >Random Punishment</Icon.Button>
           </View>
         </View>
     )
     } else {
       return (
-        <View style={[styles.containerMulti, {
-          flexDirection: "row",
-          alignItems: 'center',
-        }]}>
-          <View style={[styles.backButton]}>
-            <Icon.Button onPress={() => props.navigation.popToTop()} name="arrow-left" />
-          </View>
-          <View style={[styles.cardHousing]}>
-            <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
-              {props.houseRules.map(rule => {
-                return (
-                  <View key={rule.id} style={styles.houseRulesNav}>
-                    {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
-                  </View>
-                )
-              })}
+        <View style={{flexDirection: "column"}}>
+
+          <View style={[styles.containerMulti, {
+            flexDirection: "row",
+            alignItems: 'center',
+          }]}>
+            <View style={[styles.backButton]}>
+              <Icon.Button onPress={() => props.navigation.popToTop()} name="arrow-left" />
+            </View>
+            <View style={[styles.cardHousing]}>
+              <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
+                {props.houseRules.map(rule => {
+                  return (
+                    <View key={rule.id} style={styles.houseRulesNav}>
+                      {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
+                    </View>
+                  )
+                })}
+              </View>
             </View>
           </View>
+          <View style={[styles.houseRulesMainSpecialV2]}>
+              <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")} >Random Punishment</Icon.Button>
+          </View>
         </View>
-      
     )
     }
 
@@ -81,16 +92,22 @@ function NavHouseRules(props) {
   } else {
     return (
       
+      <View style={{flexDirection: "column"}}>
 
-      <View style={[styles.containerSingle, {
-        flexDirection: "row",
-        alignItems: 'center'
-      }]}>
-        <View style={[styles.backButton]}>
-          <Icon.Button onPress={() => props.navigation.goBack() } name="arrow-left"/>
+        <View style={[styles.containerSingle, {
+          flexDirection: "row",
+          alignItems: 'center'
+        }]}>
+          <View style={[styles.backButton]}>
+            <Icon.Button onPress={() => props.navigation.goBack() } name="arrow-left"/>
+          </View>
+          <View style={[styles.houseRulesMain]}>
+            <Icon.Button onPress={() => props.navigation.navigate("House rules")} >Click here to add some house rules!</Icon.Button>
+          </View>
+          
         </View>
-        <View style={[styles.houseRulesMain]}>
-          <Icon.Button onPress={() => props.navigation.navigate("House rules")} >Click here to add some house rules!</Icon.Button>
+        <View style={[styles.houseRulesMainSpecial]}>
+            <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")} >Random Punishment</Icon.Button>
         </View>
       </View>
         
@@ -101,7 +118,7 @@ function NavHouseRules(props) {
 const styles = StyleSheet.create({
   containerSingle: {
     flex: 1,
-    marginTop: hp("7%"),
+    marginTop: hp("5%"),
     marginLeft: wp("5%"),
     height: hp("50%"),
     paddingBottom: hp("3%")
@@ -139,8 +156,24 @@ const styles = StyleSheet.create({
   houseRulesMain: {
     marginLeft: 5,
     justifyContent: "center",
+    // paddingVertical: hp('4%'),
     width: wp("80%"),
-    height: hp("15%")
+    height: hp("7%")
+  },
+  houseRulesMainSpecial: {
+    marginHorizontal: wp('5%'),
+    justifyContent: "center",
+    // paddingVertical: hp('4%'),
+    width: wp("90%"),
+    height: hp("7%")
+  },
+  houseRulesMainSpecialV2: {
+    marginHorizontal: wp('5%'),
+    justifyContent: "center",
+    // paddingVertical: hp('4%'),
+    width: wp("90%"),
+    height: hp("7%"),
+    marginTop: hp('2%')
   }
 });
 

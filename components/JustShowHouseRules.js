@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-
+import AppButton from './AppButton'
 
 function JustShowHouseRules(props) {
 
@@ -48,6 +48,9 @@ function JustShowHouseRules(props) {
               )
             })}
           </View>
+          <View style={[styles.houseRulesMain]}>
+            <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")} >Random Punishment</Icon.Button>
+          </View>
         </View>
       </View>
     
@@ -71,6 +74,9 @@ function JustShowHouseRules(props) {
               )
             })}
           </View>
+          <View style={[styles.houseRulesMain]}>
+            <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")} >Random Punishment</Icon.Button>
+          </View>
         </View>
       </View>
     
@@ -80,11 +86,14 @@ function JustShowHouseRules(props) {
   } else {
     return (
         <View style={[styles.containerSingle, {
-          flexDirection: "row",
+          flexDirection: "column",
           alignItems: "center"
         }]}>
           <View style={[styles.houseRulesMain]}>
             <Icon.Button onPress={() => props.navigation.navigate("House rules")} >Click here to add some house rules!</Icon.Button>
+          </View>
+          <View style={[styles.houseRulesMain]}>
+            <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")} >Random Punishment</Icon.Button>
           </View>
         </View>
     )
@@ -94,8 +103,8 @@ function JustShowHouseRules(props) {
 const styles = StyleSheet.create({
   containerSingle: {
     flex: 1,
-    marginTop: hp("7%"),
-    marginLeft: wp("5%"),
+    marginTop: hp("5%"),
+    marginHorizontal: wp("5%"),
     height: hp("50%")
   },
   containerMulti: {
@@ -126,7 +135,7 @@ const styles = StyleSheet.create({
   houseRulesMain: {
     justifyContent: "center",
     width: wp("90%"),
-    height: hp("20%")
+    height: hp("7%")
   },
   houseRulesMainAppear: {
     justifyContent: "center",

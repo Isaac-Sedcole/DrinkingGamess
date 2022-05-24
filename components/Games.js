@@ -18,16 +18,16 @@ function Games({ navigation }) {
       navigation.navigate("Selected game", { game })}
     }
 
-    const nav2WHeel = () => {
-      navigation.navigate("Punishment Wheel")
-    }
+    // const nav2WHeel = () => {
+    //   navigation.navigate("Punishment Wheel")
+    // }
     
     return (
       <View style={[styles.container, {
         flexDirection: "column",
         alignItems: 'center'
       }]}>
-      <View><Button onPress={() => nav2WHeel()} title={"Wheel"} /></View>
+      {/* <View><Button onPress={() => nav2WHeel()} title={"Wheel"} /></View> */}
       <Card style={[styles.gamesDisplay]}>
         {gamesList.games.map(game => {
           return (
@@ -45,7 +45,7 @@ function Games({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: wp("10%"),
+    paddingVertical: wp("35%"),
     alignItems: 'center'
   },
   gamesDisplay: {
