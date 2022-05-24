@@ -14,7 +14,8 @@ import {
   ImageBackground,
   Animated,
   useWindowDimensions,
-  Button 
+  Button,
+  Easing 
 } from "react-native";
 
 
@@ -24,30 +25,101 @@ function PunishmentWheel (props) {
   const { width: windowWidth } = useWindowDimensions();
   const scrollView = useRef()
   const[goToRuleModal, setGoToRuleModal] = useState(false)
+
+  const[bigRandomList, setBigRandomList] = useState([])
+  const [manualSpin, setManualSpin] = useState(false)
+
+  useEffect(()=>{
+    setBigRandomList([])
+    makeBigArr()
+  },[])
+
+  const makeBigArr = () => {
+    let tempList = []
+    for(let i = 0; i<5; i++){
+      tempList.push.apply(tempList, punishWheel)
+    }
+
+    for(let i = 0; i< tempList.length; i++) {
+      tempList[i].id += Math.floor(Math.random() * 1000)
+    }
+    
+    for (let i = tempList.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [tempList[i], tempList[j]] = [tempList[j], tempList[i]];
+  }
+    
+    setBigRandomList(tempList)
+  }
+
+  /** TRYING TO SLOW THE SCROLLING */
+    const scrollRef = useRef()
+    const scrollAnimation = useRef(new Animated.Value(0))
+    const [contentHeight, setContentHeight] = useState(0)
   
+    useEffect(() => {
+      scrollAnimation.current.addListener((animation) => {
+        scrollRef.current &&
+          scrollRef.current.scrollTo({
+            y: animation.value,
+            animated: false,
+          })
+      })
+      if (contentHeight) {
+        Animated.timing(scrollAnimation.current, {
+          toValue: contentHeight,
+          duration: contentHeight * 100,
+          useNativeDriver: true,
+          easing: Easing.linear,
+        }).start()
+      }
+      return () => scrollAnimation.current.removeAllListeners()
+    }, [contentHeight])
+  /** HAS ENDED */
   
+  //each time the button is pushed - randomize and create the list
   const spinTheCarosel = () => {
-    let number = Math.floor(Math.random() * punishWheel.length)
+    // setNewList(!newList)
+    let number = Math.floor(Math.random() * bigRandomList.length)
     let xPos = Math.round(number * windowWidth)
-    scrollView.current.scrollTo({ x: xPos, y: 0, animated: true })
+    scrollRef.current.scrollTo({ x: xPos, y: 0, animated: true })
+    // scrollView.current.scrollTo({ x: xPos, y: 0, animated: true })
 }
 
 const handleScroll= (event) => {
-  console.log(event.nativeEvent.contentOffset.y);
+  // console.log(event.nativeEvent.contentOffset.y);
+}
+
+const manualSpinMethod = () => {
+  setManualSpin(!manualSpin)
 }
 
 return (
   <SafeAreaView style={styles.container}>
-    <AppButton onPress={spinTheCarosel} title='spin'/>
+    <View style={{paddingBottom: hp('2%')}}>
+      <AppButton onPress={manualSpinMethod} title={manualSpin ? 'Deactive Manual Spin' : 'Activate Manual Spin'}/>
+    </View>
+    <View style={{paddingBottom: hp('2%')}}>
+      <AppButton onPress={spinTheCarosel} title='spin'/>
+    </View>
     <View style={styles.scrollContainer}>
       <ScrollView
-        ref={scrollView}
+        // ref={scrollView}
+        ref={scrollRef}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={handleScroll}
-        scrollEnabled={false}
-        
-        // decelerationRate='slow'
+        scrollEnabled={manualSpin}
+        removeClippedSubviews={true}
+        onContentSizeChange={(width, height) => {
+          setContentHeight(height)
+        }}
+        onScrollBeginDrag={() => scrollAnimation.current.stopAnimation()}
+
+        decelerationRate='normal'
+        endFillColor={'blue'}
+
+        // contentOffset={0, 0}
         // snapToInterval={100}
         // snapToAlignment='center'
         // ref={aref}
@@ -63,15 +135,17 @@ return (
                 // onScroll={handleScroll}
                 scrollEventThrottle={100}
                 >
-        {punishWheel.map(punishmentObj => {
+        {bigRandomList.map(punishmentObj => {
           return (
             <View
-            style={{ width: windowWidth, height: 250 }}
+            style={{ width: windowWidth, height: hp('40%') }}
             key={punishmentObj.id}
             >
+              {/* <Card style={{height: hp('20%'), width: windowWidth}}> */}
                 <View style={styles.textContainer}>
                     <AppButton onPress={()=> props.navigation.navigate("Showing a house rule", { rule: punishmentObj })} title={punishmentObj.name} />
                 </View>
+              {/* </Card> */}
             </View>
           );
         })}
@@ -108,7 +182,7 @@ container: {
   justifyContent: "center"
 },
 scrollContainer: {
-  height: 300,
+  height: hp('50%'),
   alignItems: "center",
   justifyContent: "center"
 },
@@ -123,9 +197,9 @@ card: {
 },
 textContainer: {
   backgroundColor: "rgba(0,0,0, 0.7)",
-  paddingHorizontal: 24,
-  paddingVertical: 8,
-  borderRadius: 5
+  paddingHorizontal: wp('1%'),
+  paddingVertical: hp('8%'),
+  borderRadius: wp('2%')
 },
 infoText: {
   color: "white",
