@@ -1,192 +1,158 @@
-import React, {useState, useEffect} from 'react'
-// import 'react-native-reanimated'
+
+import React, { useEffect, useRef, useState } from "react";
+import punishmentWheel from '../data/punishmentWheel'
+import AppButton from './AppButton'
+import { useAnimatedRef } from "react-native-reanimated";
 import { StyleSheet, Text, TouchableHighlight, View, Button } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Card } from 'react-native-paper'
-//import  WheelOfFortune  from 'react-native-wheel-of-fortune'
-// import knob from '../assets/images/knob.png'
-//mport knob from './ImageManager'//
+import {
+  SafeAreaView,
+  ScrollView,
+  Text,
+  StyleSheet,
+  View,
+  ImageBackground,
+  Animated,
+  useWindowDimensions,
+  Button 
+} from "react-native";
 
-// import Carousel from 'react-native-reanimated-carousel';
-// global.__reanimatedWorkletInit = () => {}
-import punishmentWheel from '../data/punishmentWheel'
-import AppButton from './AppButton'
 
-function PunishmentWheel(props) {
+function PunishmentWheel (props) {
+  
   const punishWheel = punishmentWheel.punishmentWheel
-
-  const [showPunishment, setShowPunishment] = useState(false)
-  const [punishment, setPunishment] = useState(null)
-
+  const { width: windowWidth } = useWindowDimensions();
+  const scrollView = useRef()
   const[goToRuleModal, setGoToRuleModal] = useState(false)
-
-  useEffect(()=>{
-    setShowPunishment(false)
-    setPunishment(null)
-    setGoToRuleModal(false)
-  }, [])
-
-  const selectRandomPunishment = () => {
-    console.log(punishWheel)
-    let randPunishment = Math.floor(Math.random() * punishWheel.length)
-    // console.log(randPunishment, punishWheel[randPunishment])
-    setPunishment(punishWheel[randPunishment])
-    setShowPunishment(true)
-    setGoToRuleModal(false)
-  }
-
+  
   const navigateToRuleModal = () => {
-    setGoToRuleModal(true)
-  }
+      setGoToRuleModal(true)
+    }
+  const spinTheCarosel = () => {
+    let number = Math.floor(Math.random() * punishWheel.length)
+    let xPos = Math.round(number * windowWidth)
+    scrollView.current.scrollTo({ x: xPos, y: 0, animated: true })
+}
 
+const handleScroll= (event) => {
+  console.log(event.nativeEvent.contentOffset.y);
+}
 
-  return(
-    <View style={[styles.container, {
-      flexDirection: "column",
-      alignItems: 'center'
-    }]}>
-      <View style={{paddingBottom: hp('5%')}}>
-        <AppButton onPress={selectRandomPunishment} title='Get Punished'/>
-      </View>
-      {showPunishment && 
+return (
+  <SafeAreaView style={styles.container}>
+    <AppButton onPress={spinTheCarosel} title='spin'/>
+    <View style={styles.scrollContainer}>
+      <ScrollView
+        ref={scrollView}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        onMomentumScrollEnd={handleScroll}
+        scrollEnabled={false}
+        
+        // decelerationRate='slow'
+        // snapToInterval={100}
+        // snapToAlignment='center'
+        // ref={aref}
+        // onScroll={Animated.event([
+          //   {
+            //     nativeEvent: {
+              //       contentOffset: {
+                //         x: scrollX
+                //       }
+                //     }
+                //   }
+                // ]),}
+                // onScroll={handleScroll}
+                scrollEventThrottle={100}
+                >
+        {punishWheel.map(imageIndex => {
+          return (
+            <View
+            style={{ width: windowWidth, height: 250 }}
+            key={imageIndex}
+            >
+                <View style={styles.textContainer}>
+                    <AppButton onPress={props.navigation.navigate("Showing a house rule", { rule: punishWheel[imageIndex] })} title={punishWheel[imageIndex].name} />
+                </View>
+            </View>
+          );
+        })}
+      </ScrollView>
+      {/* <View style={styles.indicatorContainer}>
+        {images.map((image, imageIndex) => {
+          const width = scrollX.interpolate({
+            inputRange: [
+              windowWidth * (imageIndex - 1),
+              windowWidth * imageIndex,
+              windowWidth * (imageIndex + 1)
+            ],
+            outputRange: [8, 16, 8],
+            extrapolate: "clamp"
+          });
+          return (
+            <Animated.View
+            key={imageIndex}
+            style={[styles.normalDot, { width }]}
+            />
+            );
+          })}
+        </View> */}
+    </View>
+    {showPunishment && 
       <View>
         <AppButton onPress={navigateToRuleModal} title={punishment.name}/>
       </View>
-      }
-      {goToRuleModal && props.navigation.navigate("Showing a house rule", { rule: punishment })}
-      
-      {/* <Carousel
-        width={300}
-        height={150}
-        data={[1, 2, 3]}
-        renderItem={({ item }) => item}/> */}
-    </View>
-  )
-
+    }
+    {goToRuleModal && props.navigation.navigate("Showing a house rule", { rule: punishment })}
+  </SafeAreaView>
+);
 }
+
+/** TEMP */
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: wp("15%"),
-    alignItems: 'center'
-  },
+container: {
+  flex: 1,
+  alignItems: "center",
+  justifyContent: "center"
+},
+scrollContainer: {
+  height: 300,
+  alignItems: "center",
+  justifyContent: "center"
+},
+card: {
+  flex: 1,
+  marginVertical: 4,
+  marginHorizontal: 16,
+  borderRadius: 5,
+  overflow: "hidden",
+  alignItems: "center",
+  justifyContent: "center"
+},
+textContainer: {
+  backgroundColor: "rgba(0,0,0, 0.7)",
+  paddingHorizontal: 24,
+  paddingVertical: 8,
+  borderRadius: 5
+},
+infoText: {
+  color: "white",
+  fontSize: 16,
+  fontWeight: "bold"
+},
+normalDot: {
+  height: 8,
+  width: 8,
+  borderRadius: 4,
+  backgroundColor: "silver",
+  marginHorizontal: 4
+},
+indicatorContainer: {
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center"
+}
 });
+
 export default PunishmentWheel
-
-// https://www.npmjs.com/package/react-native-reanimated-carousel
-
-// CSGO case slide code (JS)
-// var cardList 	= $('.cardList').first(), 
-//     cards 		= $('.card'), 
-//     speed 		= 1000,
-//     width 		= 100, 
-//     randomize 	= true, 
-//     distance 	= 20 * width 
-// ;
-
-// for (var i = 0; i < 50; i++) {
-//     cards.clone().appendTo(cardList);
-// }
-
-// function spin() {
-//     var newMargin = 0, newDistance = distance;
-//     if (randomize) {
-//         newDistance = Math.floor(Math.random() * cards.length * 5);
-// 		    newDistance += cards.length * 10;
-//         var rand = Math.floor((Math.random()*100)+1);
-//         newDistance *= rand;
-//     } 
-// 	newMargin = -(newDistance);
-//     cards.first().animate({
-//         marginLeft: newMargin
-//     }, 7500);
-// }
-
-// $('#spin').click(function() {
-//     //cards.first().css('margin-left', 0);
-//     setTimeout(spin,500);
-//     return false;
-// });
-
-// CSGO case slide code (CSS)
-// * {
-//   box-sizing: border-box;
-//   padding: 0;
-//   margin: 0;
-// }
-
-// .cardList {
-//   height: 100px;
-//   width: 302px;
-//   position: relative;
-//   margin: 10px;
-//   border: 1px solid #33e;
-//   overflow: hidden;
-//   white-space: nowrap;
-// }
-
-// .card {
-//   display: inline-block;
-//   text-align: center;
-//   height: 100px;
-//   width: 100px;
-//   line-height: 100px;
-//   background-color: #99e;
-//   font-family: monospace;
-//   font-size: 2em;
-//   color: #444;
-//   border-left: 1px solid #33e;
-//   border-right: 1px solid #33e;
-// }
-
-// .cardList::before,
-// .cardList::after {
-//   content: '';
-//   display: block;
-//   z-index: 100;
-//   width: 0px;
-//   height: 0px;
-//   transform: translateX(-50%);
-//   border-left: 8px solid transparent;
-//   border-right: 8px solid transparent;
-// }
-
-// .cardList::before {
-//   position: absolute;
-//   top: 0px;
-//   left: 50%;
-//   border-top: 12px solid #33e;
-// }
-
-// .cardList::after {
-//   position: absolute;
-//   bottom: 0px;
-//   left: 50%;
-//   border-bottom: 12px solid #33e;
-// }
-
-// .common {
-//   background-color: green;
-//   width: 200px;
-// }
-// .rare {
-//   background-color: lightblue;
-//   width: 100px;
-// }
-// .mythical {
-//   background-color: yellow;
-//   width: 50px;
-// }
-// .legendary {
-//   background-color: orange;
-//   width: 10px;
-// }
-
-// CSGO case opening code (HTML)
-{/* <div class="cardList"><!--
-    --><div class="card common">Common</div><!--
-    --><div class="card rare">Rare</div><!--
-    --><div class="card mythical">M</div><!--
-    --><div class="card legendary">L</div><!--
---></div>
-<button id="spin">Spin</button> */}
