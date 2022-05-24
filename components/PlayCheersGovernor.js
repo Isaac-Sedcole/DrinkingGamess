@@ -59,19 +59,24 @@ function PlayCheersGovernor() {
             </View>
           </Card>
 
-          <View style={{paddingTop: hp('2%')}}>
+          <View style={{paddingVertical: hp('2%')}}>
               <AppButton title="Reset list" onPress={() => resetList()} />
           </View>
+          
 
           {formValues && formValues.map(bet => {
             return (
-              <View key={bet.data.name}>
-                <View>
+              <View key={bet.data.name} style={[styles.container, {
+                flexDirection: "column",
+                alignItems: 'center'
+              }]}>
+                <Card style={[styles.gamesDisplay]}>
                   <Text>{bet.data.name}</Text>
-                </View>
+                </Card>
               </View>
             )
           })}
+          
         </View>
       </ScrollView>
 
@@ -83,8 +88,8 @@ function PlayCheersGovernor() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: wp("5%"),
-    paddingBottom: hp("2%"),
+    // paddingTop: wp(".1%"),
+    paddingBottom: hp("1%"),
   },
   cardContainer: {
     margin: wp("1%"),
@@ -101,6 +106,13 @@ const styles = StyleSheet.create({
     width: wp('85%'),
     height: hp('8%'),
     paddingBottom: hp('3%')
+  },
+  gamesDisplay: {
+    paddingLeft: wp('8%'),
+    paddingTop: hp('2%'),
+    borderRadius: wp("5%"),
+    width: wp("90%"),
+    height: hp("6.5%")
   },
 })
 
