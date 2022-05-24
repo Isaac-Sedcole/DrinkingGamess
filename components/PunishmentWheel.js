@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+// import 'react-native-reanimated'
 import { StyleSheet, Text, TouchableHighlight, View, Button } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Card } from 'react-native-paper'
@@ -6,6 +7,8 @@ import { Card } from 'react-native-paper'
 // import knob from '../assets/images/knob.png'
 //mport knob from './ImageManager'//
 
+// import Carousel from 'react-native-reanimated-carousel';
+// global.__reanimatedWorkletInit = () => {}
 import punishmentWheel from '../data/punishmentWheel'
 import AppButton from './AppButton'
 
@@ -51,6 +54,12 @@ function PunishmentWheel(props) {
       </View>
       }
       {goToRuleModal && props.navigation.navigate("Showing a house rule", { rule: punishment })}
+      
+      {/* <Carousel
+        width={300}
+        height={150}
+        data={[1, 2, 3]}
+        renderItem={({ item }) => item}/> */}
     </View>
   )
 

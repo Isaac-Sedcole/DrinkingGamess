@@ -27,10 +27,10 @@ import NoShowPunishment from './components/NoShowPunishment'
 import PlayCheersGovernor from './components/PlayCheersGovernor'
 
 import reducers from './reducers'
-import { startClock } from 'react-native-reanimated';
+// import 'react-native-reanimated';
 // import Navigator from '../routes/homeStack'
 // const AnimatedIcon = Animated.createAnimatedComponent(Icon)
-
+// global.__reanimatedWorkletInit = () => {}
 
 // You will normally use a combination of flexDirection, alignItems, and justifyContent to achieve the right layout.
 
