@@ -98,7 +98,7 @@ function NoShowPunishment(props) {
 const styles = StyleSheet.create({
   containerSingle: {
     flex: 1,
-    marginTop: hp("5%"),
+    marginTop: hp("7%"),
     marginLeft: wp("5%"),
     height: hp("50%"),
     paddingBottom: hp("3%")
