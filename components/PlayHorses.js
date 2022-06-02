@@ -13,6 +13,8 @@ function PlayHorses(props) {
 
   const [sound, setSound] = useState()
   const [turnMusicOff, setTurnMusicOff] = useState(false)
+  
+  /** const [buttons, setButtons] = useState([{name: 'X1', selected: false}, {name: 'X2', selected: false}, {name: 'X4', selected: false}]) */
 
   const [onePressed, setOnePressed] = useState(false)
   const [twoPressed, setTwoPressed] = useState(false)
@@ -66,6 +68,16 @@ function PlayHorses(props) {
   }
 
   //does things for the multiplier button
+  
+  /** const buttonHandler = (buttonName) => {
+    for(let i = 0; i< buttons.length; i++) {
+	    if(buttons[i].name == buttonName) {
+		    setButtons(currentButtonData => {
+			    buttons[i].selected = !buttons[i].selected
+			    return currentButtonData
+		    })
+	    }
+  } */
   const buttonHandler = (buttonName) => {
     if (buttonName == currentButton) {
       if (buttonName == "X1") {
@@ -158,6 +170,13 @@ function PlayHorses(props) {
           alignItems: 'center'
         }]}>
           <View style={{ flex: 1, flexDirection: 'row', width: wp('85%') }}>
+            {/** {buttons.map(multiplierButton => {
+		          return (
+			          <View style={{ width: wp('28.33%') }} key={multiplierButton.name}>
+				          <AppButton title={multiplierButton.name} onPress{() => buttonHandler(multiplierButton.name)} buttonColour={multiplierButton.selected ?'#2196F3' : '#216bf3'} />
+			          </View>
+		          )
+	          })} */}
             <View style={{ width: wp('28.33%') }}>
               <AppButton title="X1" onPress={() => buttonHandler("X1")} buttonColour={onePressed ? '#2196F3' : '#216bf3'} />
             </View>
