@@ -70,7 +70,7 @@ function BoozeOrNoBooze(props) {
                   <View style={[styles.cardContainer]}>
                     <View style={[styles.cardContent]}>
                       <AppButton onPress={activateShowRuleModal} title='Show Rules' />
-                      {showRuleModal && <Text>{ruleDescObj}</Text>}
+                      {showRuleModal && <Text style={[styles.rulesText]}>{ruleDescObj}</Text>}
                     </View>
                   </View>
                 </View>
@@ -90,6 +90,7 @@ function BoozeOrNoBooze(props) {
               {showRuleModal && <Text style={[styles.descriptionText]}>{currentRule.desc}</Text>}
             </View> */}
           </View>
+          {/** {showRuleModal && <Text style={[styles.rulesText]}>{ruleDescObj}</Text>} */}
         </View>
       </ScrollView>
     </>
