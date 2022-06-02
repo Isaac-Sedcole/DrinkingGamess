@@ -130,6 +130,8 @@ const styles = StyleSheet.create({
   }
 });
 
+//NEED TO REDUCE FONT SIZE OF CARD TITLE OR EXPAND THE AREA IT CAN TAKE TO DISPLAY THE RULE NAME IN TEXT
+
 // const mapDispatchToProps = dispatch => {
 //   let actions = bindActionCreators({setHouseRules})
 //   return {...actions, dispatch}
