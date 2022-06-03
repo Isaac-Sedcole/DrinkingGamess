@@ -103,11 +103,13 @@ const styles = StyleSheet.create({
   cardContainer: {
     margin: wp("1%"),
     width: wp("42.5%"),
-    height: hp("20%"),
-    alignItems: "center"
+    height: hp("15%"),
+    justifyContent: 'center',
+    paddingHorizontal: wp('2%')
   },
   cardTitle: {
-    fontSize: wp("1%")
+    fontSize: wp("1%"),
+    justifyContent: 'center'
   },
   cardContent: {
     width: wp("40%"),

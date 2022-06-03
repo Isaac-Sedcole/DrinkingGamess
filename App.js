@@ -62,8 +62,7 @@ function App() {
           <Stack.Screen name="Play horses" component={PlayHorses}/>
           <Stack.Screen name="Kings Cup" component={KingsCup} />
           <Stack.Screen name="Beer Pong" component={BeerPong} />
-          <Stack.Screen name="Cheers Governor" component={CheersGovernor} />
-          <Stack.Screen name="Booze or no Booze" component={BoozeOrNoBooze} /> 
+          <Stack.Screen name="Cheers Governor" component={CheersGovernor} />          
           <Stack.Screen name="Play Cheers Governor" component={PlayCheersGovernor} />
         </Stack.Navigator>
       </NavigationContainer>
