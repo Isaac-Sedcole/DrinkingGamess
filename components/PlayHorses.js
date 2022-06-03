@@ -14,13 +14,13 @@ function PlayHorses(props) {
   const [sound, setSound] = useState()
   const [turnMusicOff, setTurnMusicOff] = useState(false)
   
-  /** const [buttons, setButtons] = useState([{name: 'X1', selected: false}, {name: 'X2', selected: false}, {name: 'X4', selected: false}]) */
+  const [buttons, setButtons] = useState([{name: 'X1', selected: false}, {name: 'X2', selected: false}, {name: 'X4', selected: false}])
 
-  const [onePressed, setOnePressed] = useState(false)
-  const [twoPressed, setTwoPressed] = useState(false)
-  const [fourPressed, setFourPressed] = useState(false)
+  // const [onePressed, setOnePressed] = useState(false)
+  // const [twoPressed, setTwoPressed] = useState(false)
+  // const [fourPressed, setFourPressed] = useState(false)
 
-  const [currentButton, setCurrentButton] = useState("")
+  // const [currentButton, setCurrentButton] = useState("")
 
   const [formValues, setFormValues] = useState([])
 
@@ -69,40 +69,37 @@ function PlayHorses(props) {
 
   //does things for the multiplier button
   
-  /** const buttonHandler = (buttonName) => {
-    for(let i = 0; i< buttons.length; i++) {
-	    if(buttons[i].name == buttonName) {
-		    setButtons(currentButtonData => {
-			    buttons[i].selected = !buttons[i].selected
-			    return currentButtonData
-		    })
-	    }
-  } */
-  const buttonHandler = (buttonName) => {
-    if (buttonName == currentButton) {
-      if (buttonName == "X1") {
-        setOnePressed(false)
-      } else if (buttonName == "X2") {
-        setTwoPressed(false)
-      } else {
-        setFourPressed(false)
+   const buttonHandler = (buttonName) => {
+    let previousTrueButton = ''
+    let allFalse = true
+    for(let i = 0; i< buttons.length; i++){
+      if(buttons[i].selected){
+        allFalse = false
+        previousTrueButton = buttons[i].name
       }
+    }
+    if(allFalse) {
+      setButtonFunc(buttonName)
     } else {
-      if (buttonName == "X1") {
-        setOnePressed(true)
-        setTwoPressed(false)
-        setFourPressed(false)
-        setCurrentButton("X1")
-      } else if (buttonName == "X2") {
-        setOnePressed(false)
-        setTwoPressed(true)
-        setFourPressed(false)
-        setCurrentButton("X2")
-      } else {
-        setOnePressed(false)
-        setTwoPressed(false)
-        setFourPressed(true)
-        setCurrentButton("X4")
+        for(let i = 0; i< buttons.length; i++) {
+            setButtons(currentButtonData => {
+              currentButtonData[i].selected = false
+              return [...currentButtonData]
+            })
+        }
+        if(buttonName != previousTrueButton) {
+          setButtonFunc(buttonName)
+        }
+    }
+  } 
+
+  const setButtonFunc = (buttonName) => {
+    for(let i = 0; i< buttons.length; i++) {
+      if(buttons[i].name == buttonName) {
+        setButtons(currentButtonData => {
+          currentButtonData[i].selected = !currentButtonData[i].selected
+          return [...currentButtonData]
+        })
       }
     }
   }
@@ -170,14 +167,15 @@ function PlayHorses(props) {
           alignItems: 'center'
         }]}>
           <View style={{ flex: 1, flexDirection: 'row', width: wp('85%') }}>
-            {/** {buttons.map(multiplierButton => {
+            {buttons.map(multiplierButton => {
 		          return (
 			          <View style={{ width: wp('28.33%') }} key={multiplierButton.name}>
-				          <AppButton title={multiplierButton.name} onPress{() => buttonHandler(multiplierButton.name)} buttonColour={multiplierButton.selected ?'#2196F3' : '#216bf3'} />
+                  {console.log(multiplierButton.selected, multiplierButton.name)}
+				          <AppButton title={multiplierButton.name} onPress={() => buttonHandler(multiplierButton.name)} buttonColour={multiplierButton.selected ? '#2196F3' : '#216bf3'} />
 			          </View>
 		          )
-	          })} */}
-            <View style={{ width: wp('28.33%') }}>
+	          })}
+            {/* <View style={{ width: wp('28.33%') }}>
               <AppButton title="X1" onPress={() => buttonHandler("X1")} buttonColour={onePressed ? '#2196F3' : '#216bf3'} />
             </View>
             <View style={{ width: wp('28.33%') }}>
@@ -185,7 +183,7 @@ function PlayHorses(props) {
             </View>
             <View style={{ width: wp('28.33%') }}>
               <AppButton title="X4" onPress={() => buttonHandler("X4")} buttonColour={fourPressed ? '#2196F3' : '#216bf3'} />
-            </View>
+            </View> */}
           </View>
           <Card style={[styles.formBackground]}>
             <View>
