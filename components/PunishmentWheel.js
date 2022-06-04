@@ -35,20 +35,26 @@ function PunishmentWheel (props) {
   },[])
 
   const makeBigArr = () => {
+
     let tempList = []
+    // console.log('1', tempList)
+
     for(let i = 0; i<5; i++){
       tempList.push.apply(tempList, punishWheel)
     }
 
-    for(let i = 0; i< tempList.length; i++) {
-      tempList[i].id += Math.floor(Math.random() * 1000)
-    }
+    // console.log('2' ,tempList)
     
     for (let i = tempList.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [tempList[i], tempList[j]] = [tempList[j], tempList[i]];
-  }
+    }
     
+    // for(let i = 0; i< tempList.length; i++) {
+    //   tempList[i].id = Math.floor(Math.random() * 10000)
+    // }
+    
+
     setBigRandomList(tempList)
   }
 
@@ -84,6 +90,7 @@ function PunishmentWheel (props) {
     let xPos = Math.round(number * windowWidth)
     scrollRef.current.scrollTo({ x: xPos, y: 0, animated: true })
     // scrollView.current.scrollTo({ x: xPos, y: 0, animated: true })
+    // console.log('#'+(Math.random()*(1<<24)|0).toString(16))
 }
 
 const handleScroll= (event) => {
@@ -93,6 +100,19 @@ const handleScroll= (event) => {
 const manualSpinMethod = () => {
   setManualSpin(!manualSpin)
 }
+
+
+// '#'+(Math.random()*(1<<24)|0).toString(16)
+
+
+// const generateRandomColour = () => {
+//   let maxVal = 0xFFFFFF; // 16777215
+//   let randomNumber = Math.random() * maxVal; 
+//   randomNumber = Math.floor(randomNumber);
+//   randomNumber = randomNumber.toString(16);
+//   let randColor = randomNumber.padStart(6, 0);
+//   return randColor
+// }
 
 return (
   <SafeAreaView style={styles.container}>
@@ -138,11 +158,12 @@ return (
         {bigRandomList.map(punishmentObj => {
           return (
             <View
-            style={{ width: windowWidth, height: hp('40%') }}
-            key={punishmentObj.id}
+            style={{ width: windowWidth, height: hp('21%')}}
+            key={punishmentObj.id + Math.floor(Math.random() * 25946201)}
             >
+              
               {/* <Card style={{height: hp('20%'), width: windowWidth}}> */}
-                <View style={styles.textContainer}>
+                <View style={[styles.textContainer, {backgroundColor: '#'+(Math.random()*(1<<24)|0).toString(16)}]}>
                     <AppButton onPress={()=> props.navigation.navigate("Showing a house rule", { rule: punishmentObj })} title={punishmentObj.name} />
                 </View>
               {/* </Card> */}
