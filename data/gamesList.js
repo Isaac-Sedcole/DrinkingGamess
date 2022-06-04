@@ -152,9 +152,11 @@ export default {
       gameDuration: "10 mins",
       itemsRequired: ["Shot glasses"],
       explanationBlurb: "Try to guess which is alcohol and which is not by the reaction of your friends",
-      rules: {},
-      customRules: ["adRules"],
-      ruleDescription: "Fill as many shot glasses as you like, half with water and half with clear liquor (like gin or vodka). Choose someone to start, this person picks a shot glass at random and drinks it. The person to their left has to guess whether they drank alcohol or water based on their reaction. If the guesser is correct, the drinker must pick another shot glass and drink it. The next person to guess is then moved one more person to the left. If the guesser is wrong, they must now pick a glass to drink and the person to their left guesses."
+      rules: {
+        rules: "Fill as many shot glasses as you like, half with water and half with clear liquor (like gin or vodka). Choose someone to start, this person picks a shot glass at random and drinks it. The person to their left has to guess whether they drank alcohol or water based on their reaction. If the guesser is correct, the drinker must pick another shot glass and drink it. The next person to guess is then moved one more person to the left. If the guesser is wrong, they must now pick a glass to drink and the person to their left guesses."
+      },
+      customRules: [],
+      ruleDescription: null
     }
   ]
 }

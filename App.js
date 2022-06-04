@@ -21,7 +21,6 @@ import PlayHorses from './components/PlayHorses'
 import KingsCup from './components/KingsCup';
 import BeerPong from './components/BeerPong'
 import CheersGovernor from './components/CheersGovernor'
-import BoozeOrNoBooze from './components/BoozeOrNoBooze';
 import PunishmentWheel from './components/PunishmentWheel';
 import NoShowPunishment from './components/NoShowPunishment'
 import PlayCheersGovernor from './components/PlayCheersGovernor'
