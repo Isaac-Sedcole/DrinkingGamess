@@ -69,10 +69,10 @@ function HouseRules(props) {
 
             {fullHouseRules.map(rule => {
               return (
-                <View key={rule.id} style={[{ justifyContent: "center" }]}>
+                <View key={rule.id} >
                   <Card style={[styles.cardContainer]}>
-                    <View style={[styles.cardTitle, {flexWrap: "wrap", flexDirection: "column"}]}>
-                      <Card.Title title={<CheckBox label={rule.name} status={fullHouseRules[rule.id - 1].checked ? "checked" : "unchecked"} onPress={() => handleCheckBox(rule.id - 1, rule)}></CheckBox>} />
+                    <View style={[styles.cardTitle]}>
+                      <Card.Title style={{alignSelf: 'center'}} title={<CheckBox label={rule.name} status={fullHouseRules[rule.id - 1].checked ? "checked" : "unchecked"} onPress={() => handleCheckBox(rule.id - 1, rule)}></CheckBox>} />
                     </View>
                     <View style={[styles.cardContent]}>
                       <Card.Content>
@@ -101,15 +101,14 @@ const styles = StyleSheet.create({
     flex: 1
   },
   cardContainer: {
-    margin: wp("1%"),
-    width: wp("42.5%"),
-    height: hp("15%"),
-    justifyContent: 'center',
-    paddingHorizontal: wp('2%')
+    margin: wp('1%'),
+    padding: wp('1%'),
+    paddingBottom: hp('1'),
+    
+    
   },
   cardTitle: {
-    fontSize: wp("1%"),
-    justifyContent: 'center'
+    
   },
   cardContent: {
     width: wp("40%"),
