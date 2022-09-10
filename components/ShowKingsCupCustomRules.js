@@ -164,7 +164,7 @@ function ShowKingsCupCustomRules(props) {
             <View>
               <Card.Content>
                 {/* <CheckBox status={selectedRuleAndData.rule==rule ? "checked" : "unchecked"} onPress={() => handleCheckBox("rule", rule)}></CheckBox> */}
-                <Text style={{}}>{list.data}</Text>
+                <Text style={{alignSelf: "center", fontWeight: 'bold', fontSize: hp("3%") }}>{list.data}</Text>
                 <View style={[styles.word]}><Button onPress={() => activateShowRuleModal(list.rule)} title={list.rule} /></View>
               </Card.Content>
             </View>
