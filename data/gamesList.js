@@ -27,7 +27,7 @@ export default {
       customRules: [
         "snakeEyes", "you", "me", "whores", "gecko", "dicks", "heaven", "mate", "waterfall", "social", "rhyme", "NHIE", "q master", "categories", "helmet", "makeARule", "qCreation", "bigBooty", "theFool", "highLow", "fillVessel"
       ],
-      customRulesData: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "JOKER"],
+      customRulesData: [{data: "A", place: 1}, {data: "2", place: 2}, {data: "3", place: 3}, {data: "4", place: 4}, {data: "5", place: 5}, {data: "6", place: 6}, {data: "7", place: 7}, {data: "8", place: 8}, {data: "9", place: 9}, {data: "10", place: 10}, {data: "J", place: 11}, {data: "Q", place: 12}, {data: "K", place: 13},{data: "JOKER", place: 14}],
       ruleDescription: {
         snakeEyes: "Snake Eyes: Any player who looks you in the eyes must drink",
         waterfall: "Waterfall: Everyone drinks and cannot stop until the person to their right has stopped, starting at the card drawer",

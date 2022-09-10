@@ -16,7 +16,7 @@ function ShowKingsCupCustomRules(props) {
   
   const [customRulesArr, setCustomRulesArr] = useState(gamesList.games[0].customRules)
   const [customRulesData, setCustomRulesData] = useState(gamesList.games[0].customRulesData)
-  const [selectedRuleAndData, setSelectedRuleAndData] = useState({data: null, rule: null})
+  const [selectedRuleAndData, setSelectedRuleAndData] = useState({data: null, place:null, rule: null})
   const [completedList, setCompletedList] = useState([])
   const [showCompletedList, setShowCompletedList] = useState(false)
   const [buttonShouldBeDisabled, setButtonShouldBeDisabled] = useState(true)
@@ -63,15 +63,15 @@ function ShowKingsCupCustomRules(props) {
     //check if we are passing a rule or data
     if(stringIdentifier == "rule") {
       if(selectedRuleAndData.rule == value) {
-        setSelectedRuleAndData({data: selectedRuleAndData.data, rule: null})
+        setSelectedRuleAndData({data: selectedRuleAndData.data, place: selectedRuleAndData.place, rule: null})
       } else {
-        setSelectedRuleAndData({data: selectedRuleAndData.data, rule: value})
+        setSelectedRuleAndData({data: selectedRuleAndData.data, place: selectedRuleAndData.place, rule: value})
       }
     }else {
-      if(selectedRuleAndData.data == value) {
-        setSelectedRuleAndData({data: null, rule: selectedRuleAndData.rule})
+      if(selectedRuleAndData.data == value.data) {
+        setSelectedRuleAndData({data: null, place: null, rule: selectedRuleAndData.rule})
       }else {
-        setSelectedRuleAndData({data: value, rule: selectedRuleAndData.rule})
+        setSelectedRuleAndData({data: value.data, place: value.place, rule: selectedRuleAndData.rule})
       }
     }
   }
@@ -79,16 +79,25 @@ function ShowKingsCupCustomRules(props) {
   const addRuleToList = () => {
 
     let localSelectedRuleAndData = selectedRuleAndData
+
     setCompletedList(list => {
-      return [...list, localSelectedRuleAndData]
+      let newList = [...list, localSelectedRuleAndData]
+      return newList.sort((a,b) => {
+        let textA = a.place
+        let textB = b.place
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0
+      })
+      // Joker last, ace first, 10 after 9. K needs to come after Q
+      
     })
     setCustomRulesArr(list => {
       return list.filter(rule => {return rule!=localSelectedRuleAndData.rule})
     })
     setCustomRulesData(list => {
-      return list.filter(data => {return data!=localSelectedRuleAndData.data})
+      return list.filter(data => {return data.data!=localSelectedRuleAndData.data})
     })
-    setSelectedRuleAndData({data: null, rule: null})
+    setSelectedRuleAndData({data: null, place:null, rule: null})
+
   }
 
   const activateShowCompletedList = () => {
@@ -98,7 +107,7 @@ function ShowKingsCupCustomRules(props) {
   const removeRuleFromList = (list) => {
     setCompletedList(completedList.filter(currentList => {return currentList != list}))
     setCustomRulesData(otherCurrentList => {
-      return [...otherCurrentList, list.data]
+      return [...otherCurrentList, {data: list.data, value: list.place}]
     })
     setCustomRulesArr(otherCurrentList2 => {
       return [...otherCurrentList2, list.rule]
@@ -134,10 +143,10 @@ function ShowKingsCupCustomRules(props) {
 
       {customRulesData.map(data => {
         return (
-          <Card key={data} style={{paddingHorizontal: wp("6%"), paddingVertical: hp("2%"), margin: wp("1%")}}>
+          <Card key={data.place} style={{paddingHorizontal: wp("6%"), paddingVertical: hp("2%"), margin: wp("1%")}}>
             <View style={{flexDirection: "row"}}>
               <Card.Content>
-                <CheckBox label={data} status={selectedRuleAndData.data==data ? "checked" : "unchecked"} onPress={() => handleCheckBox("data", data)}></CheckBox>
+                <CheckBox label={data.data} status={selectedRuleAndData.data==data.data ? "checked" : "unchecked"} onPress={() => handleCheckBox("data", data)}></CheckBox>
               </Card.Content>
             </View>
           </Card>
