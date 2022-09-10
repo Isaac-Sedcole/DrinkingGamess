@@ -112,7 +112,9 @@ function KingsCup(props) {
                 )
               })}
               <View style={[styles.middleButton]}>
-                {showRules && <Button onPress={() => activateShowKingsCupRules()} title="Custom Rules"/>}
+                <View style={{paddingBottom: hp("1%")}}>
+                  {showRules && <Button onPress={() => activateShowKingsCupRules()} title="Custom Rules"/>}
+                </View>
                 {showRules && <Button onPress={() => activateOldShowKingsCupRules()} title="Old Custom Rules"/>}
               </View> 
               {oldShowKingsCupCustom && props.navigation.navigate("Show old kings cup custom rules")}

@@ -135,16 +135,14 @@ function ShowKingsCupCustomRules(props) {
       })}
       <Button disabled={buttonShouldBeDisabled} onPress={() => addRuleToList()} title="Confirm"/>
       {/* data */}
-      <View style={{flexDirection: "row", flexWrap: "wrap", flex: "1"}}>
+      <View style={{flexDirection: "row", flexWrap: "wrap", padding: wp("2%"), justifyContent: "center"}}>
 
       {customRulesData.map(data => {
         return (
-          <Card key={data}>
-            <View>
-              <Card.Title style={{alignSelf: 'center'}} title={<CheckBox label={data} status={selectedRuleAndData.data==data ? "checked" : "unchecked"} onPress={() => handleCheckBox("data", data)}></CheckBox>} />
-            </View>
-            <View>
+          <Card key={data} style={{paddingHorizontal: wp("6%"), paddingVertical: hp("2%"), margin: wp("1%")}}>
+            <View style={{flexDirection: "row"}}>
               <Card.Content>
+                <CheckBox label={data} status={selectedRuleAndData.data==data ? "checked" : "unchecked"} onPress={() => handleCheckBox("data", data)}></CheckBox>
               </Card.Content>
             </View>
           </Card>
