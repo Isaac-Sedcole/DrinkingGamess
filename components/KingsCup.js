@@ -11,6 +11,8 @@ function KingsCup(props) {
   const [showRuleModal, setShowRuleModal] = useState(false)
   const [currentRule, setCurrentRule] = useState({})
   const [showKingsCupCustom, setShowKingsCupCustom] = useState(false)
+  const [oldShowKingsCupCustom, setOldShowKingsCupCustom] = useState(false)
+
 
   const gameName = props.route.params.game.name
   let rulesObj = props.route.params.game.rules
@@ -23,6 +25,7 @@ function KingsCup(props) {
   useEffect(()=> {
     setShowRules(false)
     setShowKingsCupCustom(false)
+    setOldShowKingsCupCustom(false)
     setShowRuleModal(false)
   },[])
 
@@ -53,6 +56,12 @@ function KingsCup(props) {
     const activateShowKingsCupRules = () => {
       setShowKingsCupCustom(true)
     }
+
+    const activateOldShowKingsCupRules = () => {
+      setOldShowKingsCupCustom(true)
+    }
+
+    
 
 
     return (
@@ -87,24 +96,6 @@ function KingsCup(props) {
             }}>
               {showRules && rules.map(rule => {
                 //name was too long and made the button multi-lined - easiest way around the issue
-                if(rule.props.children == "question master"){
-                  
-                  return (
-                    <View key={rule.props.children} stlye={{ justifyContent: "center" }}>
-                      <Card style={[styles.cardContainer]}>
-                        <View style={{ flexDirection: "row" }}>
-                          <View style={[styles.cardTitle]}>
-                            <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
-                          </View>
-                          <View style={[styles.cardContent]}>
-                            <Card.Content><AppButton onPress={() => activateShowRuleModal(rule.props.children)} title={"q master"} /></Card.Content>
-                          </View>
-                        </View>
-                      </Card>
-                    </View>
-                  )
-
-                } else {
                 return (
                   <View key={rule.props.children} stlye={{ justifyContent: "center" }}>
                     <Card style={[styles.cardContainer]}>
@@ -119,12 +110,13 @@ function KingsCup(props) {
                     </Card>
                   </View>
                 )
-                }
               })}
               <View style={[styles.middleButton]}>
                 {showRules && <Button onPress={() => activateShowKingsCupRules()} title="Custom Rules"/>}
+                {showRules && <Button onPress={() => activateOldShowKingsCupRules()} title="Old Custom Rules"/>}
               </View> 
-              {showKingsCupCustom && props.navigation.navigate("Show kings cup custom rules")}
+              {oldShowKingsCupCustom && props.navigation.navigate("Show kings cup custom rules")}
+              {showKingsCupCustom && props.navigation.navigate("Show old kings cup custom rules")}
             </View>
           </View>
         </ScrollView>

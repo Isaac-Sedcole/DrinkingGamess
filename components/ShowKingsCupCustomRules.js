@@ -2,52 +2,55 @@ import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { Card } from 'react-native-paper'
+import CheckBox from './CheckBox'
 import Icon from 'react-native-vector-icons/FontAwesome5'
-
+import AppButton from "./AppButton"
 import TrashIconButton from "./TrashIconButton"
 import gamesList from '../data/gamesList'
-import Draggable from 'react-native-draggable'
 
 
 function ShowKingsCupCustomRules(props) {
 
-  const redirect = () => {
-    props.navigation.goBack()
-  }
+  /** Look at rules - once selected shows a list of empty cards which you can then click to assign - redirects back to remaining rules not used then repeat */
+  //1 list with rules and in state - 1 list with {A: "qMaster", 1: "SnakeEyes"} also in state. 1st list needs to be a radio button/checkbox to select the rule - 2nd list has the same. when confirm is selected then it removes both that rule and the
+  //"A" or w.e and resets the radio checkbox. Only ones that start is K and fill vessel - Maybe also show completed list down the bottom as its being built - have a delete button on each which will then re-add the rule to the 1st list and the "A" to the other
   
-    const [showRuleModal, setShowRuleModal] = useState(false)
-    const [currentRule, setCurrentRule] = useState({})
-    const [notEnoughCustomRules, setNotEnoughCustomRules] = useState(false)
-    const [refreshPage, setRefreshPage] = useState(false)
- 
-
-  let x = wp("16.6%")
-  let y = hp("0.75%")
-  let count = 1
+  const [showRuleModal, setShowRuleModal] = useState(false)
+  const [currentRule, setCurrentRule] = useState({})
   
   const [customRulesArr, setCustomRulesArr] = useState(gamesList.games[0].customRules)
-  // const [weirdArr, setWeirdArr] = useState([["snakeEyes", wp("16.6%"), hp("6.7%")],["you", wp("51.6%"), hp("6.7%")],["me", wp("16.6%"), hp("12.65%")],
-  //   ["whores", wp("51.6%"), hp("12.65%")], ["gecko", wp("16.6%"), hp("18.6%")], ["dicks", wp("51.6%"), hp("18.6%")],
-  //   ["heaven", wp("16.6%"), hp("24.55%")], ["mate", wp("51.6%"), hp("24.55%")], ["waterfall", wp("16.6%"), hp("30.5%")],
-  //   ["social", wp("51.6%"), hp("30.5%")], ["rhyme", wp("16.6%"), hp("36.45%")], ["NHIE", wp("51.6%"), hp("36.45%%")], 
-  //   ["qMaster", wp("16.6%"), hp("42.4%")], ["categories", wp("51.6%"), hp("42.4%")], ["helmet", wp("16.6%"), hp("48.35%")], 
-  //   ["makeARule", wp("51.6%"), hp("48.35%")], ["qCreation", wp("16.6%"), hp("54.3%")], ["bigBooty", wp("51.6%"), hp("54.3%")],
-  //   ["theFool",  wp("16.6%"), hp("60.25%")], ["highLow", wp("51.6%"), hp("60.25%")], ["fillVessel", wp("16.6%"), hp("66.2%")]
-  // ])
+  const [customRulesData, setCustomRulesData] = useState(gamesList.games[0].customRulesData)
+  const [selectedRuleAndData, setSelectedRuleAndData] = useState({data: null, rule: null})
+  const [completedList, setCompletedList] = useState([])
+
+  /**
+   * completedList: [
+        {data:"A", rule: ""},
+        {data:"2", rule: ""},
+        {data:"3", rule: ""},
+        {data:"4", rule: ""},
+        {data:"5", rule: ""},
+        {data:"6", rule: ""},
+        {data:"7", rule: ""},
+        {data:"8", rule: ""},
+        {data:"9", rule: ""},
+        {data:"10", rule: ""},
+        {data:"J", rule: ""},
+        {data:"Q", rule: ""},
+        {data:"K", rule: ""},
+        {data:"JOKER", rule: ""}
+      ],
+   */
   
   useEffect(()=> {
     setShowRuleModal(false)
-    count = 1
-    setRefreshPage(false)
   },[])
 
-  useEffect(()=> {
-    setNotEnoughCustomRules((customRulesArr.length - 14) < 0)
-  },[customRulesArr])
-
-  let ruleDescObj = gamesList.games[0].ruleDescription
-  const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
-  let cardTitles = gamesList.games[0].customRulesData
+  /** 
+   * 
+   let ruleDescObj = gamesList.games[0].ruleDescription
+   const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
+   */
 
   
   const activateShowRuleModal = (ruleNeedingDescription) => {
@@ -62,73 +65,82 @@ function ShowKingsCupCustomRules(props) {
     setShowRuleModal(true)
   }
 
-  const refreshPageEvent = () => {
-    setRefreshPage(true)
+  const handleCheckBox = (stringIdentifier, value) => {
+    //check if we are passing a rule or data
+    if(stringIdentifier == "rule") {
+      if(selectedRuleAndData.rule == value) {
+        setSelectedRuleAndData({data: selectedRuleAndData.data, rule: ""})
+      } else {
+        setSelectedRuleAndData({data: selectedRuleAndData.data, rule: value})
+      }
+    }else {
+      if(selectedRuleAndData.data == value) {
+        setSelectedRuleAndData({data: "", rule: selectedRuleAndData.rule})
+      }else {
+        setSelectedRuleAndData({data: value, rule: selectedRuleAndData.rule})
+      }
+    }
   }
-  //21
 
-  const removeRuleFromList = (rule) => {
-    setCustomRulesArr(customRulesArr.filter(cRule => {return cRule != rule}))
+  const addRuleToList = () => {
+    setCompletedList(list => {
+      return [...list, selectedRuleAndData]
+    })
   }
-
 
   return (
     <>
-      <View style={[styles.container]}>
-    {cardTitles.map(titles => {
-      return (
-        
-        <View key={titles} >
-              
-              <Card style={[styles.cardContainer]}>
-                <View style={{ flexDirection: "row" }}>
-                  <View style={[styles.cardTitle]}>
-      
-                    <Card.Title titleStyle={[styles.titleStyling]} title={titles} />
-                  </View>
-                </View>
-              </Card>
-            </View>
-      )
-    })}
+      {/* <Card.Content><AppButton onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children} /></Card.Content> */}
+      {/* <View style={[styles.trashIcon]}><TrashIconButton onPress={() => removeRuleFromList(rule)} title={"trash-alt"} size={18}/></View> */}
+      <ScrollView style={[styles.scrollViewCont]}>
 
-    {customRulesArr.map(rule => {            
-            if(x < wp("35%") && count > 1) {
-              x+=wp("35%")
-            } else if(x = wp("51.6%")) {
-              x = wp("16.6%")
-              y+=hp("5.95%")
-            }
-            count++
-            
-            return (
-              <Draggable key={rule} x={x} y={y} minX={wp("16.6%")} maxX={wp("93.6%")} minY= {hp(".75%")} maxY={hp("84.4%")}>
-               
-            <View style={[styles.cardContent]}>
-              <Card.Content style={[styles.buttonsWithTrash]}>
+      {/* rules */}
+      {customRulesArr.map(rule=> {
+        return (
+          <Card>
+            <View>
+              <Card.Title style={{alignSelf: 'center'}} title={<CheckBox label={rule} status={selectedRuleAndData.rule==rule ? "checked" : "unchecked"} onPress={() => handleCheckBox("rule", rule)}></CheckBox>} />
+            </View>
+            <View>
+              <Card.Content>
                 <View style={[styles.word]}><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></View>
-                <View style={[styles.trashIcon]}><TrashIconButton onPress={() => removeRuleFromList(rule)} title={"trash-alt"} size={18}/></View>
               </Card.Content>
             </View>
-        </Draggable>
-        
+          </Card>          
         )
-      }
-
-  )}
-  {!notEnoughCustomRules &&
-
-    <View style={{alignItems: "center"}}>
-    <Text>You need 14 total rules so you need to delete: {customRulesArr.length - 14} rules</Text>
-  </View>
-  }
-  {notEnoughCustomRules && 
-    <View style={{marginLeft: wp("6%")}}>
-      <Text>You don't have enough rules left. Click <Card.Content><Button onPress={() => refreshPageEvent()} title={"this"} /></Card.Content> to refresh the page.</Text>
-    </View>}
-  </View>
-  {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
-  {refreshPage && props.navigation.push("Show kings cup custom rules")}
+      })}
+      <Button onPress={() => addRuleToList()} title="Confirm"/>
+      {/* data */}
+      {customRulesData.map(data => {
+        return (
+          <Card>
+            <View>
+              <Card.Title style={{alignSelf: 'center'}} title={<CheckBox label={data} status={selectedRuleAndData.data==data ? "checked" : "unchecked"} onPress={() => handleCheckBox("data", data)}></CheckBox>} />
+            </View>
+            <View>
+              <Card.Content>
+              </Card.Content>
+            </View>
+          </Card>
+        )
+      })}
+      {/* completedList */}
+      {completedList.map(list => {
+        <View key={list.data} stlye={{ justifyContent: "center" }}>
+        <Card style={[styles.cardContainer]}>
+          <View style={{ flexDirection: "row" }}>
+            <View style={[styles.cardTitle]}>
+              <Card.Title titleStyle={[styles.titleStyling]} title={list.data} />
+            </View>
+            <View style={[styles.cardContent]}>
+              <Card.Content><AppButton onPress={() => activateShowRuleModal(list.rule)} title={list.rule} /></Card.Content>
+            </View>
+          </View>
+        </Card>
+      </View>
+      })}
+      {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
+      </ScrollView>
     </>
   )
   

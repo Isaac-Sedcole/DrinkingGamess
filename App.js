@@ -15,6 +15,7 @@ import thunk from 'redux-thunk'
 import NavHouseRules from './components/NavHouseRules';
 import JustShowBack from './components/JustShowBack';
 import JustShowHouseRules from './components/JustShowHouseRules';
+import OldShowKingsCupCustomRules from './components/OldShowKingsCupCustomRules'
 import ShowKingsCupCustomRules from './components/ShowKingsCupCustomRules'
 import Horses from './components/Horses';
 import PlayHorses from './components/PlayHorses'
@@ -54,6 +55,7 @@ function App() {
           <Stack.Screen options={{ header: props => <JustShowBack {...props} /> }} name="House rules" component={HouseRules} />
           <Stack.Screen options={{ header: props => <NoShowPunishment {...props} /> }} name="Punishment Wheel" component={PunishmentWheel} />
           <Stack.Screen name="Selected game" component={Game} />
+          <Stack.Screen name="Show old kings cup custom rules" component={OldShowKingsCupCustomRules} />
           <Stack.Screen name="Show kings cup custom rules" component={ShowKingsCupCustomRules} />
           <Stack.Screen name="Showing a rule" component={ShowRuleModal} />
           <Stack.Screen name="Showing a house rule" component={ShowHouseRuleModal} />

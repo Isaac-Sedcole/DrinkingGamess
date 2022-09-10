@@ -20,12 +20,12 @@ export default {
         9: "rhyme",
         10: "waterfall",
         J: "make a rule",
-        Q: "question master",
+        Q: "q master",
         K: "fill vessel",
         JOKER: "the fool"
       },
       customRules: [
-        "snakeEyes", "you", "me", "whores", "gecko", "dicks", "heaven", "mate", "waterfall", "social", "rhyme", "NHIE", "qMaster", "categories", "helmet", "makeARule", "qCreation", "bigBooty", "theFool", "highLow", "fillVessel"
+        "snakeEyes", "you", "me", "whores", "gecko", "dicks", "heaven", "mate", "waterfall", "social", "rhyme", "NHIE", "q master", "categories", "helmet", "makeARule", "qCreation", "bigBooty", "theFool", "highLow", "fillVessel"
       ],
       customRulesData: ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "JOKER"],
       ruleDescription: {

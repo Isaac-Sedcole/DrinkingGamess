@@ -32,6 +32,7 @@ function PunishmentWheel (props) {
   useEffect(()=>{
     setBigRandomList([])
     makeBigArr()
+    manualSpinMethod()
   },[])
 
   const makeBigArr = () => {
