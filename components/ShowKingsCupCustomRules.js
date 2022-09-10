@@ -23,6 +23,7 @@ function ShowKingsCupCustomRules(props) {
   const [selectedRuleAndData, setSelectedRuleAndData] = useState({data: null, rule: null})
   const [completedList, setCompletedList] = useState([])
   const [showCompletedList, setShowCompletedList] = useState(false)
+  const [buttonShouldBeDisabled, setButtonShouldBeDisabled] = useState(true)
 
   /**
    * completedList: [
@@ -48,6 +49,14 @@ function ShowKingsCupCustomRules(props) {
     setShowCompletedList(false)
   },[])
 
+  useEffect(()=> {
+    if(selectedRuleAndData.data == null || selectedRuleAndData.rule == null){
+      setButtonShouldBeDisabled(true)
+    } else {
+      setButtonShouldBeDisabled(false)
+    }
+  },[selectedRuleAndData])
+
   /** 
    * 
    let ruleDescObj = gamesList.games[0].ruleDescription
@@ -71,13 +80,13 @@ function ShowKingsCupCustomRules(props) {
     //check if we are passing a rule or data
     if(stringIdentifier == "rule") {
       if(selectedRuleAndData.rule == value) {
-        setSelectedRuleAndData({data: selectedRuleAndData.data, rule: ""})
+        setSelectedRuleAndData({data: selectedRuleAndData.data, rule: null})
       } else {
         setSelectedRuleAndData({data: selectedRuleAndData.data, rule: value})
       }
     }else {
       if(selectedRuleAndData.data == value) {
-        setSelectedRuleAndData({data: "", rule: selectedRuleAndData.rule})
+        setSelectedRuleAndData({data: null, rule: selectedRuleAndData.rule})
       }else {
         setSelectedRuleAndData({data: value, rule: selectedRuleAndData.rule})
       }
@@ -85,6 +94,7 @@ function ShowKingsCupCustomRules(props) {
   }
 
   const addRuleToList = () => {
+
     let localSelectedRuleAndData = selectedRuleAndData
     setCompletedList(list => {
       return [...list, localSelectedRuleAndData]
@@ -123,7 +133,7 @@ function ShowKingsCupCustomRules(props) {
           </Card>          
         )
       })}
-      <Button onPress={() => addRuleToList()} title="Confirm"/>
+      <Button disabled={buttonShouldBeDisabled} onPress={() => addRuleToList()} title="Confirm"/>
       {/* data */}
       {customRulesData.map(data => {
         return (
@@ -141,7 +151,9 @@ function ShowKingsCupCustomRules(props) {
       <Button onPress={() => activateShowCompletedList()} title={showCompletedList ? "Hide Completed List" : "Show Completed List"} />
       {/* completedList */}
       {showCompletedList && completedList.map(list => {
-        <View key={list.data} stlye={{ justifyContent: "center" }}>
+        return (
+
+          <View key={list.data} stlye={{ justifyContent: "center" }}>
         <Card style={[styles.cardContainer]}>
           <View style={{ flexDirection: "row" }}>
             <View style={[styles.cardTitle]}>
@@ -153,6 +165,7 @@ function ShowKingsCupCustomRules(props) {
           </View>
         </Card>
       </View>
+          )
       })}
       {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
       </ScrollView>
