@@ -165,8 +165,8 @@ function ShowKingsCupCustomRules(props) {
           <Card style={{marginVertical: wp("1%"), width: wp("31%")}} key={list.rule}>
             <View>
               <Card.Content>
-                <View style={{flexDirection: "row", flexWrap: "wrap", left: wp("5%")}}>
-                  <Text style={{alignSelf: "center", fontWeight: 'bold', fontSize: hp("3%"), paddingRight:wp("6%") }}>{list.data}</Text>
+                <View style={{flexDirection: "row", flexWrap: "wrap", justifyContent: "space-around"}}>
+                  <Text style={{alignSelf: "center",fontWeight: 'bold', fontSize: hp("2.5%")}}>{list.data}</Text>
                   <View style={[styles.trashIcon]}><TrashIconButton onPress={() => removeRuleFromList(list)} title={"trash-alt"} size={18}/></View> 
                 </View>
                 <View style={[styles.word]}><Button onPress={() => activateShowRuleModal(list.rule)} title={list.rule} /></View>
