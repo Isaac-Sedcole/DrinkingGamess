@@ -117,23 +117,25 @@ function ShowKingsCupCustomRules(props) {
       {/* <Card.Content><AppButton onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children} /></Card.Content> */}
       {/* <View style={[styles.trashIcon]}><TrashIconButton onPress={() => removeRuleFromList(rule)} title={"trash-alt"} size={18}/></View> */}
       <ScrollView style={[styles.scrollViewCont]}>
+      <View style={{flexDirection: "row", flexWrap: "wrap",  justifyContent: "space-evenly"}}>
 
       {/* rules */}
       {customRulesArr.map(rule=> {
         return (
-          <Card key={rule}>
-            <View>
-              <Card.Title style={{alignSelf: 'center'}} title={<CheckBox status={selectedRuleAndData.rule==rule ? "checked" : "unchecked"} onPress={() => handleCheckBox("rule", rule)}></CheckBox>} />
-            </View>
+          <Card style={{marginVertical: wp("1%"), width: wp("31%")}} key={rule}>
             <View>
               <Card.Content>
+                <CheckBox status={selectedRuleAndData.rule==rule ? "checked" : "unchecked"} onPress={() => handleCheckBox("rule", rule)}></CheckBox>
                 <View style={[styles.word]}><Button onPress={() => activateShowRuleModal(rule)} title={rule} /></View>
               </Card.Content>
             </View>
           </Card>          
         )
       })}
-      <Button disabled={buttonShouldBeDisabled} onPress={() => addRuleToList()} title="Confirm"/>
+      </View>
+      <View style={{paddingHorizontal: hp("2%")}}>
+        <Button disabled={buttonShouldBeDisabled} onPress={() => addRuleToList()} title="Confirm"/>
+      </View>
       {/* data */}
       <View style={{flexDirection: "row", flexWrap: "wrap", padding: wp("2%"), justifyContent: "center"}}>
 
@@ -149,25 +151,27 @@ function ShowKingsCupCustomRules(props) {
         )
       })}
       </View>
-      <Button onPress={() => activateShowCompletedList()} title={showCompletedList ? "Hide Completed List" : "Show Completed List"} />
+      <View style={{paddingVertical: hp("2%"), paddingHorizontal: wp("2%")}}>
+        <AppButton buttonColour={"#2E8B57"} onPress={() => activateShowCompletedList()} title={showCompletedList ? "Hide Completed List" : "Show Completed List"} />
+      </View>
+
+      <View style={{flexDirection: "row", flexWrap: "wrap",  justifyContent: "space-evenly"}}>
       {/* completedList */}
       {showCompletedList && completedList.map(list => {
         return (
-
-          <View key={list.data} stlye={{ justifyContent: "center" }}>
-        <Card style={[styles.cardContainer]}>
-          <View style={{ flexDirection: "row" }}>
-            <View style={[styles.cardTitle]}>
-              <Card.Title titleStyle={[styles.titleStyling]} title={list.data} />
+          
+          <Card style={{marginVertical: wp("1%"), width: wp("31%")}} key={list.rule}>
+            <View>
+              <Card.Content>
+                {/* <CheckBox status={selectedRuleAndData.rule==rule ? "checked" : "unchecked"} onPress={() => handleCheckBox("rule", rule)}></CheckBox> */}
+                <Text style={{}}>{list.data}</Text>
+                <View style={[styles.word]}><Button onPress={() => activateShowRuleModal(list.rule)} title={list.rule} /></View>
+              </Card.Content>
             </View>
-            <View style={[styles.cardContent]}>
-              <Card.Content><AppButton onPress={() => activateShowRuleModal(list.rule)} title={list.rule} /></Card.Content>
-            </View>
-          </View>
-        </Card>
-      </View>
+          </Card>
           )
-      })}
+        })}
+        </View>
       {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
       </ScrollView>
     </>
@@ -232,7 +236,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",    
   },
   word: {
-    flexGrow: 1
+    paddingBottom: hp("1%"),
+    width: wp("28%"),
+    right: wp("2.8%")
   }
 })
 
