@@ -22,6 +22,7 @@ function ShowKingsCupCustomRules(props) {
   const [customRulesData, setCustomRulesData] = useState(gamesList.games[0].customRulesData)
   const [selectedRuleAndData, setSelectedRuleAndData] = useState({data: null, rule: null})
   const [completedList, setCompletedList] = useState([])
+  const [showCompletedList, setShowCompletedList] = useState(false)
 
   /**
    * completedList: [
@@ -44,6 +45,7 @@ function ShowKingsCupCustomRules(props) {
   
   useEffect(()=> {
     setShowRuleModal(false)
+    setShowCompletedList(false)
   },[])
 
   /** 
@@ -83,9 +85,21 @@ function ShowKingsCupCustomRules(props) {
   }
 
   const addRuleToList = () => {
+    let localSelectedRuleAndData = selectedRuleAndData
     setCompletedList(list => {
-      return [...list, selectedRuleAndData]
+      return [...list, localSelectedRuleAndData]
     })
+    setCustomRulesArr(list => {
+      return list.filter(rule => {return rule!=localSelectedRuleAndData.rule})
+    })
+    setCustomRulesData(list => {
+      return list.filter(data => {return data!=localSelectedRuleAndData.data})
+    })
+    setSelectedRuleAndData({data: null, rule: null})
+  }
+
+  const activateShowCompletedList = () => {
+    setShowCompletedList(!showCompletedList)
   }
 
   return (
@@ -97,9 +111,9 @@ function ShowKingsCupCustomRules(props) {
       {/* rules */}
       {customRulesArr.map(rule=> {
         return (
-          <Card>
+          <Card key={rule}>
             <View>
-              <Card.Title style={{alignSelf: 'center'}} title={<CheckBox label={rule} status={selectedRuleAndData.rule==rule ? "checked" : "unchecked"} onPress={() => handleCheckBox("rule", rule)}></CheckBox>} />
+              <Card.Title style={{alignSelf: 'center'}} title={<CheckBox status={selectedRuleAndData.rule==rule ? "checked" : "unchecked"} onPress={() => handleCheckBox("rule", rule)}></CheckBox>} />
             </View>
             <View>
               <Card.Content>
@@ -113,7 +127,7 @@ function ShowKingsCupCustomRules(props) {
       {/* data */}
       {customRulesData.map(data => {
         return (
-          <Card>
+          <Card key={data}>
             <View>
               <Card.Title style={{alignSelf: 'center'}} title={<CheckBox label={data} status={selectedRuleAndData.data==data ? "checked" : "unchecked"} onPress={() => handleCheckBox("data", data)}></CheckBox>} />
             </View>
@@ -124,8 +138,9 @@ function ShowKingsCupCustomRules(props) {
           </Card>
         )
       })}
+      <Button onPress={() => activateShowCompletedList()} title={showCompletedList ? "Hide Completed List" : "Show Completed List"} />
       {/* completedList */}
-      {completedList.map(list => {
+      {showCompletedList && completedList.map(list => {
         <View key={list.data} stlye={{ justifyContent: "center" }}>
         <Card style={[styles.cardContainer]}>
           <View style={{ flexDirection: "row" }}>
