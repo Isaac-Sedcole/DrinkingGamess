@@ -11,10 +11,6 @@ import gamesList from '../data/gamesList'
 
 function ShowKingsCupCustomRules(props) {
 
-  /** Look at rules - once selected shows a list of empty cards which you can then click to assign - redirects back to remaining rules not used then repeat */
-  //1 list with rules and in state - 1 list with {A: "qMaster", 1: "SnakeEyes"} also in state. 1st list needs to be a radio button/checkbox to select the rule - 2nd list has the same. when confirm is selected then it removes both that rule and the
-  //"A" or w.e and resets the radio checkbox. Only ones that start is K and fill vessel - Maybe also show completed list down the bottom as its being built - have a delete button on each which will then re-add the rule to the 1st list and the "A" to the other
-  
   const [showRuleModal, setShowRuleModal] = useState(false)
   const [currentRule, setCurrentRule] = useState({})
   
@@ -25,28 +21,13 @@ function ShowKingsCupCustomRules(props) {
   const [showCompletedList, setShowCompletedList] = useState(false)
   const [buttonShouldBeDisabled, setButtonShouldBeDisabled] = useState(true)
 
-  /**
-   * completedList: [
-        {data:"A", rule: ""},
-        {data:"2", rule: ""},
-        {data:"3", rule: ""},
-        {data:"4", rule: ""},
-        {data:"5", rule: ""},
-        {data:"6", rule: ""},
-        {data:"7", rule: ""},
-        {data:"8", rule: ""},
-        {data:"9", rule: ""},
-        {data:"10", rule: ""},
-        {data:"J", rule: ""},
-        {data:"Q", rule: ""},
-        {data:"K", rule: ""},
-        {data:"JOKER", rule: ""}
-      ],
-   */
+  const [refreshPage, setRefreshPage] = useState(false)
+
   
   useEffect(()=> {
     setShowRuleModal(false)
     setShowCompletedList(false)
+    setRefreshPage(false)
   },[])
 
   useEffect(()=> {
@@ -57,11 +38,13 @@ function ShowKingsCupCustomRules(props) {
     }
   },[selectedRuleAndData])
 
-  /** 
-   * 
+  const refreshPageEvent = () => {
+    setRefreshPage(true)
+  }
+  
    let ruleDescObj = gamesList.games[0].ruleDescription
    const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
-   */
+   
 
   
   const activateShowRuleModal = (ruleNeedingDescription) => {
@@ -155,7 +138,7 @@ function ShowKingsCupCustomRules(props) {
         <AppButton buttonColour={"#2E8B57"} onPress={() => activateShowCompletedList()} title={showCompletedList ? "Hide Completed List" : "Show Completed List"} />
       </View>
 
-      <View style={{flexDirection: "row", flexWrap: "wrap",  justifyContent: "space-evenly"}}>
+      <View style={{flexDirection: "row", flexWrap: "wrap",  justifyContent: "space-evenly", paddingBottom: hp("1%")}}>
       {/* completedList */}
       {showCompletedList && completedList.map(list => {
         return (
@@ -172,7 +155,11 @@ function ShowKingsCupCustomRules(props) {
           )
         })}
         </View>
+        <View style={{paddingHorizontal: wp("2%"), paddingBottom: hp("2%")}}>
+          <Button onPress={() => refreshPageEvent()} title={"refresh"} />
+        </View>
       {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
+      {refreshPage && props.navigation.push("Show kings cup custom rules")}
       </ScrollView>
     </>
   )

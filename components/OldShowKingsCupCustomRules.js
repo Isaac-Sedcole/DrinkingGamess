@@ -130,7 +130,7 @@ function OldShowKingsCupCustomRules(props) {
     </View>}
   </View>
   {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
-  {refreshPage && props.navigation.push("Show kings cup custom rules")}
+  {refreshPage && props.navigation.push("Show old kings cup custom rules")}
     </>
   )
   
