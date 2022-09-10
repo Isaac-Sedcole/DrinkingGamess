@@ -115,8 +115,8 @@ function KingsCup(props) {
                 {showRules && <Button onPress={() => activateShowKingsCupRules()} title="Custom Rules"/>}
                 {showRules && <Button onPress={() => activateOldShowKingsCupRules()} title="Old Custom Rules"/>}
               </View> 
-              {oldShowKingsCupCustom && props.navigation.navigate("Show kings cup custom rules")}
-              {showKingsCupCustom && props.navigation.navigate("Show old kings cup custom rules")}
+              {oldShowKingsCupCustom && props.navigation.navigate("Show old kings cup custom rules")}
+              {showKingsCupCustom && props.navigation.navigate("Show kings cup custom rules")}
             </View>
           </View>
         </ScrollView>

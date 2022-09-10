@@ -135,6 +135,8 @@ function ShowKingsCupCustomRules(props) {
       })}
       <Button disabled={buttonShouldBeDisabled} onPress={() => addRuleToList()} title="Confirm"/>
       {/* data */}
+      <View style={{flexDirection: "row", flexWrap: "wrap", flex: "1"}}>
+
       {customRulesData.map(data => {
         return (
           <Card key={data}>
@@ -148,6 +150,7 @@ function ShowKingsCupCustomRules(props) {
           </Card>
         )
       })}
+      </View>
       <Button onPress={() => activateShowCompletedList()} title={showCompletedList ? "Hide Completed List" : "Show Completed List"} />
       {/* completedList */}
       {showCompletedList && completedList.map(list => {
