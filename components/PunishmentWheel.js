@@ -27,13 +27,18 @@ function PunishmentWheel (props) {
   const[goToRuleModal, setGoToRuleModal] = useState(false)
 
   const[bigRandomList, setBigRandomList] = useState([])
-  const [manualSpin, setManualSpin] = useState(false)
+  const [manualSpin, setManualSpin] = useState(true)
+
+  const[showSpinButton, setShowSpinButton] = useState(false)
 
   useEffect(()=>{
     setBigRandomList([])
     makeBigArr()
-    manualSpinMethod()
   },[])
+
+
+  /** MAKE THE SPIN BUTTON ONLY APPEAR AFTER IT HAS BEEN MANUALLY MOVED */
+
 
   const makeBigArr = () => {
 
@@ -96,10 +101,7 @@ function PunishmentWheel (props) {
 
 const handleScroll= (event) => {
   // console.log(event.nativeEvent.contentOffset.y);
-}
-
-const manualSpinMethod = () => {
-  setManualSpin(!manualSpin)
+  setShowSpinButton(true)
 }
 
 
@@ -117,12 +119,12 @@ const manualSpinMethod = () => {
 
 return (
   <SafeAreaView style={styles.container}>
-    <View style={{paddingBottom: hp('2%')}}>
-      <AppButton onPress={manualSpinMethod} title={manualSpin ? 'Deactive Manual Spin' : 'Activate Manual Spin'}/>
-    </View>
+    {!showSpinButton && <Text style={{fontWeight: 'bold', fontSize: hp("3%"),paddingBottom: hp('2%')}}>Try Spinning By Hand</Text>}
+    {showSpinButton && 
     <View style={{paddingBottom: hp('2%')}}>
       <AppButton onPress={spinTheCarosel} title='spin'/>
     </View>
+    }
     <View style={styles.scrollContainer}>
       <ScrollView
         // ref={scrollView}
