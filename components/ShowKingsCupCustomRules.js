@@ -95,10 +95,20 @@ function ShowKingsCupCustomRules(props) {
     setShowCompletedList(!showCompletedList)
   }
 
+  const removeRuleFromList = (list) => {
+    setCompletedList(completedList.filter(currentList => {return currentList != list}))
+    setCustomRulesData(otherCurrentList => {
+      return [...otherCurrentList, list.data]
+    })
+    setCustomRulesArr(otherCurrentList2 => {
+      return [...otherCurrentList2, list.rule]
+    })
+
+  }
+
   return (
     <>
       {/* <Card.Content><AppButton onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children} /></Card.Content> */}
-      {/* <View style={[styles.trashIcon]}><TrashIconButton onPress={() => removeRuleFromList(rule)} title={"trash-alt"} size={18}/></View> */}
       <ScrollView style={[styles.scrollViewCont]}>
       <View style={{flexDirection: "row", flexWrap: "wrap",  justifyContent: "space-evenly"}}>
 
@@ -116,7 +126,7 @@ function ShowKingsCupCustomRules(props) {
         )
       })}
       </View>
-      <View style={{paddingHorizontal: hp("2%")}}>
+      <View style={{paddingHorizontal: hp("2%"), paddingTop: hp("1%")}}>
         <Button disabled={buttonShouldBeDisabled} onPress={() => addRuleToList()} title="Confirm"/>
       </View>
       {/* data */}
@@ -146,8 +156,10 @@ function ShowKingsCupCustomRules(props) {
           <Card style={{marginVertical: wp("1%"), width: wp("31%")}} key={list.rule}>
             <View>
               <Card.Content>
-                {/* <CheckBox status={selectedRuleAndData.rule==rule ? "checked" : "unchecked"} onPress={() => handleCheckBox("rule", rule)}></CheckBox> */}
-                <Text style={{alignSelf: "center", fontWeight: 'bold', fontSize: hp("3%") }}>{list.data}</Text>
+                <View style={{flexDirection: "row", flexWrap: "wrap", left: wp("5%")}}>
+                  <Text style={{alignSelf: "center", fontWeight: 'bold', fontSize: hp("3%"), paddingRight:wp("6%") }}>{list.data}</Text>
+                  <View style={[styles.trashIcon]}><TrashIconButton onPress={() => removeRuleFromList(list)} title={"trash-alt"} size={18}/></View> 
+                </View>
                 <View style={[styles.word]}><Button onPress={() => activateShowRuleModal(list.rule)} title={list.rule} /></View>
               </Card.Content>
             </View>
