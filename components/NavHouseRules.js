@@ -1,71 +1,48 @@
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import React, { useState, useEffect } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { StyleSheet, View, ScrollView } from 'react-native';
 
 function NavHouseRules(props) {
-
-  const [displayHRules, setDisplayHRules] = useState(false)
-  const [moreThanThree, setMoreThanThree] = useState(false)
-
-  useEffect(() => {
-    setMoreThanThree(props.houseRules.length > 3)
-  }, [props.houseRules])
+  const [displayHRules, setDisplayHRules] = useState(false);
+  const [moreThanThree, setMoreThanThree] = useState(false);
 
   useEffect(() => {
-    let list = props.houseRules.filter(rule => rule.checked)
-    setDisplayHRules(list.length > 0)
-  }, [props.houseRules])
+    setMoreThanThree(props.houseRules.length > 3);
+  }, [props.houseRules]);
 
-  if (displayHRules) {
-    return (
-      <View style={styles.container}>
-        <View style={[styles.header, moreThanThree && styles.headerMoreThanThree]}>
-          <View style={styles.backButton}>
-            <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
-          </View>
-          <View style={styles.cardHousing}>
-            <View style={styles.rulesContainer}>
-              {props.houseRules.map(rule => (
-                rule.checked && (
-                  <View key={rule.id} style={styles.houseRulesNav}>
-                    <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>
-                      {rule.name}
-                    </Icon.Button>
-                  </View>
-                )
-              ))}
-            </View>
-          </View>
+  useEffect(() => {
+    let list = props.houseRules.filter(rule => rule.checked);
+    setDisplayHRules(list.length > 0);
+  }, [props.houseRules]);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.backButtonContainer}>
+          <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
         </View>
-        <View style={styles.footer}>
-          <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")}>
-            Random Punishment
-          </Icon.Button>
-        </View>
+        {displayHRules && (
+          <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
+            {props.houseRules.map(rule => (
+              rule.checked && (
+                <View key={rule.id} style={styles.houseRulesNav}>
+                  <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>
+                    {rule.name}
+                  </Icon.Button>
+                </View>
+              )
+            ))}
+          </ScrollView>
+        )}
       </View>
-    )
-  } else {
-    return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.backButton}>
-            <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
-          </View>
-          <View style={styles.houseRulesMain}>
-            <Icon.Button onPress={() => props.navigation.navigate("House rules")}>
-              Click here to add some house rules!
-            </Icon.Button>
-          </View>
-        </View>
-        <View style={styles.footer}>
-          <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")}>
-            Random Punishment
-          </Icon.Button>
-        </View>
+      <View style={styles.footer}>
+        <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")}>
+          Random Punishment
+        </Icon.Button>
       </View>
-    )
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -80,29 +57,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  headerMoreThanThree: {
-    flexDirection: 'column',
-  },
-  backButton: {
-    flex: 1,
-  },
-  cardHousing: {
-    flex: 4,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'flex-start',
+  backButtonContainer: {
+    marginRight: 10,
   },
   rulesContainer: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexWrap: 'nowrap',
   },
   houseRulesNav: {
     padding: 3,
-  },
-  houseRulesMain: {
-    flex: 4,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   footer: {
     justifyContent: 'center',
@@ -112,8 +75,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (globalState) => {
   return {
-    houseRules: globalState.houseRules
-  }
-}
+    houseRules: globalState.houseRules,
+  };
+};
 
-export default connect(mapStateToProps)(NavHouseRules)
+export default connect(mapStateToProps)(NavHouseRules);
