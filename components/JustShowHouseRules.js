@@ -1,155 +1,130 @@
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import React, { useState, useEffect } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import AppButton from './AppButton'
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { StyleSheet, View, Text } from 'react-native';
+import { Card } from 'react-native-paper';
 
 function JustShowHouseRules(props) {
+  const [displayHRules, setDisplayHRules] = useState(false);
+  const [currentHouseRules, setCurrentHouseRules] = useState([]);
+  const [moreThanThree, setMoreThanThree] = useState(false);
 
-  
-  const [displayHRules, setDisplayHRules] = useState(false)
-  const [currentHouseRules, setCurrentHouseRules] = useState([])
-  const [moreThanThree, setMoreThanThree] = useState(false)
+  useEffect(() => {
+    setMoreThanThree(props.houseRules.length > 3);
+    setCurrentHouseRules(props.houseRules);
+  }, [props.houseRules]);
 
-  useEffect(()=> {
-    setMoreThanThree(props.houseRules.length > 3)
-    setCurrentHouseRules(props.houseRules)
-  },[props.houseRules])
+  useEffect(() => {
+    let list = props.houseRules.filter(rule => rule.checked);
+    setDisplayHRules(list.length > 0);
+  }, [props.houseRules]);
 
-  useEffect(()=> {
-    let list = props.houseRules.filter(rule => { return rule.checked })
-    if(list.length > 0) {
-      setDisplayHRules(true)
-    } else {
-      setDisplayHRules(false)
-    }
-  },[props.houseRules])
-  // const [navBarHeight, setNavBarHeight] = useState(hp("15%"))
-  
   if (displayHRules) {
-
-    if(moreThanThree){
-      return (
-      <View style={[styles.containerMultiMoreThanThree, {
-        flexDirection: "row",
-        alignItems: "center",
-      }]}>
-        {/* <View style={[styles.houseRulesMainAppear]}>
-          <Icon.Button onPress={() => props.navigation.navigate("House rules")}>Click here to add some house rules!</Icon.Button>
-        </View> */}
-        <View style={[styles.cardHousing]}>
-          <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
-            {currentHouseRules.map(rule => {
-              return (
-                <View key={rule.id} style={[styles.houseRulesNav]}>
-                  {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
-                </View>
-              )
-            })}
+    return (
+      <View style={moreThanThree ? styles.containerMultiMoreThanThree : styles.containerMulti}>
+        <View style={styles.cardHousing}>
+          <View style={styles.rulesContainer}>
+            {currentHouseRules.map(rule => (
+              <View key={rule.id} style={styles.houseRulesNav}>
+                {rule.checked && (
+                  <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>
+                    {rule.name}
+                  </Icon.Button>
+                )}
+              </View>
+            ))}
           </View>
-          <View style={[styles.houseRulesMain]}>
-            <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")} >Random Punishment</Icon.Button>
+          <View style={styles.cardContainer}>
+            <Card style={styles.card} onPress={() => props.navigation.navigate("Punishment Wheel")} contentStyle={styles.cardContent}>
+              <Card.Content>
+                <Text style={styles.cardText}>Random Punishment</Text>
+              </Card.Content>
+            </Card>
           </View>
         </View>
       </View>
-    
-  )
-    } else {
-      return (
-      <View style={[styles.containerMulti, {
-        flexDirection: "row",
-        alignItems: "center",
-      }]}>
-        {/* <View style={[styles.houseRulesMainAppear]}>
-          <Icon.Button onPress={() => props.navigation.navigate("House rules")}>Click here to add some house rules!</Icon.Button>
-        </View> */}
-        <View style={[styles.cardHousing]}>
-          <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
-            {currentHouseRules.map(rule => {
-              return (
-                <View key={rule.id} style={[styles.houseRulesNav]}>
-                  {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
-                </View>
-              )
-            })}
-          </View>
-          <View style={[styles.houseRulesMain]}>
-            <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")} >Random Punishment</Icon.Button>
-          </View>
-        </View>
-      </View>
-    
-  )
-    }
-      
+    );
   } else {
     return (
-        <View style={[styles.containerSingle, {
-          flexDirection: "column",
-          alignItems: "center"
-        }]}>
-          <View style={[styles.houseRulesMain]}>
-            <Icon.Button onPress={() => props.navigation.navigate("House rules")} >Click here to add some house rules!</Icon.Button>
-          </View>
-          <View style={[styles.houseRulesMain]}>
-            <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")} >Random Punishment</Icon.Button>
-          </View>
+      <View style={styles.containerSingle}>
+        <View style={styles.cardContainer}>
+          <Card style={styles.card} onPress={() => props.navigation.navigate("House rules")} contentStyle={styles.cardContent}>
+            <Card.Content>
+              <Text style={styles.cardText}>Click here to add some house rules!</Text>
+            </Card.Content>
+          </Card>
+          <Card style={styles.card} onPress={() => props.navigation.navigate("Punishment Wheel")} contentStyle={styles.cardContent}>
+            <Card.Content>
+              <Text style={styles.cardText}>Random Punishment</Text>
+            </Card.Content>
+          </Card>
         </View>
-    )
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   containerSingle: {
     flex: 1,
-    marginTop: hp("5%"),
-    marginHorizontal: wp("5%"),
-    height: hp("50%")
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '5%',
   },
   containerMulti: {
     flex: 1,
-    marginTop: hp("9%"),
-    marginLeft: wp("5%"),
-    height: hp("50%")
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: '5%',
   },
   containerMultiMoreThanThree: {
     flex: 1,
-    marginTop: hp("9%"),
-    paddingBottom: hp("7%"),
-    marginLeft: wp("5%"),
-    height: hp("50%")
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: '5%',
+    paddingBottom: '7%',
   },
-  scrollViewCont:{
-    flex: 1
+  rulesContainer: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   houseRulesNav: {
     padding: 3,
-    // width: wp("22.5%")
   },
   cardHousing: {
+    flex: 1,
+    justifyContent: 'center',
     marginLeft: 5,
-    width: wp("90%"),
-    height: hp("10%")
   },
-  houseRulesMain: {
-    justifyContent: "center",
-    width: wp("90%"),
-    height: hp("7%")
+  cardContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginVertical: 10,
   },
-  houseRulesMainAppear: {
-    justifyContent: "center",
-    width: wp("20%"),
-    height: hp("20%")
-  }
+  card: {
+    flex: 1,
+    marginHorizontal: 5,
+    height: 60, // Adjust the height as needed
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#1E90FF', // Poppy blue background color
+  },
+  cardContent: {
+    padding: 10, // Ensure consistent padding around the card content
+  },
+  cardText: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#FFFFFF', // White text color for readability
+  },
 });
-
-
 
 const mapStateToProps = (globalState) => {
   return {
-    houseRules: globalState.houseRules
-  }
-}
+    houseRules: globalState.houseRules,
+  };
+};
 
-export default connect(mapStateToProps)(JustShowHouseRules)
+export default connect(mapStateToProps)(JustShowHouseRules);
