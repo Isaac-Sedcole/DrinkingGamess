@@ -1,167 +1,83 @@
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import React, { useState, useEffect } from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 function NoShowPunishment(props) {
+  const [displayHRules, setDisplayHRules] = useState(false);
+  const [moreThanThree, setMoreThanThree] = useState(false);
 
-  
+  useEffect(() => {
+    setMoreThanThree(props.houseRules.length > 3);
+  }, [props.houseRules]);
 
-  const [displayHRules, setDisplayHRules] = useState(false)
+  useEffect(() => {
+    let list = props.houseRules.filter(rule => rule.checked);
+    setDisplayHRules(list.length > 0);
+  }, [props.houseRules]);
 
-  const [moreThanThree, setMoreThanThree] = useState(false)
-
-  useEffect(()=> {
-    setMoreThanThree(props.houseRules.length > 3)
-  },[props.houseRules])
-
-  useEffect(()=> {
-    let list = props.houseRules.filter(rule => { return rule.checked })
-    if(list.length > 0) {
-      setDisplayHRules(true)
-    } else {
-      setDisplayHRules(false)
-    }
-  },[props.houseRules])
-
-  // (props.houseRules.length>3) : [styles.containerMulti ? [styles.containerSingle
-
-  if (displayHRules) {
-
-    if(moreThanThree){
-      return (
-          <View style={[styles.containerMultiMoreThanThree, {
-            flexDirection: "row",
-            alignItems: 'center',
-          }]}>
-            <View style={[styles.backButton]}>
-              <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
-            </View>
-            <View style={[styles.cardHousing]}>
-              <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
-                {props.houseRules.map(rule => {
-                  return (
-                    <View key={rule.id} style={styles.houseRulesNav}>
-                      {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
-                    </View>
-                  )
-                })}
-              </View>
-            </View>
-          </View>
-    )
-    } else {
-      return (
-          <View style={[styles.containerMulti, {
-            flexDirection: "row",
-            alignItems: 'center',
-          }]}>
-            <View style={[styles.backButton]}>
-              <Icon.Button onPress={() => props.navigation.popToTop()} name="arrow-left" />
-            </View>
-            <View style={[styles.cardHousing]}>
-              <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
-                {props.houseRules.map(rule => {
-                  return (
-                    <View key={rule.id} style={styles.houseRulesNav}>
-                      {rule.checked && <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>{rule.name}</Icon.Button>}
-                    </View>
-                  )
-                })}
-              </View>
-            </View>
-          </View>
-    )
-    }
-
-   
-  } else {
-    return (
-        <View style={[styles.containerSingle, {
-          flexDirection: "row",
-          alignItems: 'center'
-        }]}>
-          <View style={[styles.backButton]}>
-            <Icon.Button onPress={() => props.navigation.goBack() } name="arrow-left"/>
-          </View>
-          <View style={[styles.houseRulesMain]}>
-            <Icon.Button onPress={() => props.navigation.navigate("House rules")} >Click here to add some house rules!</Icon.Button>
-          </View>
-          
-        </View>        
-    )
-  }
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.backButtonContainer}>
+          <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
+        </View>
+        {displayHRules && (
+          <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
+            {props.houseRules.map(rule => (
+              rule.checked && (
+                <View key={rule.id} style={styles.houseRulesNav}>
+                  <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>
+                    {rule.name}
+                  </Icon.Button>
+                </View>
+              )
+            ))}
+          </ScrollView>
+        )}
+      </View>
+      <View style={styles.footer}>
+        <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")}>
+          Random Punishment
+        </Icon.Button>
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-  containerSingle: {
+  container: {
     flex: 1,
-    marginTop: hp("7%"),
-    marginLeft: wp("5%"),
-    height: hp("50%"),
-    paddingBottom: hp("3%")
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    padding: 10,
   },
-  containerMulti: {
-    flex: 1,
-    marginTop: hp("9%"),
-    marginLeft: wp("5%"),
-    height: hp("50%")
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  containerMultiMoreThanThree: {
-    flex: 1,
-    marginTop: hp("9%"),
-    paddingBottom: hp("7%"),
-    marginLeft: wp("5%"),
-    height: hp("50%")
+  backButtonContainer: {
+    marginRight: 10,
   },
-  scrollViewCont:{
-    flex: 1
-  },
-  backButton: {
-    marginTop: hp("5%"),
-    width: wp("10%"),
-    height: hp("10%")
+  rulesContainer: {
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
   },
   houseRulesNav: {
     padding: 3,
-    // width: wp("25%")
   },
-  cardHousing: {
-    marginLeft: 5,
-    // width: wp("77%"),
-    height: hp("10%")
+  footer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  houseRulesMain: {
-    marginLeft: 5,
-    justifyContent: "center",
-    // paddingVertical: hp('4%'),
-    width: wp("80%"),
-    height: hp("7%")
-  },
-  houseRulesMainSpecial: {
-    marginHorizontal: wp('5%'),
-    justifyContent: "center",
-    // paddingVertical: hp('4%'),
-    width: wp("90%"),
-    height: hp("7%")
-  },
-  houseRulesMainSpecialV2: {
-    marginHorizontal: wp('5%'),
-    justifyContent: "center",
-    // paddingVertical: hp('4%'),
-    width: wp("90%"),
-    height: hp("7%"),
-    marginTop: hp('2%')
-  }
 });
 
 const mapStateToProps = (globalState) => {
   return {
-    houseRules: globalState.houseRules
-  }
-}
+    houseRules: globalState.houseRules,
+  };
+};
 
-
-export default connect(mapStateToProps)(NoShowPunishment)
+export default connect(mapStateToProps)(NoShowPunishment);
