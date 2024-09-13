@@ -3,6 +3,7 @@ export default {
     {
       id: 1,
       name: "Kings Cup",
+      iconName: "KingsCup",
       suggestedPlayers: "4-10",
       drunkOMeter: 8,
       gameDuration: "40-60 mins",
@@ -56,6 +57,7 @@ export default {
     {
       id: 2,
       name: "Smash Cup",
+      iconName: "SmashCup",
       suggestedPlayers: "4+",
       drunkOMeter: 4,
       gameDuration: "10-15 mins",
@@ -70,6 +72,7 @@ export default {
     {
       id: 3,
       name: "Taxi Driver",
+      iconName: "TaxiDriver",
       suggestedPlayers: "2+",
       drunkOMeter: 7,
       gameDuration: "2-20 mins",
@@ -84,6 +87,7 @@ export default {
     {
       id: 4,
       name: "Fingers",
+      iconName: "Fingers",
       suggestedPlayers: "4+",
       drunkOMeter: 2,
       gameDuration: "2-10 mins",
@@ -98,6 +102,7 @@ export default {
     {
       id: 5,
       name: "Horses",
+      iconName: "Horses",
       suggestedPlayers: "4+",
       drunkOMeter: 5,
       gameDuration: "2 mins per round",
@@ -115,6 +120,7 @@ export default {
     {
       id: 6,
       name: "Beer Pong",
+      iconName: "BeerPong",
       suggestedPlayers: "2 or 4",
       drunkOMeter: 7,
       gameDuration: "10 - 20 mins",
@@ -135,6 +141,7 @@ export default {
     {
       id: 7,
       name: "Cheers Governor",
+      iconName: "CheersGov",
       suggestedPlayers: "5+",
       drunkOMeter: 4,
       gameDuration: "10 - 20 mins",
@@ -147,6 +154,7 @@ export default {
     {
       id: 8,
       name: "Booze or no Booze",
+      iconName: "BoozeOrNoBooze",
       suggestedPlayers: "4+",
       drunkOMeter: 8,
       gameDuration: "10 mins",

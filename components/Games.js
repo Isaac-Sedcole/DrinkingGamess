@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, TouchableHighlight, View, Button } from 'react-native'
+import React from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { Card } from 'react-native-paper'
 import gamesList from '../data/gamesList'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
@@ -7,70 +7,71 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import Game from './Game'
 import HouseRules from './HouseRules'
 
-
 function Games({ navigation }) {
 
   const navigateToGame = (game) => {
-    // console.log(game.name)
-    if(game.customRules.length > 0) {
-      navigation.navigate(game.name, {game})
+    if (game.customRules.length > 0) {
+      navigation.navigate(game.name, { game })
     } else {
-      navigation.navigate("Selected game", { game })}
+      navigation.navigate("Selected game", { game })
     }
+  }
 
-    // const nav2WHeel = () => {
-    //   navigation.navigate("Punishment Wheel")
-    // }
-    
-    return (
-      <View style={[styles.container, {
-        flexDirection: "column",
-        alignItems: 'center'
-      }]}>
-      {/* <View><Button onPress={() => nav2WHeel()} title={"Wheel"} /></View> */}
-      <Card style={[styles.gamesDisplay]}>
+  return (
+    <View style={styles.container}>
+      <View style={styles.gamesGrid}>
         {gamesList.games.map(game => {
           return (
-            <View style={[styles.fixedSingularGame]} key={game.id}>
-              <Button onPress={() => navigateToGame(game)} title={game.name} />
-            </View>
+            <TouchableOpacity 
+              style={styles.gameCard} 
+              key={game.id} 
+              onPress={() => navigateToGame(game)}
+            >
+              <Card style={styles.card}>
+                <Image 
+                  source={require(`../assets/gameicons/${game.iconName}.png`)} 
+                  style={styles.gameIcon} 
+                />
+                <Text style={styles.gameName}>{game.name}</Text>
+              </Card>
+            </TouchableOpacity>
           )
         })}
-      </Card>
+      </View>
     </View>
   )
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: wp("35%"),
+    paddingVertical: wp("10%"),
     alignItems: 'center'
   },
-  gamesDisplay: {
-    paddingLeft: wp('8%'),
-    paddingTop: hp('2%'),
-    borderRadius: wp("5%"),
-    width: wp("90%"),
-    height: hp("6.5%") * gamesList.games.length
+  gamesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center'
   },
-  singleGameDisplay: {
-    paddingTop: hp("2.5%"),
-    paddingLeft: wp("90%")/3,
-    width: wp("60%")
+  gameCard: {
+    width: wp("40%"),
+    margin: wp("2.5%")
   },
-  fixedSingularGame:{
-    padding: 5,
-    width: 300
+  card: {
+    alignItems: 'center',
+    padding: wp("2%"),
+    borderRadius: wp("5%")
   },
-  fixedGamesDisplay: {
-    borderRadius: 20,
-    paddingTop: 20,
-    width: 300,
-    height: 58 * gamesList.games.length
+  gameIcon: {
+    width: wp("35%"),
+    height: wp("35%"),
+    resizeMode: 'contain'
   },
-
+  gameName: {
+    marginTop: hp("1%"),
+    fontSize: wp("4%"),
+    textAlign: 'center'
+  }
 });
 
 export default Games
