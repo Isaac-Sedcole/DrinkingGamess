@@ -1,211 +1,211 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native'
-import { Card } from 'react-native-paper'
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import AppButton from "./AppButton"
-
+import React, { useEffect, useState, useRef } from 'react';
+import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
+import { Card, Button } from 'react-native-paper';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import AppButton from "./AppButton";
 
 function KingsCup(props) {
-  
-  const [showRules, setShowRules] = useState(false)
-  const [showRuleModal, setShowRuleModal] = useState(false)
-  const [currentRule, setCurrentRule] = useState({})
-  const [showKingsCupCustom, setShowKingsCupCustom] = useState(false)
-  const [oldShowKingsCupCustom, setOldShowKingsCupCustom] = useState(false)
+  const [showRules, setShowRules] = useState(false);
+  const [showRuleModal, setShowRuleModal] = useState(false);
+  const [currentRule, setCurrentRule] = useState({});
+  const [showKingsCupCustom, setShowKingsCupCustom] = useState(false);
+  const [oldShowKingsCupCustom, setOldShowKingsCupCustom] = useState(false);
+  const [buttonWidth, setButtonWidth] = useState(0);
 
-
-  const gameName = props.route.params.game.name
-  let rulesObj = props.route.params.game.rules
+  const gameName = props.route.params.game.name;
+  const rulesObj = props.route.params.game.rules;
 
   const activateShowRules = () => {
-    // console.log(props.navigation)
-    setShowRules(!showRules)
-  }
+    setShowRules(!showRules);
+  };
 
-  useEffect(()=> {
-    setShowRules(false)
-    setShowKingsCupCustom(false)
-    setOldShowKingsCupCustom(false)
-    setShowRuleModal(false)
-  },[])
+  useEffect(() => {
+    setShowRules(false);
+    setShowKingsCupCustom(false);
+    setOldShowKingsCupCustom(false);
+    setShowRuleModal(false);
+  }, []);
 
-  let ruleDescObj = props.route.params.game.ruleDescription
+  const ruleDescObj = props.route.params.game.ruleDescription;
 
-    let rules = Object.keys(rulesObj).map(key => <option value={key}>{rulesObj[key]}</option>)
-    //has automatically ordered list however we want the 9th index (Ace - snake eyes) to still appear at the top
-    //weird object
-    let ace = rules.splice(9,1)
-    rules.unshift(ace[0])
-    
-    const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
+  const rules = Object.keys(rulesObj).map(key => (
+    <option value={key} key={key}>{rulesObj[key]}</option>
+  ));
+  const ace = rules.splice(9, 1);
+  rules.unshift(ace[0]);
 
-    const activateShowRuleModal = (ruleNeedingDescription) => {
-      // console.log(rulesDescription)
-      let matchingWord = ruleNeedingDescription.replace(/\s/g, "")
-      let theDescription = rulesDescription.filter(rule => {
-        if (rule.props.value.toLowerCase() == matchingWord.toLowerCase()) {
-          return rule
-        }
-      })
-      let newObj = { name: theDescription[0].props.value, desc: theDescription[0].props.children }
-      // console.log(newObj)
-      setCurrentRule(newObj)
-      setShowRuleModal(true)
+  const rulesDescription = Object.keys(ruleDescObj).map(key => (
+    <option value={key} key={key}>{ruleDescObj[key]}</option>
+  ));
+
+  const activateShowRuleModal = (ruleNeedingDescription) => {
+    const matchingWord = ruleNeedingDescription.replace(/\s/g, "");
+    const theDescription = rulesDescription.filter(rule => {
+      if (rule.props.value.toLowerCase() === matchingWord.toLowerCase()) {
+        return rule;
+      }
+    });
+    const newObj = { name: theDescription[0].props.value, desc: theDescription[0].props.children };
+    setCurrentRule(newObj);
+    setShowRuleModal(true);
+  };
+
+  const activateShowKingsCupRules = () => {
+    setShowKingsCupCustom(true);
+  };
+
+  const activateOldShowKingsCupRules = () => {
+    setOldShowKingsCupCustom(true);
+  };
+
+  const onLayout = (event) => {
+    const { width } = event.nativeEvent.layout;
+    if (buttonWidth === 0 || width < buttonWidth) {
+      setButtonWidth(width);
     }
+  };
 
-    const activateShowKingsCupRules = () => {
-      setShowKingsCupCustom(true)
-    }
-
-    const activateOldShowKingsCupRules = () => {
-      setOldShowKingsCupCustom(true)
-    }
-
-    
-
-
-    return (
-      <>
-        <ScrollView style={[styles.scrollViewCont]}>
-          <View style={[styles.container, {
-            alignItems: 'center'
-          }]}>
-
-            <Text style={[styles.titleText]}>{gameName}</Text>
-            <View style={{ paddingTop: hp("2%") }}>
-              <Text style={[styles.xxtraSubText]}>This game is suggested for {props.route.params.game.suggestedPlayers} players</Text>
-            </View>
-            <View style={{ paddingTop: hp("1%") }}>
-              <Text style={[styles.xxtraSubText]}>DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10</Text>
-            </View>
-            <View style={{ paddingTop: hp("1%") }}>
-              <Text style={[styles.subTitleText]}>You will need:</Text>
-            </View>
-              <Text style={[styles.subText]}>{props.route.params.game.itemsRequired.map(item => { return item + ", " })}</Text>
-
-            <View style={{ paddingTop: hp("1%") }}>
-              <Text style={[styles.subTitleText]}>How to Play:</Text>
-            </View>
-              <Text style={[styles.subText]}>{props.route.params.game.explanationBlurb}</Text>
-            <View style={{ paddingTop: hp("1%") }}>
-            <Button onPress={() => activateShowRules()} title="Show Rules!" />
-            </View>
-            <View style={{
-              flexDirection: "row",
-              flexWrap: "wrap",
-            }}>
-              {showRules && rules.map(rule => {
-                //name was too long and made the button multi-lined - easiest way around the issue
-                return (
-                  <View key={rule.props.children} stlye={{ justifyContent: "center" }}>
-                    <Card style={[styles.cardContainer]}>
-                      <View style={{ flexDirection: "row" }}>
-                        <View style={[styles.cardTitle]}>
-                          <Card.Title titleStyle={[styles.titleStyling]} title={rule.props.value} />
-                        </View>
-                        <View style={[styles.cardContent]}>
-                          <Card.Content><AppButton onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children} /></Card.Content>
-                        </View>
-                      </View>
-                    </Card>
+  return (
+    <ScrollView style={styles.scrollViewCont}>
+      <View style={styles.container}>
+        <Card style={styles.card}>
+          <Card.Content>
+            <Text style={styles.titleText}>{gameName}</Text>
+            <Text style={styles.xxtraSubText}>
+              This game is suggested for {props.route.params.game.suggestedPlayers} players
+            </Text>
+            <Text style={styles.xxtraSubText}>
+              DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10
+            </Text>
+            <Text style={styles.subTitleText}>You will need:</Text>
+            <Text style={styles.subText}>
+              {props.route.params.game.itemsRequired.join(', ')}
+            </Text>
+            <Text style={styles.subTitleText}>How to Play:</Text>
+            <Text style={styles.subText}>
+              {props.route.params.game.explanationBlurb}
+            </Text>
+            <Button mode="contained" onPress={activateShowRules} style={styles.button}>
+              {showRules ? 'Hide Rules' : 'Show Rules'}
+            </Button>
+            {showRules && (
+              <View style={styles.rulesContainer}>
+                {rules.map(rule => (
+                  <View key={rule.props.children} style={styles.ruleItem}>
+                    <View style={[
+                      styles.ruleNumberContainer,
+                      rule.props.value === 'JOKER' && styles.jokerNumberContainer
+                    ]}>
+                      <Text style={[
+                        styles.ruleNumber,
+                        rule.props.value === 'JOKER' && styles.jokerNumber
+                      ]}>{rule.props.value}</Text>
+                    </View>
+                    <View style={[styles.ruleDescriptionContainer, { width: buttonWidth }]}>
+                      <AppButton onPress={() => activateShowRuleModal(rule.props.children)} title={rule.props.children} onLayout={onLayout} />
+                    </View>
                   </View>
-                )
-              })}
-              <View style={[styles.middleButton]}>
-                <View style={{paddingBottom: hp("1%")}}>
-                  {showRules && <Button onPress={() => activateShowKingsCupRules()} title="Custom Rules"/>}
-                </View></View> 
-              {showKingsCupCustom && props.navigation.navigate("Show kings cup custom rules")}
-            </View>
-          </View>
-        </ScrollView>
-        {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
-      </>
-    )
-
+                ))}
+                <Button mode="contained" onPress={activateShowKingsCupRules} style={styles.button}>
+                  Custom Rules
+                </Button>
+                {showKingsCupCustom && props.navigation.navigate("Show kings cup custom rules")}
+              </View>
+            )}
+          </Card.Content>
+        </Card>
+      </View>
+      {showRuleModal && props.navigation.navigate("Showing a rule", { rule: currentRule })}
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: wp("5%"),
-    paddingBottom: hp("2%"),
-    // marginTop: hp("2.5%")
+    padding: wp('5%'),
+    backgroundColor: '#f5f5f5',
   },
   scrollViewCont: {
-    flex: 1
+    flex: 1,
   },
-  cardContainer: {
-    margin: wp("1%"),
-    // width: wp("42.5%"),
-    width: wp("85%"),
-    height: hp("5%"),
-    alignItems: "center"
-  },
-  cardTitle: {
-    width: wp("40%"),
-    height: hp("4%"),
-    textTransform: "uppercase",
-    fontWeight: "bold"
-  },
-  cardContent: {
-    width: wp("40%"),
-    height: hp("6%")
-  },
-  wholeCardContainer: {
-    width: wp("90%"),
+  card: {
+    marginVertical: hp('2%'),
+    padding: wp('3%'), // Reduced padding
+    borderRadius: 10,
+    backgroundColor: '#ffffff',
+    elevation: 3,
   },
   titleText: {
-    fontFamily: "sans-serif",
-    fontSize: wp("8%"),
-    color: "#2F4F4F",
-    fontWeight: "600",
+    fontFamily: 'sans-serif',
+    fontSize: wp('7%'), // Reduced font size
+    color: '#2F4F4F',
+    fontWeight: '600',
+    marginBottom: hp('1%'), // Reduced margin
   },
   subTitleText: {
-    fontFamily: "sans-serif",
-    fontSize: wp("5%"),
-    color: "#2F4F4F",
-    fontWeight: "600",
+    fontFamily: 'sans-serif',
+    fontSize: wp('4.5%'), // Reduced font size
+    color: '#2F4F4F',
+    fontWeight: '600',
+    marginTop: hp('1%'), // Reduced margin
   },
   xxtraSubText: {
-    fontFamily: "sans-serif",
-    fontSize: wp("4.5%"),
-    color: "#2d5287",
-    fontWeight: "600",
+    fontFamily: 'sans-serif',
+    fontSize: wp('4%'), // Reduced font size
+    color: '#2d5287',
+    fontWeight: '600',
+    marginTop: hp('0.5%'), // Reduced margin
   },
   subText: {
-    fontFamily: "sans-serif-light",
-    fontSize: wp("4%"),
-    fontWeight: "500",
-    color: "#008B8B"
+    fontFamily: 'sans-serif-light',
+    fontSize: wp('3.5%'), // Reduced font size
+    fontWeight: '500',
+    color: '#008B8B',
+    marginTop: hp('0.5%'), // Reduced margin
   },
-  listSeperatorCenter: {
-    marginTop: hp("0.5%"),
-    alignItems: "center"
+  rulesContainer: {
+    marginTop: hp('1%'), // Reduced margin
   },
-  listSeperatorLeft: {
-    marginTop: hp("0.5%"),
-    alignItems: "flex-start"
+  ruleItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: hp('0.5%'), // Reduced margin
+    padding: wp('1%'), // Reduced padding
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#ddd',
   },
-  rulesText: {
-    fontFamily: "sans-serif",
-    fontSize: wp("4%"),
-    color: "#2d5287",
-    fontWeight: "500",
+  ruleNumberContainer: {
+    backgroundColor: '#ff6103',
+    borderRadius: wp('5%'), // Make it circular
+    width: wp('8%'),
+    height: wp('8%'),
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: wp('2%'),
   },
-  titleStyling: {
-    color:"#fff", 
-    fontWeight:"bold", 
-    backgroundColor: "#2d5287", 
-    borderRadius:wp("1%"), 
-    paddingHorizontal: wp("1%") ,
-    marginBottom:hp("1%"), 
-    marginRight:wp("25%"),
-    alignSelf: "center"
+  jokerNumberContainer: {
+    width: wp('12%'), // Larger width for "JOKER"
   },
-  middleButton: {
-    marginLeft: wp("25%")
-  }
+  ruleNumber: {
+    fontFamily: 'sans-serif',
+    fontSize: wp('4%'), // Reduced font size
+    color: '#ffffff',
+    fontWeight: '600',
+  },
+  jokerNumber: {
+    fontSize: wp('3%'), // Smaller font size for "JOKER"
+  },
+  ruleDescriptionContainer: {
+    flex: 1,
+  },
+  button: {
+    marginTop: hp('1%'), // Reduced margin
+    backgroundColor: '#ff6103',
+  },
 });
 
-export default KingsCup
+export default KingsCup;
