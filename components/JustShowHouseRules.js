@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { StyleSheet, View, Text, Dimensions, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { Card } from 'react-native-paper';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const { height: screenHeight } = Dimensions.get('window');
 
@@ -23,45 +24,49 @@ function JustShowHouseRules(props) {
 
   if (displayHRules) {
     return (
-      <SafeAreaView style={moreThanThree ? styles.containerMultiMoreThanThree : styles.containerMulti}>
-        <View style={styles.cardHousing}>
-          <View style={styles.rulesContainer}>
-            {currentHouseRules.map(rule => (
-              <View key={rule.id} style={styles.houseRulesNav}>
-                {rule.checked && (
-                  <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>
-                    {rule.name}
-                  </Icon.Button>
-                )}
-              </View>
-            ))}
+      <SafeAreaProvider>
+        <SafeAreaView style={moreThanThree ? styles.containerMultiMoreThanThree : styles.containerMulti}>
+          <View style={styles.cardHousing}>
+            <View style={styles.rulesContainer}>
+              {currentHouseRules.map(rule => (
+                <View key={rule.id} style={styles.houseRulesNav}>
+                  {rule.checked && (
+                    <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>
+                      {rule.name}
+                    </Icon.Button>
+                  )}
+                </View>
+              ))}
+            </View>
+            <View style={styles.cardContainer}>
+              <Card style={styles.card} onPress={() => props.navigation.navigate("Punishment Wheel")} contentStyle={styles.cardContent}>
+                <Card.Content>
+                  <Text style={styles.cardText}>Random Punishment</Text>
+                </Card.Content>
+              </Card>
+            </View>
           </View>
+        </SafeAreaView>
+      </SafeAreaProvider>
+    );
+  } else {
+    return (
+      <SafeAreaProvider>
+        <SafeAreaView style={styles.containerSingle}>
           <View style={styles.cardContainer}>
+            <Card style={styles.card} onPress={() => props.navigation.navigate("House rules")} contentStyle={styles.cardContent}>
+              <Card.Content>
+                <Text style={styles.cardText}>Click here to add some house rules!</Text>
+              </Card.Content>
+            </Card>
             <Card style={styles.card} onPress={() => props.navigation.navigate("Punishment Wheel")} contentStyle={styles.cardContent}>
               <Card.Content>
                 <Text style={styles.cardText}>Random Punishment</Text>
               </Card.Content>
             </Card>
           </View>
-        </View>
-      </SafeAreaView>
-    );
-  } else {
-    return (
-      <SafeAreaView style={styles.containerSingle}>
-        <View style={styles.cardContainer}>
-          <Card style={styles.card} onPress={() => props.navigation.navigate("House rules")} contentStyle={styles.cardContent}>
-            <Card.Content>
-              <Text style={styles.cardText}>Click here to add some house rules!</Text>
-            </Card.Content>
-          </Card>
-          <Card style={styles.card} onPress={() => props.navigation.navigate("Punishment Wheel")} contentStyle={styles.cardContent}>
-            <Card.Content>
-              <Text style={styles.cardText}>Random Punishment</Text>
-            </Card.Content>
-          </Card>
-        </View>
-      </SafeAreaView>
+        </SafeAreaView>
+      </SafeAreaProvider>
     );
   }
 }

@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { StyleSheet, View, ScrollView, Dimensions, SafeAreaView } from 'react-native';
+import { StyleSheet, View, ScrollView, Dimensions } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -30,26 +31,56 @@ function NavHouseRules(props) {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.backButtonContainer}>
-            <Icon.Button 
-              onPress={() => props.navigation.goBack()} 
-              name="arrow-left" 
-              backgroundColor="#1E90FF" 
-              color="#fff" 
-            />
-          </View>
-          {!displayHRules && (
-            <>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <View style={styles.backButtonContainer}>
               <Icon.Button 
-                onPress={navigateToHouseRules} 
+                onPress={() => props.navigation.goBack()} 
+                name="arrow-left" 
                 backgroundColor="#1E90FF" 
-                color="#fff"
-              >
-                House Rules
-              </Icon.Button>
+                color="#fff" 
+              />
+            </View>
+            {!displayHRules && (
+              <>
+                <Icon.Button 
+                  onPress={navigateToHouseRules} 
+                  backgroundColor="#1E90FF" 
+                  color="#fff"
+                >
+                  House Rules
+                </Icon.Button>
+                <Icon.Button 
+                  onPress={navigateToPunishmentWheel} 
+                  backgroundColor="#1E90FF" 
+                  color="#fff"
+                >
+                  Random Punishment
+                </Icon.Button>
+              </>
+            )}
+            {displayHRules && (
+              <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
+                {props.houseRules.map(rule => (
+                  rule.checked && (
+                    <View key={rule.id} style={styles.houseRulesNav}>
+                      <Icon.Button 
+                        backgroundColor="#ff6103" 
+                        color="#fff" 
+                        onPress={navigateToHouseRules}
+                      >
+                        {rule.name}
+                      </Icon.Button>
+                    </View>
+                  )
+                ))}
+              </ScrollView>
+            )}
+          </View>
+          {displayHRules && (
+            <View style={styles.footer}>
               <Icon.Button 
                 onPress={navigateToPunishmentWheel} 
                 backgroundColor="#1E90FF" 
@@ -57,39 +88,11 @@ function NavHouseRules(props) {
               >
                 Random Punishment
               </Icon.Button>
-            </>
-          )}
-          {displayHRules && (
-            <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
-              {props.houseRules.map(rule => (
-                rule.checked && (
-                  <View key={rule.id} style={styles.houseRulesNav}>
-                    <Icon.Button 
-                      backgroundColor="#ff6103" 
-                      color="#fff" 
-                      onPress={navigateToHouseRules}
-                    >
-                      {rule.name}
-                    </Icon.Button>
-                  </View>
-                )
-              ))}
-            </ScrollView>
+            </View>
           )}
         </View>
-        {displayHRules && (
-          <View style={styles.footer}>
-            <Icon.Button 
-              onPress={navigateToPunishmentWheel} 
-              backgroundColor="#1E90FF" 
-              color="#fff"
-            >
-              Random Punishment
-            </Icon.Button>
-          </View>
-        )}
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
