@@ -124,54 +124,61 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: wp('5%'),
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f0f8ff', // Light blue background
   },
   scrollViewCont: {
     flex: 1,
   },
   card: {
     marginVertical: hp('2%'),
-    padding: wp('3%'), // Reduced padding
-    borderRadius: 10,
+    padding: wp('5%'),
+    borderRadius: 15, // More rounded corners
     backgroundColor: '#ffffff',
-    elevation: 3,
+    elevation: 5,
   },
   titleText: {
     fontFamily: 'sans-serif',
-    fontSize: wp('7%'), // Reduced font size
-    color: '#2F4F4F',
-    fontWeight: '600',
-    marginBottom: hp('1%'), // Reduced margin
+    fontSize: wp('8%'),
+    color: '#1e90ff', // Dodger blue
+    fontWeight: '700',
+    marginBottom: hp('2%'),
   },
   subTitleText: {
     fontFamily: 'sans-serif',
-    fontSize: wp('4.5%'), // Reduced font size
-    color: '#2F4F4F',
-    fontWeight: '600',
-    marginTop: hp('1%'), // Reduced margin
+    fontSize: wp('5%'),
+    color: '#104e8b', // Deeper blue
+    fontWeight: '700', // Bolder font weight
+    marginTop: hp('2%'),
   },
   xxtraSubText: {
     fontFamily: 'sans-serif',
-    fontSize: wp('4%'), // Reduced font size
-    color: '#2d5287',
-    fontWeight: '600',
-    marginTop: hp('0.5%'), // Reduced margin
+    fontSize: wp('4.5%'),
+    color: '#5f9ea0', // Cadet blue
+    fontWeight: '500',
+    marginTop: hp('1%'),
   },
   subText: {
-    fontFamily: 'sans-serif-light',
-    fontSize: wp('3.5%'), // Reduced font size
+    fontFamily: 'sans-serif',
+    fontSize: wp('4%'),
+    fontWeight: '400',
+    color: '#20b2aa', // Light sea green
+    marginTop: hp('1%'),
+  },
+  rulesText: {
+    fontFamily: 'sans-serif',
+    fontSize: wp('4%'),
+    color: '#2d5287', // Cadet blue
     fontWeight: '500',
-    color: '#008B8B',
-    marginTop: hp('0.5%'), // Reduced margin
+    marginTop: hp('1%'),
   },
   rulesContainer: {
-    marginTop: hp('1%'), // Reduced margin
+    marginTop: hp('1%'),
   },
   ruleItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: hp('0.5%'), // Reduced margin
-    padding: wp('1%'), // Reduced padding
+    marginVertical: hp('0.5%'),
+    padding: wp('1%'),
     backgroundColor: '#ffffff',
     borderRadius: 10,
     elevation: 3,
@@ -192,19 +199,25 @@ const styles = StyleSheet.create({
   },
   ruleNumber: {
     fontFamily: 'sans-serif',
-    fontSize: wp('4%'), // Reduced font size
+    fontSize: wp('4%'),
     color: '#ffffff',
     fontWeight: '600',
   },
   jokerNumber: {
-    fontSize: wp('3%'), // Smaller font size for "JOKER"
+    fontSize: wp('3%'),
   },
   ruleDescriptionContainer: {
     flex: 1,
   },
   button: {
-    marginTop: hp('1%'), // Reduced margin
-    backgroundColor: '#ff6103',
+    marginTop: hp('2%'),
+    backgroundColor: '#ff4500', // Orange red
+  },
+  activeRuleCard: {
+    marginTop: hp('1%'),
+    backgroundColor: '#f0f0f0', // Light grey background
+    borderRadius: 15,
+    elevation: 3,
   },
 });
 

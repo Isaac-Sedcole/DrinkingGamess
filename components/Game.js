@@ -45,7 +45,7 @@ function Game(props) {
             {showRules && (
               <Card style={styles.activeRuleCard}>
                 <Card.Content>
-                  <Text style={styles.rulesText}>{activeRule}</Text>
+                  <Text style={styles.rulesText}>{rulesObj.rules}</Text>
                 </Card.Content>
               </Card>
             )}
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: wp('5%'),
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#f0f8ff', // Light blue background
   },
   scrollViewCont: {
     flex: 1,
@@ -68,54 +68,54 @@ const styles = StyleSheet.create({
   card: {
     marginVertical: hp('2%'),
     padding: wp('5%'),
-    borderRadius: 10,
+    borderRadius: 15, // More rounded corners
     backgroundColor: '#ffffff',
-    elevation: 3,
+    elevation: 5,
   },
   titleText: {
     fontFamily: 'sans-serif',
     fontSize: wp('8%'),
-    color: '#2F4F4F',
-    fontWeight: '600',
+    color: '#1e90ff', // Dodger blue
+    fontWeight: '700',
     marginBottom: hp('2%'),
   },
   subTitleText: {
     fontFamily: 'sans-serif',
     fontSize: wp('5%'),
-    color: '#2F4F4F',
-    fontWeight: '600',
+    color: '#104e8b', // Deeper blue
+    fontWeight: '700', // Bolder font weight
     marginTop: hp('2%'),
   },
   xxtraSubText: {
     fontFamily: 'sans-serif',
     fontSize: wp('4.5%'),
-    color: '#2d5287',
-    fontWeight: '600',
+    color: '#5f9ea0', // Cadet blue
+    fontWeight: '500',
     marginTop: hp('1%'),
   },
   subText: {
-    fontFamily: 'sans-serif-light',
+    fontFamily: 'sans-serif',
     fontSize: wp('4%'),
-    fontWeight: '500',
-    color: '#008B8B',
+    fontWeight: '400',
+    color: '#20b2aa', // Light sea green
     marginTop: hp('1%'),
   },
   rulesText: {
     fontFamily: 'sans-serif',
     fontSize: wp('4%'),
-    color: '#2d5287',
+    color: '#2d5287', // Cadet blue
     fontWeight: '500',
     marginTop: hp('1%'),
   },
   activeRuleCard: {
     marginTop: hp('1%'),
-    backgroundColor: '#f0f0f0',
-    borderRadius: 10,
+    backgroundColor: '#f0f0f0', // Light grey background
+    borderRadius: 15,
     elevation: 3,
   },
   button: {
     marginTop: hp('2%'),
-    backgroundColor: '#ff6103',
+    backgroundColor: '#ff4500', // Orange red
   },
 });
 
