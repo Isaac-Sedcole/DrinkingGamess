@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { StyleSheet, View, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, View, ScrollView, Dimensions, SafeAreaView } from 'react-native';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -18,37 +18,43 @@ function JustShowBack(props) {
   }, [props.houseRules]);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.backButtonContainer}>
-          <Icon.Button 
-            onPress={() => props.navigation.goBack()} 
-            name="arrow-left" 
-            backgroundColor="#1E90FF" 
-            color="#fff" 
-          />
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <View style={styles.backButtonContainer}>
+            <Icon.Button 
+              onPress={() => props.navigation.goBack()} 
+              name="arrow-left" 
+              backgroundColor="#1E90FF" 
+              color="#fff" 
+            />
+          </View>
+          <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
+            {currentHouseRules.map(rule => (
+              rule.checked && (
+                <View key={rule.id} style={styles.houseRulesNav}>
+                  <Icon.Button 
+                    backgroundColor="#ff6103" 
+                    color="#fff" 
+                    onPress={() => props.navigation.navigate("House rules")}
+                  >
+                    {rule.name}
+                  </Icon.Button>
+                </View>
+              )
+            ))}
+          </ScrollView>
         </View>
-        <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
-          {currentHouseRules.map(rule => (
-            rule.checked && (
-              <View key={rule.id} style={styles.houseRulesNav}>
-                <Icon.Button 
-                  backgroundColor="#ff6103" 
-                  color="#fff" 
-                  onPress={() => props.navigation.navigate("House rules")}
-                >
-                  {rule.name}
-                </Icon.Button>
-              </View>
-            )
-          ))}
-        </ScrollView>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    paddingTop: 20, // Add buffer to the top
+  },
   container: {
     flexDirection: 'row',
     alignItems: 'center',

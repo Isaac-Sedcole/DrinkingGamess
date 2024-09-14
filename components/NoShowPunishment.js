@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { StyleSheet, View, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, View, ScrollView, Dimensions, SafeAreaView } from 'react-native';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
@@ -26,50 +26,56 @@ function NoShowPunishment(props) {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.backButtonContainer}>
-          <Icon.Button 
-            onPress={() => props.navigation.goBack()} 
-            name="arrow-left" 
-            backgroundColor="#1E90FF" 
-            color="#fff" 
-          />
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <View style={styles.backButtonContainer}>
+            <Icon.Button 
+              onPress={() => props.navigation.goBack()} 
+              name="arrow-left" 
+              backgroundColor="#1E90FF" 
+              color="#fff" 
+            />
+          </View>
+          {displayHRules && (
+            <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
+              {props.houseRules.map(rule => (
+                rule.checked && (
+                  <View key={rule.id} style={styles.houseRulesNav}>
+                    <Icon.Button 
+                      backgroundColor="#ff6103" 
+                      color="#fff" 
+                      onPress={navigateToHouseRules}
+                    >
+                      {rule.name}
+                    </Icon.Button>
+                  </View>
+                )
+              ))}
+            </ScrollView>
+          )}
         </View>
-        {displayHRules && (
-          <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
-            {props.houseRules.map(rule => (
-              rule.checked && (
-                <View key={rule.id} style={styles.houseRulesNav}>
-                  <Icon.Button 
-                    backgroundColor="#ff6103" 
-                    color="#fff" 
-                    onPress={navigateToHouseRules}
-                  >
-                    {rule.name}
-                  </Icon.Button>
-                </View>
-              )
-            ))}
-          </ScrollView>
+        {!displayHRules && (
+          <View style={styles.footer}>
+            <Icon.Button 
+              onPress={navigateToHouseRules} 
+              backgroundColor="#1E90FF" 
+              color="#fff"
+            >
+              House Rules
+            </Icon.Button>
+          </View>
         )}
       </View>
-      {!displayHRules && (
-        <View style={styles.footer}>
-          <Icon.Button 
-            onPress={navigateToHouseRules} 
-            backgroundColor="#1E90FF" 
-            color="#fff"
-          >
-            House Rules
-          </Icon.Button>
-        </View>
-      )}
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    paddingTop: 20, // Add buffer to the top
+  },
   container: {
     flex: 1,
     flexDirection: 'column',

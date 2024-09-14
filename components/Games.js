@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Dimensions, SafeAreaView } from 'react-native';
 import { Card } from 'react-native-paper';
 import gamesList from '../data/gamesList';
 
@@ -43,33 +43,39 @@ function Games({ navigation }) {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
-      <View style={styles.container}>
-        <View style={styles.gamesGrid}>
-          {gamesList.games.map(game => {
-            return (
-              <TouchableOpacity 
-                style={styles.gameCard} 
-                key={game.id} 
-                onPress={() => navigateToGame(game)}
-              >
-                <Card style={styles.card}>
-                  <Image 
-                    source={getIcon(game.iconName)} 
-                    style={styles.gameIcon} 
-                  />
-                  <Text style={styles.gameName}>{game.name}</Text>
-                </Card>
-              </TouchableOpacity>
-            );
-          })}
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.container}>
+          <View style={styles.gamesGrid}>
+            {gamesList.games.map(game => {
+              return (
+                <TouchableOpacity 
+                  style={styles.gameCard} 
+                  key={game.id} 
+                  onPress={() => navigateToGame(game)}
+                >
+                  <Card style={styles.card}>
+                    <Image 
+                      source={getIcon(game.iconName)} 
+                      style={styles.gameIcon} 
+                    />
+                    <Text style={styles.gameName}>{game.name}</Text>
+                  </Card>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    paddingTop: 20, // Add buffer to the top
+  },
   scrollContainer: {
     flexGrow: 1,
     justifyContent: 'center',

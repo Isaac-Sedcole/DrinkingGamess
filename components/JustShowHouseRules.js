@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, SafeAreaView } from 'react-native';
 import { Card } from 'react-native-paper';
 
 const { height: screenHeight } = Dimensions.get('window');
@@ -23,7 +23,7 @@ function JustShowHouseRules(props) {
 
   if (displayHRules) {
     return (
-      <View style={moreThanThree ? styles.containerMultiMoreThanThree : styles.containerMulti}>
+      <SafeAreaView style={moreThanThree ? styles.containerMultiMoreThanThree : styles.containerMulti}>
         <View style={styles.cardHousing}>
           <View style={styles.rulesContainer}>
             {currentHouseRules.map(rule => (
@@ -44,11 +44,11 @@ function JustShowHouseRules(props) {
             </Card>
           </View>
         </View>
-      </View>
+      </SafeAreaView>
     );
   } else {
     return (
-      <View style={styles.containerSingle}>
+      <SafeAreaView style={styles.containerSingle}>
         <View style={styles.cardContainer}>
           <Card style={styles.card} onPress={() => props.navigation.navigate("House rules")} contentStyle={styles.cardContent}>
             <Card.Content>
@@ -61,7 +61,7 @@ function JustShowHouseRules(props) {
             </Card.Content>
           </Card>
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -72,12 +72,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: '5%',
+    paddingTop: 20, // Add buffer to the top
   },
   containerMulti: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     padding: '5%',
+    paddingTop: 20, // Add buffer to the top
   },
   containerMultiMoreThanThree: {
     flex: 1,
@@ -85,6 +87,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: '5%',
     paddingBottom: '7%',
+    paddingTop: 20, // Add buffer to the top
   },
   rulesContainer: {
     flexWrap: 'wrap',
