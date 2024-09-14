@@ -1,199 +1,161 @@
-import React, {useEffect, useState} from 'react'
-import {StyleSheet, Text, View, Button, ScrollView } from 'react-native'
-import { Card } from 'react-native-paper'
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
-import AppButton from "./AppButton"
-
-
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { Card, Button } from 'react-native-paper';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import AppButton from "./AppButton";
 
 function Horses(props) {
+  const [currentRule, setCurrentRule] = useState({});
+  const [showRuleModal, setShowRuleModal] = useState(false);
+  const [activeRule, setActiveRule] = useState('');
 
-  const [currentRule, setCurrentRule] = useState({})
-  const [showRuleModal, setShowRuleModal] = useState(false)
+  useEffect(() => {
+    setShowRuleModal(false);
+  }, []);
 
-
-
-  useEffect(()=> {
-    setShowRuleModal(false)
-},[])
-
-
-  let gameName = props.route.params.game.name
-  let ruleDescObj = props.route.params.game.ruleDescription
-  let rules = props.route.params.game.customRules
-  const rulesDescription = Object.keys(ruleDescObj).map(key => <option value={key}>{ruleDescObj[key]}</option>)
+  const gameName = props.route.params.game.name;
+  const ruleDescObj = props.route.params.game.ruleDescription;
+  const rules = props.route.params.game.customRules;
+  const rulesDescription = Object.keys(ruleDescObj).map(key => (
+    <option value={key} key={key}>{ruleDescObj[key]}</option>
+  ));
 
   const activateShowRuleModal = (ruleNeedingDescription) => {
-    let matchingWord = ruleNeedingDescription.replace(/\s/g, "")
-    let theDescription = rulesDescription.filter(rule => {
-      if (rule.props.value.toLowerCase() == matchingWord.toLowerCase()) {
-        return rule
+    const matchingWord = ruleNeedingDescription.replace(/\s/g, "");
+    const theDescription = rulesDescription.filter(rule => {
+      if (rule.props.value.toLowerCase() === matchingWord.toLowerCase()) {
+        return rule;
       }
-    })
-    let newObj = { name: theDescription[0].props.value, desc: theDescription[0].props.children }
-    if(currentRule.name == ruleNeedingDescription) {
-      setShowRuleModal(!showRuleModal)
+    });
+    const newObj = { name: theDescription[0].props.value, desc: theDescription[0].props.children };
+    if (currentRule.name === ruleNeedingDescription) {
+      setShowRuleModal(!showRuleModal);
     } else {
-      setCurrentRule(newObj)
-      setShowRuleModal(true)
+      setCurrentRule(newObj);
+      setShowRuleModal(true);
     }
-  }
-
+    setActiveRule(ruleNeedingDescription);
+  };
 
   return (
-    <>
-      <ScrollView style={[styles.scrollViewCont]}>
-        <View style={[styles.container, {
-          alignItems: 'center'
-        }]}>
-
-          <Text style={[styles.titleText]}>{gameName}</Text>
-          <View>
-          <AppButton onPress={() => props.navigation.navigate("Play horses")} title={'Start Game'} buttonColour={'red'} />
-          </View>
-
-          <View style={{ paddingTop: hp("2%") }}>
-            <Text style={[styles.xxtraSubText]}>This game is suggested for {props.route.params.game.suggestedPlayers} players</Text>
-          </View>
-          <View style={{ paddingTop: hp("1%") }}>
-            <Text style={[styles.xxtraSubText]}>DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10</Text>
-          </View>
-          <View style={{ paddingTop: hp("1%") }}>
-            <Text style={[styles.subTitleText]}>You will need:</Text>
-          </View>
-            <Text style={[styles.subText]}>{props.route.params.game.itemsRequired.map(item => { return item + ", " })}</Text>
-
-          <View style={{ paddingTop: hp("1%") }}>
-            <Text style={[styles.subTitleText]}>How to Play:</Text>
-          </View>
-            <Text style={[styles.subText]}>{props.route.params.game.explanationBlurb}</Text>
-          <View style={{ paddingTop: hp("1%") }}>
-          </View>
-          <View style={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-          }}>
-            {rules.map(rule => {
-              return (
-                <View key={rule} stlye={{ justifyContent: "center" }}>
-                  <View style={[styles.cardContainer]}>
-                    <View style={[styles.cardContent]}>
-                      <AppButton onPress={() => activateShowRuleModal(rule)} title={rule} />
-                    </View>
-                  </View>
+    <ScrollView style={styles.scrollViewCont}>
+      <View style={styles.container}>
+        <Card style={styles.card}>
+          <Card.Content>
+            <Text style={styles.titleText}>{gameName}</Text>
+            <AppButton onPress={() => props.navigation.navigate("Play horses")} title="Start Game" buttonColour="red" />
+            <Text style={styles.xxtraSubText}>
+              This game is suggested for {props.route.params.game.suggestedPlayers} players
+            </Text>
+            <Text style={styles.xxtraSubText}>
+              DrunkOMeter reaches a solid {props.route.params.game.drunkOMeter}/10
+            </Text>
+            <Text style={styles.subTitleText}>You will need:</Text>
+            <Text style={styles.subText}>
+              {props.route.params.game.itemsRequired.join(', ')}
+            </Text>
+            <Text style={styles.subTitleText}>How to Play:</Text>
+            <Text style={styles.subText}>
+              {props.route.params.game.explanationBlurb}
+            </Text>
+            <View style={styles.rulesContainer}>
+              {rules.map(rule => (
+                <View key={rule} style={styles.ruleItem}>
+                  <AppButton onPress={() => activateShowRuleModal(rule)} title={rule} />
                 </View>
-              )
-            })}
-            <View style={[styles.descriptionContainer]}> 
-              {showRuleModal && <Text style={[styles.descriptionText]}>{currentRule.desc}</Text>}
+              ))}
+              {activeRule && (
+                <Card style={styles.activeRuleCard}>
+                  <Card.Content>
+                    <Text style={styles.activeRuleText}>Active Rule: {activeRule}</Text>
+                    {showRuleModal && (
+                      <Text style={styles.rulesText}>{currentRule.desc}</Text>
+                    )}
+                  </Card.Content>
+                </Card>
+              )}
             </View>
-          </View>
-        </View>
-      </ScrollView>
-    </>
-  )
+          </Card.Content>
+        </Card>
+      </View>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: wp("5%"),
-    paddingBottom: hp("2%"),
-    // marginTop: hp("2.5%")
+    padding: wp('5%'),
+    backgroundColor: '#f5f5f5',
   },
   scrollViewCont: {
-    flex: 1
+    flex: 1,
   },
-  cardContainer: {
-    margin: wp("1%"),
-    // width: wp("42.5%"),
-    width: wp("85%"),
-    height: hp("5%"),
-    alignItems: "center"
-  },
-  cardTitle: {
-    width: wp("40%"),
-    height: hp("4%"),
-    textTransform: "uppercase",
-    fontWeight: "bold"
-  },
-  cardContent: {
-    width: wp("40%"),
-    height: hp("6%")
-  },
-  wholeCardContainer: {
-    width: wp("90%"),
+  card: {
+    marginVertical: hp('2%'),
+    padding: wp('3%'), // Reduced padding
+    borderRadius: 10,
+    backgroundColor: '#ffffff',
+    elevation: 3,
   },
   titleText: {
-    fontFamily: "sans-serif",
-    fontSize: wp("8%"),
-    color: "#2F4F4F",
-    fontWeight: "600",
+    fontFamily: 'sans-serif',
+    fontSize: wp('7%'), // Reduced font size
+    color: '#2F4F4F',
+    fontWeight: '600',
+    marginBottom: hp('1%'), // Reduced margin
   },
   subTitleText: {
-    fontFamily: "sans-serif",
-    fontSize: wp("5%"),
-    color: "#2F4F4F",
-    fontWeight: "600",
-  },
-  descriptionText: {
-    fontFamily: "sans-serif",
-    fontSize: wp("5%"),
-    color: "#2F4F4F",
-    fontWeight: "600",
-    flex: 1,
-    flexWrap: 'wrap',
-  },
-  descriptionContainer:{
-    flexDirection: 'row',
-    // height: hp('40%'),
-    width: wp('80%'),
-    marginLeft: wp('5%'),
+    fontFamily: 'sans-serif',
+    fontSize: wp('4.5%'), // Reduced font size
+    color: '#2F4F4F',
+    fontWeight: '600',
+    marginTop: hp('1%'), // Reduced margin
   },
   xxtraSubText: {
-    fontFamily: "sans-serif",
-    fontSize: wp("4.5%"),
-    color: "#2d5287",
-    fontWeight: "600",
+    fontFamily: 'sans-serif',
+    fontSize: wp('4%'), // Reduced font size
+    color: '#2d5287',
+    fontWeight: '600',
+    marginTop: hp('0.5%'), // Reduced margin
   },
   subText: {
-    fontFamily: "sans-serif-light",
-    fontSize: wp("4%"),
-    fontWeight: "500",
-    color: "#008B8B"
+    fontFamily: 'sans-serif-light',
+    fontSize: wp('3.5%'), // Reduced font size
+    fontWeight: '500',
+    color: '#008B8B',
+    marginTop: hp('0.5%'), // Reduced margin
   },
-  listSeperatorCenter: {
-    marginTop: hp("0.5%"),
-    alignItems: "center"
+  rulesContainer: {
+    marginTop: hp('1%'), // Reduced margin
   },
-  listSeperatorLeft: {
-    marginTop: hp("0.5%"),
-    alignItems: "flex-start"
+  ruleItem: {
+    marginVertical: hp('0.5%'), // Reduced margin
   },
   rulesText: {
-    fontFamily: "sans-serif",
-    fontSize: wp("4%"),
-    color: "#2d5287",
-    fontWeight: "500",
+    fontFamily: 'sans-serif',
+    fontSize: wp('4%'),
+    color: '#2d5287',
+    fontWeight: '500',
+    marginTop: hp('1%'),
   },
-  titleStyling: {
-    color:"#fff", 
-    fontWeight:"bold", 
-    backgroundColor: "#2d5287", 
-    borderRadius:wp("1%"), 
-    paddingHorizontal: wp("1%") ,
-    marginBottom:hp("1%"), 
-    marginRight:wp("25%"),
-    alignSelf: "center"
+  activeRuleCard: {
+    marginTop: hp('1%'),
+    backgroundColor: '#f0f0f0',
+    borderRadius: 10,
+    elevation: 3,
   },
-  middleButton: {
-    marginLeft: wp("25%")
-  }
+  activeRuleText: {
+    fontFamily: 'sans-serif',
+    fontSize: wp('4%'),
+    color: '#ff6103',
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  button: {
+    marginTop: hp('1%'), // Reduced margin
+    backgroundColor: '#ff6103',
+  },
 });
 
-export default Horses
-    
-    
-    
-    
-    
+export default Horses;

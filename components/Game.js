@@ -5,12 +5,14 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 function Game(props) {
   const [showRules, setShowRules] = useState(false);
+  const [activeRule, setActiveRule] = useState('');
 
   const gameName = props.route.params.game.name;
   const rulesObj = props.route.params.game.rules;
 
   const activateShowRules = () => {
     setShowRules(!showRules);
+    setActiveRule(rulesObj.rules);
   };
 
   useEffect(() => {
@@ -41,7 +43,11 @@ function Game(props) {
               {showRules ? 'Hide Rules' : 'Show Rules'}
             </Button>
             {showRules && (
-              <Text style={styles.rulesText}>{rulesObj.rules}</Text>
+              <Card style={styles.activeRuleCard}>
+                <Card.Content>
+                  <Text style={styles.rulesText}>{activeRule}</Text>
+                </Card.Content>
+              </Card>
             )}
           </Card.Content>
         </Card>
@@ -99,7 +105,13 @@ const styles = StyleSheet.create({
     fontSize: wp('4%'),
     color: '#2d5287',
     fontWeight: '500',
-    marginTop: hp('2%'),
+    marginTop: hp('1%'),
+  },
+  activeRuleCard: {
+    marginTop: hp('1%'),
+    backgroundColor: '#f0f0f0',
+    borderRadius: 10,
+    elevation: 3,
   },
   button: {
     marginTop: hp('2%'),
