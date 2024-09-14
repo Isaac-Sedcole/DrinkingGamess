@@ -17,6 +17,10 @@ function NoShowPunishment(props) {
     setDisplayHRules(list.length > 0);
   }, [props.houseRules]);
 
+  const navigateToHouseRules = () => {
+    props.navigation.navigate("House rules");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -28,7 +32,7 @@ function NoShowPunishment(props) {
             {props.houseRules.map(rule => (
               rule.checked && (
                 <View key={rule.id} style={styles.houseRulesNav}>
-                  <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>
+                  <Icon.Button backgroundColor="#ff6103" onPress={navigateToHouseRules}>
                     {rule.name}
                   </Icon.Button>
                 </View>
@@ -37,11 +41,13 @@ function NoShowPunishment(props) {
           </ScrollView>
         )}
       </View>
-      <View style={styles.footer}>
-        <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")}>
-          Random Punishment
-        </Icon.Button>
-      </View>
+      {!displayHRules && (
+        <View style={styles.footer}>
+          <Icon.Button onPress={navigateToHouseRules}>
+            House Rules
+          </Icon.Button>
+        </View>
+      )}
     </View>
   );
 }

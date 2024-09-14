@@ -1,6 +1,6 @@
 import React, { useRef, useState, useMemo, useCallback, useEffect } from 'react';
-import { View, StyleSheet, Text, Animated, Easing, TouchableOpacity, Alert } from 'react-native';
-import Svg, { G, Path, Text as SvgText, Line } from 'react-native-svg';
+import { View, StyleSheet, Text, Animated, Easing, TouchableOpacity, Alert, PanResponder } from 'react-native';
+import Svg, { G, Path, Text as SvgText } from 'react-native-svg';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const SpinningWheel = React.memo(({ rewards, onFinish }) => {
@@ -8,6 +8,25 @@ const SpinningWheel = React.memo(({ rewards, onFinish }) => {
   const [accumulatedRotation, setAccumulatedRotation] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
   const spinValue = useRef(new Animated.Value(0)).current;
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: (evt, gestureState) => {
+        if (!isSpinning) {
+          const newRotation = accumulatedRotation + gestureState.dx / 2; // Adjust sensitivity as needed
+          spinValue.setValue(newRotation);
+        }
+      },
+      onPanResponderRelease: (evt, gestureState) => {
+        if (!isSpinning) {
+          const finalRotation = accumulatedRotation + gestureState.dx / 2; // Adjust sensitivity as needed
+          setAccumulatedRotation(finalRotation % 360);
+          spin();
+        }
+      },
+    })
+  ).current;
 
   useEffect(() => {
     // Keep accumulated rotation within 0-360 range
@@ -95,7 +114,7 @@ const SpinningWheel = React.memo(({ rewards, onFinish }) => {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} {...panResponder.panHandlers}>
       <Animated.View style={{ transform: [{ rotate: spinInterpolate }] }}>
         <Svg width={wp('80%')} height={wp('80%')} viewBox="0 0 100 100">
           <G>
