@@ -16,18 +16,36 @@ function NavHouseRules(props) {
     setDisplayHRules(list.length > 0);
   }, [props.houseRules]);
 
+  const navigateToHouseRules = () => {
+    props.navigation.navigate("House rules");
+  };
+
+  const navigateToPunishmentWheel = () => {
+    props.navigation.navigate("Punishment Wheel");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.backButtonContainer}>
           <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
         </View>
+        {!displayHRules && (
+          <>
+            <Icon.Button onPress={navigateToHouseRules}>
+              House Rules
+            </Icon.Button>
+            <Icon.Button onPress={navigateToPunishmentWheel}>
+              Random Punishment
+            </Icon.Button>
+          </>
+        )}
         {displayHRules && (
           <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
             {props.houseRules.map(rule => (
               rule.checked && (
                 <View key={rule.id} style={styles.houseRulesNav}>
-                  <Icon.Button backgroundColor="#ff6103" onPress={() => props.navigation.navigate("House rules")}>
+                  <Icon.Button backgroundColor="#ff6103" onPress={navigateToHouseRules}>
                     {rule.name}
                   </Icon.Button>
                 </View>
@@ -36,11 +54,13 @@ function NavHouseRules(props) {
           </ScrollView>
         )}
       </View>
-      <View style={styles.footer}>
-        <Icon.Button onPress={() => props.navigation.navigate("Punishment Wheel")}>
-          Random Punishment
-        </Icon.Button>
-      </View>
+      {displayHRules && (
+        <View style={styles.footer}>
+          <Icon.Button onPress={navigateToPunishmentWheel}>
+            Random Punishment
+          </Icon.Button>
+        </View>
+      )}
     </View>
   );
 }
@@ -70,6 +90,7 @@ const styles = StyleSheet.create({
   footer: {
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
   },
 });
 
