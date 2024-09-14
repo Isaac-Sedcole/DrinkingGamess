@@ -19,8 +19,6 @@ function JustShowBack(props) {
   }, [props.houseRules]);
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <View style={styles.header}>
             <View style={styles.backButtonContainer}>
@@ -48,8 +46,6 @@ function JustShowBack(props) {
             </ScrollView>
           </View>
         </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
   );
 }
 
@@ -61,7 +57,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: rem(10),
+    padding: rem(5),
+    paddingTop: rem(40),
   },
   header: {
     flexDirection: 'row',

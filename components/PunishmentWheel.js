@@ -7,7 +7,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 function PunishmentWheel(props) {
   const punishWheel = punishmentWheel.punishmentWheel.map((item, index) => ({
     ...item,
-    color: `#${Math.floor(Math.random() * 16777215).toString(16)}`, // Random color for each segment
+    color: `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`, // Random color for each segment
   }));
 
   const onFinish = (value) => {

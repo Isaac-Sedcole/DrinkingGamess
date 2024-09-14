@@ -24,9 +24,7 @@ function JustShowHouseRules(props) {
 
   if (displayHRules) {
     return (
-      <SafeAreaProvider>
-        <SafeAreaView style={moreThanThree ? styles.containerMultiMoreThanThree : styles.containerMulti}>
-          <View style={styles.cardHousing}>
+          <View>
             <View style={styles.rulesContainer}>
               {currentHouseRules.map(rule => (
                 <View key={rule.id} style={styles.houseRulesNav}>
@@ -46,13 +44,9 @@ function JustShowHouseRules(props) {
               </Card>
             </View>
           </View>
-        </SafeAreaView>
-      </SafeAreaProvider>
     );
   } else {
     return (
-      <SafeAreaProvider>
-        <SafeAreaView style={styles.containerSingle}>
           <View style={styles.cardContainer}>
             <Card style={styles.card} onPress={() => props.navigation.navigate("House rules")} contentStyle={styles.cardContent}>
               <Card.Content>
@@ -65,8 +59,6 @@ function JustShowHouseRules(props) {
               </Card.Content>
             </Card>
           </View>
-        </SafeAreaView>
-      </SafeAreaProvider>
     );
   }
 }
@@ -98,6 +90,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'center',
+    marginTop: '10%'
   },
   houseRulesNav: {
     padding: 3,
@@ -106,12 +99,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginLeft: 5,
+    marginTop: '10%'
   },
   cardContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
     marginVertical: 10,
+    marginTop: '10%'
   },
   card: {
     flex: 1,

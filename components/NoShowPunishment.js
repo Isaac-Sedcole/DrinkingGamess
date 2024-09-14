@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { StyleSheet, View, ScrollView, Dimensions } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
@@ -29,50 +28,45 @@ function NoShowPunishment(props) {
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <View style={styles.backButtonContainer}>
-              <Icon.Button 
-                onPress={() => props.navigation.goBack()} 
-                name="arrow-left" 
-                backgroundColor="#1E90FF" 
-                color="#fff" 
-              />
-            </View>
-            {displayHRules && (
-              <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
-                {props.houseRules.map(rule => (
-                  rule.checked && (
-                    <View key={rule.id} style={styles.houseRulesNav}>
-                      <Icon.Button 
-                        backgroundColor="#ff6103" 
-                        color="#fff" 
-                        onPress={navigateToHouseRules}
-                      >
-                        {rule.name}
-                      </Icon.Button>
-                    </View>
-                  )
-                ))}
-              </ScrollView>
-            )}
-          </View>
-          {!displayHRules && (
-            <View style={styles.footer}>
-              <Icon.Button 
-                onPress={navigateToHouseRules} 
-                backgroundColor="#1E90FF" 
-                color="#fff"
-              >
-                House Rules
-              </Icon.Button>
-            </View>
-          )}
+    <View>
+      <View style={styles.header}>
+        <View style={styles.backButtonContainer}>
+          <Icon.Button 
+            onPress={() => props.navigation.goBack()} 
+            name="arrow-left" 
+            backgroundColor="#1E90FF" 
+            color="#fff" 
+          />
         </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
+        {displayHRules ? (
+          <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
+            {props.houseRules.map(rule => (
+              rule.checked && (
+                <View key={rule.id} style={styles.houseRulesNav}>
+                  <Icon.Button 
+                    backgroundColor="#ff6103" 
+                    color="#fff" 
+                    onPress={navigateToHouseRules}
+                  >
+                    {rule.name}
+                  </Icon.Button>
+                </View>
+              )
+            ))}
+          </ScrollView>
+        ) : (
+          <View style={styles.footer}>
+            <Icon.Button 
+              onPress={navigateToHouseRules} 
+              backgroundColor="#1E90FF" 
+              color="#fff"
+            >
+              Click here to add some house rules!
+            </Icon.Button>
+          </View>
+        )}
+      </View>
+    </View>
   );
 }
 
@@ -91,10 +85,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: rem(10),
+    paddingVertical: rem(40),
   },
   backButtonContainer: {
     marginRight: rem(10),
+    marginLeft: rem(10),
   },
   rulesContainer: {
     flexDirection: 'row',
@@ -105,9 +100,9 @@ const styles = StyleSheet.create({
     padding: rem(3),
   },
   footer: {
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: rem(20),
+    flex: 1, // Ensure the footer takes up the remaining space
   },
 });
 

@@ -31,8 +31,6 @@ function NavHouseRules(props) {
   };
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <View style={styles.header}>
             <View style={styles.backButtonContainer}>
@@ -44,22 +42,15 @@ function NavHouseRules(props) {
               />
             </View>
             {!displayHRules && (
-              <>
+              <View style={styles.flex}>
                 <Icon.Button 
                   onPress={navigateToHouseRules} 
                   backgroundColor="#1E90FF" 
                   color="#fff"
                 >
-                  House Rules
+                  Click here to add some house rules!
                 </Icon.Button>
-                <Icon.Button 
-                  onPress={navigateToPunishmentWheel} 
-                  backgroundColor="#1E90FF" 
-                  color="#fff"
-                >
-                  Random Punishment
-                </Icon.Button>
-              </>
+              </View>
             )}
             {displayHRules && (
               <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
@@ -90,22 +81,28 @@ function NavHouseRules(props) {
               </Icon.Button>
             </View>
           )}
+          {!displayHRules && (
+              <View style={styles.footer}>
+                  <Icon.Button 
+                    onPress={navigateToPunishmentWheel} 
+                    backgroundColor="#1E90FF" 
+                    color="#fff"
+                    >
+                    Random Punishment
+                  </Icon.Button>
+              </View>
+            )}
         </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    paddingTop: 20, // Add buffer to the top
+    paddingTop: 30, // Add buffer to the top
   },
   container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    padding: rem(10),
+    paddingTop: rem(40),
   },
   header: {
     flexDirection: 'row',
@@ -114,6 +111,7 @@ const styles = StyleSheet.create({
   },
   backButtonContainer: {
     marginRight: rem(10),
+    marginLeft: rem(20),
   },
   rulesContainer: {
     flexDirection: 'row',
@@ -125,7 +123,12 @@ const styles = StyleSheet.create({
   footer: {
     justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
+    flexDirection: 'column',
+    paddingTop: rem(5)
+  },
+  flex: {
+    flex: 1,
+    alignItems: 'center',
   },
 });
 
