@@ -1,7 +1,12 @@
 import { connect } from "react-redux";
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, Dimensions } from 'react-native';
+
+const { width: screenWidth } = Dimensions.get('window');
+
+// Scaling function
+const rem = (value) => screenWidth * (value / 375); // Assuming 375 is the base width (e.g., iPhone 6/7/8)
 
 function NavHouseRules(props) {
   const [displayHRules, setDisplayHRules] = useState(false);
@@ -28,14 +33,27 @@ function NavHouseRules(props) {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.backButtonContainer}>
-          <Icon.Button onPress={() => props.navigation.goBack()} name="arrow-left" />
+          <Icon.Button 
+            onPress={() => props.navigation.goBack()} 
+            name="arrow-left" 
+            backgroundColor="#1E90FF" 
+            color="#fff" 
+          />
         </View>
         {!displayHRules && (
           <>
-            <Icon.Button onPress={navigateToHouseRules}>
+            <Icon.Button 
+              onPress={navigateToHouseRules} 
+              backgroundColor="#1E90FF" 
+              color="#fff"
+            >
               House Rules
             </Icon.Button>
-            <Icon.Button onPress={navigateToPunishmentWheel}>
+            <Icon.Button 
+              onPress={navigateToPunishmentWheel} 
+              backgroundColor="#1E90FF" 
+              color="#fff"
+            >
               Random Punishment
             </Icon.Button>
           </>
@@ -45,7 +63,11 @@ function NavHouseRules(props) {
             {props.houseRules.map(rule => (
               rule.checked && (
                 <View key={rule.id} style={styles.houseRulesNav}>
-                  <Icon.Button backgroundColor="#ff6103" onPress={navigateToHouseRules}>
+                  <Icon.Button 
+                    backgroundColor="#ff6103" 
+                    color="#fff" 
+                    onPress={navigateToHouseRules}
+                  >
                     {rule.name}
                   </Icon.Button>
                 </View>
@@ -56,7 +78,11 @@ function NavHouseRules(props) {
       </View>
       {displayHRules && (
         <View style={styles.footer}>
-          <Icon.Button onPress={navigateToPunishmentWheel}>
+          <Icon.Button 
+            onPress={navigateToPunishmentWheel} 
+            backgroundColor="#1E90FF" 
+            color="#fff"
+          >
             Random Punishment
           </Icon.Button>
         </View>
@@ -70,7 +96,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding: 10,
+    padding: rem(10),
   },
   header: {
     flexDirection: 'row',
@@ -78,14 +104,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   backButtonContainer: {
-    marginRight: 10,
+    marginRight: rem(10),
   },
   rulesContainer: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
   },
   houseRulesNav: {
-    padding: 3,
+    padding: rem(3),
   },
   footer: {
     justifyContent: 'center',

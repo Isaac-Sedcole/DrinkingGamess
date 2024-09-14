@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import { Card } from 'react-native-paper';
 import gamesList from '../data/gamesList';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-import Game from './Game';
-import HouseRules from './HouseRules';
+const { width: screenWidth } = Dimensions.get('window');
+
+// Scaling function
+const rem = (value) => screenWidth * (value / 375); // Assuming 375 is the base width (e.g., iPhone 6/7/8)
 
 function Games({ navigation }) {
 
@@ -42,34 +43,41 @@ function Games({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.gamesGrid}>
-        {gamesList.games.map(game => {
-          return (
-            <TouchableOpacity 
-              style={styles.gameCard} 
-              key={game.id} 
-              onPress={() => navigateToGame(game)}
-            >
-              <Card style={styles.card}>
-                <Image 
-                  source={getIcon(game.iconName)} 
-                  style={styles.gameIcon} 
-                />
-                <Text style={styles.gameName}>{game.name}</Text>
-              </Card>
-            </TouchableOpacity>
-          );
-        })}
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <View style={styles.gamesGrid}>
+          {gamesList.games.map(game => {
+            return (
+              <TouchableOpacity 
+                style={styles.gameCard} 
+                key={game.id} 
+                onPress={() => navigateToGame(game)}
+              >
+                <Card style={styles.card}>
+                  <Image 
+                    source={getIcon(game.iconName)} 
+                    style={styles.gameIcon} 
+                  />
+                  <Text style={styles.gameName}>{game.name}</Text>
+                </Card>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
-    paddingVertical: wp("10%"),
+    paddingVertical: rem(20),
     alignItems: 'center'
   },
   gamesGrid: {
@@ -78,22 +86,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   gameCard: {
-    width: wp("40%"),
-    margin: wp("2.5%")
+    width: rem(150),
+    margin: rem(10)
   },
   card: {
     alignItems: 'center',
-    padding: wp("2%"),
-    borderRadius: wp("5%")
+    padding: rem(10),
+    borderRadius: rem(10)
   },
   gameIcon: {
-    width: wp("35%"),
-    height: wp("35%"),
+    width: rem(130),
+    height: rem(130),
     resizeMode: 'contain'
   },
   gameName: {
-    marginTop: hp("1%"),
-    fontSize: wp("4%"),
+    marginTop: rem(10),
+    fontSize: rem(16),
     textAlign: 'center'
   }
 });

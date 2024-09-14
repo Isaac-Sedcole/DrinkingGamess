@@ -1,8 +1,10 @@
 import { connect } from "react-redux";
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { Card } from 'react-native-paper';
+
+const { height: screenHeight } = Dimensions.get('window');
 
 function JustShowHouseRules(props) {
   const [displayHRules, setDisplayHRules] = useState(false);
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     marginHorizontal: 5,
-    height: 60, // Adjust the height as needed
+    height: screenHeight * 0.1, // 10% of the screen height
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#1E90FF', // Poppy blue background color
