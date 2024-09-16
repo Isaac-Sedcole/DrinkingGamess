@@ -64,13 +64,11 @@ function BeerPong(props) {
                   <AppButton onPress={() => activateShowRuleModal(rule)} title={rule} />
                 </View>
               ))}
-              {activeRule && (
+              {showRuleModal && (
                 <Card style={styles.activeRuleCard}>
                   <Card.Content>
                     <Text style={styles.activeRuleText}>Active Rule: {activeRule}</Text>
-                    {showRuleModal && (
-                      <Text style={styles.rulesText}>{currentRule.desc}</Text>
-                    )}
+                    <Text style={styles.rulesText}>{currentRule.desc}</Text>
                   </Card.Content>
                 </Card>
               )}
