@@ -12,70 +12,121 @@ const rem = (value) => screenWidth * (value / 375); // Assuming 375 is the base 
 function JustShowBack(props) {
   const [moreThanThree, setMoreThanThree] = useState(false);
   const [currentHouseRules, setCurrentHouseRules] = useState([]);
+  const [displayHRules, setDisplayHRules] = useState(false);
 
   useEffect(() => {
     setMoreThanThree(props.houseRules.length > 3);
     setCurrentHouseRules(props.houseRules);
+    let list = props.houseRules.filter(rule => rule.checked);
+    setDisplayHRules(list.length > 0);
   }, [props.houseRules]);
 
+  const navigateToPunishmentWheel = () => {
+    props.navigation.navigate("Punishment Wheel");
+  };
+
+  const navigateToHouseRules = () => {
+    props.navigation.navigate("House rules");
+  };
+
   return (
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <View style={styles.backButtonContainer}>
-              <Icon.Button 
-                onPress={() => props.navigation.goBack()} 
-                name="arrow-left" 
-                backgroundColor="#1E90FF" 
-                color="#fff" 
-              />
-            </View>
-            <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
-              {currentHouseRules.map(rule => (
-                rule.checked && (
-                  <View key={rule.id} style={styles.houseRulesNav}>
-                    <Icon.Button 
-                      backgroundColor="#ff6103" 
-                      color="#fff" 
-                      onPress={() => props.navigation.navigate("House rules")}
-                    >
-                      {rule.name}
-                    </Icon.Button>
-                  </View>
-                )
-              ))}
-            </ScrollView>
-          </View>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.backButtonContainer}>
+          <Icon.Button 
+            onPress={() => props.navigation.goBack()} 
+            name="arrow-left" 
+            backgroundColor="#1E90FF" 
+            color="#fff" 
+          />
         </View>
-  );
+        {displayHRules ? (
+          <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
+            {props.houseRules.map(rule => (
+              rule.checked && (
+                <View key={rule.id} style={styles.houseRulesNav}>
+                  <Icon.Button 
+                    backgroundColor="#ff6103" 
+                    color="#fff" 
+                    onPress={navigateToHouseRules}
+                  >
+                    {rule.name}
+                  </Icon.Button>
+                </View>
+              )
+            ))}
+          </ScrollView>
+        ) : (
+          <View style={styles.flex}>
+            <Icon.Button 
+              onPress={navigateToPunishmentWheel} 
+              backgroundColor="#1E90FF" 
+              color="#fff"
+              style={styles.fullWithWithButton}
+            >
+              Random Punishment
+            </Icon.Button>
+          </View>
+        )}
+      </View>
+      {displayHRules && 
+        <View style={styles.footer}>
+          <Icon.Button 
+            onPress={navigateToPunishmentWheel} 
+            backgroundColor="#1E90FF" 
+            color="#fff"
+            style={styles.fullWidthButton}
+          >
+            Random Punishment
+          </Icon.Button>
+        </View>
+      }
+    </View>
+);
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    paddingTop: 20, // Add buffer to the top
-  },
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: rem(5),
-    paddingTop: rem(40),
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flex: 1,
-  },
-  backButtonContainer: {
-    marginRight: rem(10),
-  },
-  rulesContainer: {
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-  },
-  houseRulesNav: {
-    padding: rem(3),
-  },
+safeArea: {
+flex: 1,
+paddingTop: 30, // Add buffer to the top
+},
+container: {
+paddingTop: rem(40),
+},
+header: {
+flexDirection: 'row',
+alignItems: 'center',
+justifyContent: 'space-between',
+},
+backButtonContainer: {
+marginRight: rem(10),
+marginLeft: rem(20),
+},
+rulesContainer: {
+flexDirection: 'row',
+flexWrap: 'nowrap',
+},
+houseRulesNav: {
+padding: rem(3),
+},
+footer: {
+justifyContent: 'center',
+alignItems: 'center',
+flexDirection: 'column',
+paddingTop: rem(5)
+},
+flex: {
+flex: 1,
+alignItems: 'center',
+},
+fullWidthButton: {
+width: screenWidth - rem(40), // Adjusting for padding/margin
+justifyContent: 'center',
+},
+fullWithWithButton: {
+width: screenWidth - rem(110),
+justifyContent: 'center',
+}
 });
 
 const mapStateToProps = (globalState) => {

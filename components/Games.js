@@ -44,8 +44,6 @@ function Games({ navigation }) {
   };
 
   return (
-    <SafeAreaProvider style={styles.safeArea}>
-      <SafeAreaView style={styles.safeArea}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <View style={styles.container}>
             <View style={styles.gamesGrid}>
@@ -69,16 +67,10 @@ function Games({ navigation }) {
             </View>
           </View>
         </ScrollView>
-      </SafeAreaView>
-    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    paddingTop: 20, // Add buffer to the top
-  },
   scrollContainer: {
     flexGrow: 1,
     justifyContent: 'center',

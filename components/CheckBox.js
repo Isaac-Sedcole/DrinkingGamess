@@ -6,9 +6,9 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 function CheckBox({ label, status, onPress }) {
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={{ flexDirection: 'column' ,alignItems: 'center'}}>
+      <View style={{ flexDirection: 'column' ,alignItems: 'center', justifyContent: 'center'}}>
         <Checkbox status={status} />
-        <Text style={{alignSelf: 'center', fontWeight: 'bold' }}>{label}</Text>
+        <Text style={{alignSelf: 'center', justifyContent: 'center', fontWeight: 'bold' }}>{label}</Text>
       </View>
     </TouchableOpacity>
   );

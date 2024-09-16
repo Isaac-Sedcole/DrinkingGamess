@@ -41,18 +41,7 @@ function NavHouseRules(props) {
                 color="#fff" 
               />
             </View>
-            {!displayHRules && (
-              <View style={styles.flex}>
-                <Icon.Button 
-                  onPress={navigateToHouseRules} 
-                  backgroundColor="#1E90FF" 
-                  color="#fff"
-                >
-                  Click here to add some house rules!
-                </Icon.Button>
-              </View>
-            )}
-            {displayHRules && (
+            {displayHRules ? (
               <ScrollView horizontal contentContainerStyle={styles.rulesContainer}>
                 {props.houseRules.map(rule => (
                   rule.checked && (
@@ -68,30 +57,42 @@ function NavHouseRules(props) {
                   )
                 ))}
               </ScrollView>
+            ) : (
+              <View style={styles.flex}>
+                <Icon.Button 
+                  onPress={navigateToPunishmentWheel} 
+                  backgroundColor="#1E90FF" 
+                  color="#fff"
+                  style={styles.fullWithWithButton}
+                >
+                  Random Punishment
+                </Icon.Button>
+              </View>
             )}
           </View>
-          {displayHRules && (
+          {displayHRules ? (
             <View style={styles.footer}>
               <Icon.Button 
                 onPress={navigateToPunishmentWheel} 
                 backgroundColor="#1E90FF" 
                 color="#fff"
+                style={styles.fullWidthButton}
               >
                 Random Punishment
               </Icon.Button>
             </View>
+          ) : (
+            <View style={styles.footer}>
+              <Icon.Button 
+                onPress={navigateToHouseRules} 
+                backgroundColor="#1E90FF" 
+                color="#fff"
+                style={styles.fullWidthButton}
+              >
+                Click here to add some house rules!
+              </Icon.Button>
+            </View>
           )}
-          {!displayHRules && (
-              <View style={styles.footer}>
-                  <Icon.Button 
-                    onPress={navigateToPunishmentWheel} 
-                    backgroundColor="#1E90FF" 
-                    color="#fff"
-                    >
-                    Random Punishment
-                  </Icon.Button>
-              </View>
-            )}
         </View>
   );
 }
@@ -130,6 +131,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  fullWidthButton: {
+    width: screenWidth - rem(40), // Adjusting for padding/margin
+    justifyContent: 'center',
+  },
+  fullWithWithButton: {
+    width: screenWidth - rem(110),
+    justifyContent: 'center',
+  }
 });
 
 const mapStateToProps = (globalState) => {

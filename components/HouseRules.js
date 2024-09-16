@@ -56,11 +56,13 @@ function HouseRules(props) {
                   <Card.Title
                     style={styles.cardTitleContent}
                     title={
-                      <CheckBox
-                        label={rule.name}
-                        status={rule.checked ? 'checked' : 'unchecked'}
-                        onPress={() => handleCheckBox(rule.id - 1, rule)}
-                      />
+                      <View style={styles.centeredContent}>
+                        <CheckBox
+                          label={rule.name}
+                          status={rule.checked ? 'checked' : 'unchecked'}
+                          onPress={() => handleCheckBox(rule.id - 1, rule)}
+                        />
+                      </View>
                     }
                   />
                 </View>
@@ -106,6 +108,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   cardContent: {
+    justifyContent: 'center',
+  },
+  centeredContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   titleText: {

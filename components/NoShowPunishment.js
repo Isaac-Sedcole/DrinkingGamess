@@ -55,7 +55,7 @@ function NoShowPunishment(props) {
             ))}
           </ScrollView>
         ) : (
-          <View style={styles.footer}>
+          <View style={styles.fullWithWithButton}>
             <Icon.Button 
               onPress={navigateToHouseRules} 
               backgroundColor="#1E90FF" 
@@ -71,10 +71,6 @@ function NoShowPunishment(props) {
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    paddingTop: 20, // Add buffer to the top
-  },
   container: {
     flex: 1,
     flexDirection: 'column',
@@ -84,12 +80,10 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: rem(40),
+    paddingTop: rem(40),
   },
   backButtonContainer: {
-    marginRight: rem(10),
-    marginLeft: rem(10),
+    marginHorizontal: rem(10),
   },
   rulesContainer: {
     flexDirection: 'row',
@@ -104,6 +98,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1, // Ensure the footer takes up the remaining space
   },
+  fullWithWithButton: {
+    width: screenWidth - rem(90),
+    justifyContent: 'center',
+  }
 });
 
 const mapStateToProps = (globalState) => {
