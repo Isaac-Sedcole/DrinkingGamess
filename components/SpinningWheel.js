@@ -1,5 +1,5 @@
 import React, { useRef, useState, useMemo, useCallback, useEffect } from 'react';
-import { View, StyleSheet, Text, Animated, Easing, TouchableOpacity, Alert, PanResponder } from 'react-native';
+import { View, StyleSheet, Text, Animated, Easing, TouchableOpacity, Alert } from 'react-native';
 import Svg, { G, Path, Text as SvgText } from 'react-native-svg';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -8,25 +8,6 @@ const SpinningWheel = React.memo(({ rewards, onFinish }) => {
   const [accumulatedRotation, setAccumulatedRotation] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
   const spinValue = useRef(new Animated.Value(0)).current;
-  const panResponder = useRef(
-    PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: (evt, gestureState) => {
-        if (!isSpinning) {
-          const newRotation = accumulatedRotation + gestureState.dx / 2; // Adjust sensitivity as needed
-          spinValue.setValue(newRotation);
-        }
-      },
-      onPanResponderRelease: (evt, gestureState) => {
-        if (!isSpinning) {
-          const finalRotation = accumulatedRotation + gestureState.dx / 2; // Adjust sensitivity as needed
-          setAccumulatedRotation(finalRotation % 360);
-          spin();
-        }
-      },
-    })
-  ).current;
 
   useEffect(() => {
     // Keep accumulated rotation within 0-360 range
@@ -81,13 +62,8 @@ const SpinningWheel = React.memo(({ rewards, onFinish }) => {
     setIsSpinning(true);
     spinValue.setValue(accumulatedRotation); // Reset spin value to accumulated rotation
 
-    let randomIndex;
-    do {
-      randomIndex = Math.floor(Math.random() * rewards.length);
-    } while (randomIndex === spinResult.lastIndex && rewards.length > 1);
-
     const anglePerSegment = 360 / rewards.length;
-    const spinTo = accumulatedRotation + (randomIndex * anglePerSegment + 360 * 5); // Spin 5 times
+    const spinTo = accumulatedRotation + (Math.random() * 360 + 360 * 5); // Spin 5 times plus random angle
 
     Animated.timing(spinValue, {
       toValue: spinTo,
@@ -96,17 +72,18 @@ const SpinningWheel = React.memo(({ rewards, onFinish }) => {
       useNativeDriver: true,
     }).start(() => {
       const finalRotation = spinTo % 360;
-      const selectedIndex = Math.floor((finalRotation + 360) % 360 / anglePerSegment) % rewards.length; // Calculate the selected index
+      const adjustedRotation = (finalRotation + 90) % 360; // Adjust by 90 degrees to shift from 3 o'clock to 12 o'clock
+      const selectedIndex = Math.floor((360 - adjustedRotation) % 360 / anglePerSegment) % rewards.length; // Calculate the selected index
       setSpinResult({
         winner: rewards[selectedIndex],
-        lastIndex: randomIndex,
+        lastIndex: selectedIndex,
         selectedIndex,
       });
       onFinish(rewards[selectedIndex]);
       setAccumulatedRotation(finalRotation); // Update accumulated rotation to the final position
       setIsSpinning(false);
     });
-  }, [isSpinning, accumulatedRotation, rewards, spinResult.lastIndex]);
+  }, [isSpinning, accumulatedRotation, rewards]);
 
   const spinInterpolate = spinValue.interpolate({
     inputRange: [0, 360],
@@ -114,35 +91,30 @@ const SpinningWheel = React.memo(({ rewards, onFinish }) => {
   });
 
   return (
-    <View style={styles.container} {...panResponder.panHandlers}>
+    <View style={styles.container}>
       <Animated.View style={{ transform: [{ rotate: spinInterpolate }] }}>
         <Svg width={wp('80%')} height={wp('80%')} viewBox="0 0 100 100">
           <G>
-            {segmentData.map((segment, index) => {
-              const isSelected = index === spinResult.selectedIndex; // Check if this segment is selected
-              return (
-                <G key={index}>
-                  <Path
-                    d={segment.pathData}
-                    fill={rewards[index].color}
-                    stroke={isSelected ? 'yellow' : 'none'}
-                    strokeWidth={isSelected ? 2 : 0}
-                  />
-                  <SvgText
-                    x={segment.textX}
-                    y={segment.textY}
-                    fill={segment.textColor}
-                    fontSize="3"
-                    fontWeight="bold"
-                    textAnchor="middle"
-                    alignmentBaseline="middle"
-                    transform={`rotate(${segment.textAngle}, ${segment.textX}, ${segment.textY})`}
-                  >
-                    {rewards[index].name}
-                  </SvgText>
-                </G>
-              );
-            })}
+            {segmentData.map((segment, index) => (
+              <G key={index}>
+                <Path
+                  d={segment.pathData}
+                  fill={rewards[index].color}
+                />
+                <SvgText
+                  x={segment.textX}
+                  y={segment.textY}
+                  fill={segment.textColor}
+                  fontSize="3"
+                  fontWeight="bold"
+                  textAnchor="middle"
+                  alignmentBaseline="middle"
+                  transform={`rotate(${segment.textAngle}, ${segment.textX}, ${segment.textY})`}
+                >
+                  {rewards[index].name}
+                </SvgText>
+              </G>
+            ))}
           </G>
         </Svg>
       </Animated.View>
